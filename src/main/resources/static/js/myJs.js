@@ -28,15 +28,37 @@ function loadDoc() {
     }
 }
 //document.getElementById("selectedInstructor").addEventListener("click", function(){} 과 같음
+
+////TODO 중복구분이 많아서 리팩토링 필요함 - 재열
 $('#selectedInstructor').on('click', function () {
     var target = document.getElementById("selectedInstructor");
     if (target.selectedIndex == 0) {
         document.getElementById("status2").style.visibility='hidden'
         document.getElementById("status1").style.visibility='visible'
+        document.getElementById("status4").style.visibility='hidden'
+        document.getElementById("status3").style.visibility='visible'
     } else {
         document.getElementById("status1").style.visibility='hidden'
         document.getElementById("status2").style.visibility='visible'
+        document.getElementById("status3").style.visibility='hidden'
+        document.getElementById("status4").style.visibility='visible'
+    }});
+
+
+/*
+$('#phone').on('click', function (){
+   // statusChangeforTextBox(document.getElementById("phone").valueOf(),3);
+}
+*/
+
+//TextBox에 글씨가 쓰였으면 '완료' 아니면 '진행중'
+function statusChangeforTextBox(isFill,idIndex){
+
+    if (isFill == null) {
+        document.getElementById("status" + idIndex+1).style.visibility='hidden'
+        document.getElementById("status"+ idIndex).style.visibility='visible'
+    } else {
+        document.getElementById("status"+ idIndex).style.visibility='hidden'
+        document.getElementById("status"+ idIndex+1).style.visibility='visible'
     }
-
-
-});
+}

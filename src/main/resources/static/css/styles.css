@@ -26,7 +26,7 @@ body {
 }
 
 
-#status2{
+#status2,#status4,#status6,#status8,#status10,#status12,#status14{
     visibility: hidden;
     position: relative;
     left: -4em;
