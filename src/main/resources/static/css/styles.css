@@ -24,12 +24,11 @@ body {
     border : 0;
     float: left;
 }
-Div.hiddenDiv{
+
+
+#status2{
     visibility: hidden;
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-    height: 0;
-    width: 0;
+    position: relative;
+    left: -4em;
+    top:0;
 }
