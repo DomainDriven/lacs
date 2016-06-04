@@ -51,10 +51,10 @@ public class Seminar {
     /**
      * 현재 진행중인 세미나가 없을 경우의 생성자.
      *
-     * @param title
+     * @param placeHolder
      */
-    public Seminar(String title) {
-        this.title = title;
+    public Seminar(String placeHolder) {
+        this.title = placeHolder;
     }
 
     /**
