@@ -7,7 +7,6 @@
 ### Install MongoDB 
 * ./install_mongodb.sh
 
-### Sample Data Import
-* mongoimport --db lacs --collection seminars --file sample_data/seminars.json
-* mongoimport --db lacs --collection instructors --file sample_data/instructors.json
-* mongoimport --db lacs --collection workers --file sample_data/workers.json
+### Sample Data Import && Export
+* ./mongoImport.sh
+* ./mongoExport.sh
