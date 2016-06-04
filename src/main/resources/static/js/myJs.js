@@ -44,21 +44,45 @@ $('#selectedInstructor').on('click', function () {
         document.getElementById("status4").style.visibility='visible'
     }});
 
+$('#selectedWorker').on('click', function () {
+    var target = document.getElementById("selectedWorker");
+    if (target.selectedIndex == 0) {
+        document.getElementById("status6").style.visibility='hidden'
+        document.getElementById("status5").style.visibility='visible'
 
-/*
-$('#phone').on('click', function (){
-   // statusChangeforTextBox(document.getElementById("phone").valueOf(),3);
-}
-*/
+    } else {
+        document.getElementById("status5").style.visibility='hidden'
+        document.getElementById("status6").style.visibility='visible'
+
+    }});
+
+$('#phone').change(function (){
+    statusChangeforTextBox(document.getElementById("phone").value,3);
+})
+
+
+$('#subject').change(function (){
+    statusChangeforTextBox(document.getElementById("subject").value,7);
+})
+
+$('#date').change(function (){
+    statusChangeforTextBox(document.getElementById("date").value,9);
+})
+
+$('#account').change(function (){
+    statusChangeforTextBox(document.getElementById("account").value,11);
+})
+
+
+
 
 //TextBox에 글씨가 쓰였으면 '완료' 아니면 '진행중'
 function statusChangeforTextBox(isFill,idIndex){
-
-    if (isFill == null) {
-        document.getElementById("status" + idIndex+1).style.visibility='hidden'
-        document.getElementById("status"+ idIndex).style.visibility='visible'
+    if (isFill != '') {
+        document.getElementById("status" + idIndex).style.visibility='hidden'
+        document.getElementById("status"+ (idIndex+1)).style.visibility='visible'
     } else {
-        document.getElementById("status"+ idIndex).style.visibility='hidden'
-        document.getElementById("status"+ idIndex+1).style.visibility='visible'
+        document.getElementById("status"+ (idIndex+1)).style.visibility='hidden'
+        document.getElementById("status"+ idIndex).style.visibility='visible'
     }
 }
