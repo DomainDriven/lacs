@@ -29,3 +29,6 @@
     left: -4em;
     top:0;
 }
+#progress{
+    visibility: hidden;
+}
