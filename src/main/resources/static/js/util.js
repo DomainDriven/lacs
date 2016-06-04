@@ -7,17 +7,25 @@
  * @param completeBtn
  * @param restartBtn
  */
-function toggleBtn(complete, restart) {
+function toggleBtn(complete, restart, next, completeVal, restartVal, disableVal) {
+    var progressBar = $(".progress-bar");
     var completeBtn = $("#" + complete);
     var restartBtn = $("#" + restart);
+    var nextBtn = $("#" + next);
 
     completeBtn.click(function () {
         $(this).css("display", "none");
         restartBtn.css("display", "block");
+        nextBtn.attr("disabled", disableVal);
+        progressBar.attr("aria-valuenow", completeVal)
+            .css("width", completeVal + "%").text(completeVal + "%");
     });
     restartBtn.click(function () {
         $(this).css("display", "none");
         completeBtn.css("display", "block");
+        nextBtn.attr("disabled", !disableVal);
+        progressBar.attr("aria-valuenow", restartVal)
+            .css("width", restartVal + "%").text(restartVal + "%");
     });
 }
 

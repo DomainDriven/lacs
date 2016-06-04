@@ -26,12 +26,12 @@
             </div>
             <!--.box-header-->
             <div class="box-body">
-                <h6>현재 총 진행률</h6>
+                <h6>장소 예약 진행률</h6>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
                          aria-valuemax="100"
-                         style="width: 100%;">
-                        100%
+                         style="width: 0%;">
+                        0%
                     </div>
                 </div>
                 <table class="table table-striped">
@@ -52,10 +52,10 @@
                         </td>
                         <td>
                             <div class="col-sm-offset-1">
-                                <button type="button" class="btn btn-primary full-width" id="couponComplete"
+                                <button type="button" class="btn btn-success full-width" id="couponComplete"
                                         style="display: block">complete
                                 </button>
-                                <button type="button" class="btn btn-success full-width" id="couponRestart"
+                                <button type="button" class="btn btn-primary full-width" id="couponRestart"
                                         style="display: none">restart
                                 </button>
                             </div>
@@ -71,10 +71,10 @@
                         </td>
                         <td>
                             <div class="col-sm-offset-1">
-                                <button type="button" class="btn btn-primary full-width" id="tozComplete"
-                                        style="display: block">complete
+                                <button type="button" class="btn btn-success full-width" id="tozComplete"
+                                        style="display: block" disabled="true">complete
                                 </button>
-                                <button type="button" class="btn btn-success full-width" id="tozRestart"
+                                <button type="button" class="btn btn-primary full-width" id="tozRestart"
                                         style="display: none">restart
                                 </button>
                             </div>

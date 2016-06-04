@@ -86,6 +86,7 @@ $(document).ready(function () {
      * 장소예약 상세화면.
      * @type {*|jQuery|HTMLElement}
      */
-    toggleBtn("couponComplete", "couponRestart");
-    toggleBtn("tozComplete", "tozRestart");
+    toggleBtn("couponComplete", "couponRestart", "tozComplete", 50, 0, false);
+    toggleBtn("tozComplete", "tozRestart", "couponRestart", 100, 50, true);
+
 });
