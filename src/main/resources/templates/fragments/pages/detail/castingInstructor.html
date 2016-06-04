@@ -51,7 +51,7 @@
                                 </select>
                             </td>
                             <td>
-                                <span class="label label-default" id="status1" >진행중</span>
+                                <span class="label label-default" id="status1">진행중</span>
                                 <span class="label label-success" id="status2">완  료</span>
                             </td>
                         </tr>
@@ -66,7 +66,7 @@
                                       <p th:each="instructor: ${selectingInstrouctor.instructors}" th:id="${instructor.getMail()}" th:value="${instructor.getMail()}" th:text="${instructor.getMail()}"></p>
                                   </div>-->
                             </td>
-                            <td><span class="label label-default" id="status3" >진행중</span>
+                            <td><span class="label label-default" id="status3">진행중</span>
                                 <span class="label label-success" id="status4">완  료</span></td>
                         </tr>
                         <tr>
@@ -77,35 +77,36 @@
                                 <option th:each="worker: ${selectedInstrouctor.workers}" th:id="${worker.getName()}"
                                         th:value="${worker.getName()}" th:text="${worker.getName()}"></option>
                             </select></td>
-                            <td><span class="label label-default" id="status5" >진행중</span>
+                            <td><span class="label label-default" id="status5">진행중</span>
                                 <span class="label label-success" id="status6">완  료</span></td>
                         </tr>
                         <tr>
                             <th>강의주제</th>
                             <td><input type="text" name="subject" id="subject"/></td>
-                            <td><span class="label label-default" id="status7" >진행중</span>
+                            <td><span class="label label-default" id="status7">진행중</span>
                                 <span class="label label-success" id="status8">완  료</span></td>
                         </tr>
                         <tr>
                             <th>선호날짜</th>
                             <td><input type="text" name="date" id="date"/></td>
-                            <td><span class="label label-default" id="status9" >진행중</span>
+                            <td><span class="label label-default" id="status9">진행중</span>
                                 <span class="label label-success" id="status10">완  료</span></td>
                         </tr>
                         <tr>
                             <th>계좌번호</th>
                             <td><input type="text" name="account" id="account"/></td>
-                            <td><span class="label label-default" id="status11" >진행중</span>
+                            <td><span class="label label-default" id="status11">진행중</span>
                                 <span class="label label-success" id="status12">완  료</span></td>
                         </tr>
                         <tr>
                             <th>발표자료</th>
                             <td><input type="text" name="file" id="file"/></td>
-                            <td><span class="label label-default" id="status13" >진행중</span>
+                            <td><span class="label label-default" id="status13">진행중</span>
                                 <span class="label label-success" id="status14">완  료</span></td>
                         </tr>
                     </table>
                     <input type="submit" class="btn btn-primary"/>
+                    <input type="submit" class="btn btn-primary backBtn" th:value="뒤로가기"/>
                 </form>
             </div>
             <!--box-body-->
