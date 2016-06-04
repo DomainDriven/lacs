@@ -7,7 +7,10 @@
  * @param completeBtn
  * @param restartBtn
  */
-function toggleBtn(completeBtn, restartBtn) {
+function toggleBtn(complete, restart) {
+    var completeBtn = $("#" + complete);
+    var restartBtn = $("#" + restart);
+
     completeBtn.click(function () {
         $(this).css("display", "none");
         restartBtn.css("display", "block");
