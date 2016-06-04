@@ -155,4 +155,12 @@ public class AppsController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "retrospecting", method = RequestMethod.GET)
+    public String retrospecting(Model model) {
+        logger.info("회고 상세 화면..");
+        model.addAttribute("page", "retrospecting");
+
+        return LAYOUT;
+    }
+
 }

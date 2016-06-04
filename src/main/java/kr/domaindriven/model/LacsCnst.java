@@ -19,6 +19,6 @@ public class LacsCnst {
     public static final String PROMOTION = "홍보";
     public static final String PROMOTION_URL = "/promoting";
     public static final String REMEMBERANCE = "회고";
-    public static final String REMEMBERANCE_URL = "/rememberancing";
+    public static final String REMEMBERANCE_URL = "/retrospecting";
 
 }
