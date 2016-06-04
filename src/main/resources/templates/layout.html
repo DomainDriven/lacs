@@ -44,6 +44,8 @@
          th:include="fragments/pages/detail/castingInstructor :: castingInstructor"></div>
     <div class="container" th:case="seminarInstructor"
          th:include="fragments/pages/detail/seminarInstructor :: seminarInstructor"></div>
+    <div class="container" th:case="reservingPlace"
+         th:include="fragments/pages/detail/reservingPlace :: reservingPlace"></div>
     <div class="container" th:case="addWorker" th:include="fragments/pages/form/addWorker :: addWorker"></div>
     <div class="container" th:case="allWorker" th:include="fragments/pages/list/allWorker :: allWorker"></div>
 </div>
@@ -71,6 +73,7 @@
         src="/static/node_modules/admin-lte/plugins/input-mask/jquery.inputmask.js"></script>
 <script th:src="@{/static/node_modules/admin-lte/dist/js/app.min.js}"
         src="/static/node_modules/admin-lte/dist/js/app.min.js"></script>
+<script th:src="@{/static/js/util.js}" src="/static/js/util.js"></script>
 <script th:src="@{/static/js/index.js}" src="/static/js/index.js"></script>
 <script th:src="@{/static/js/myJs.js}" src="/static/js/myJs.js"></script>
 

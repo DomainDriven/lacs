@@ -101,7 +101,7 @@ public class AppsController {
     }
 
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.GET)
-    public String selectingInstructor(@PageableDefault Pageable pageable, Model model) {
+    public String castingInstructor(@PageableDefault Pageable pageable, Model model) {
         logger.info("강사 섭외 상세 화면..");
         // TestModel testModel = new TestModel(); //test 데이터 입력을 위한 TestModel
         String currentSeminarTitle = smService.findByIsCompleted(false).getTitle(); // 현재 진행중인 세미나 이름
@@ -120,6 +120,14 @@ public class AppsController {
         SelectedInstructorForm selectedInstrouctor = SelectedInstructorForm;
         model.addAttribute("selectedInstrouctor", selectedInstrouctor);
         model.addAttribute("page", "seminarInstructor");
+        return LAYOUT;
+    }
+
+    @RequestMapping(value = "reservingPlace", method = RequestMethod.GET)
+    public String reservingPlace(Model model) {
+        logger.info("장소 섭외 상세 화면..");
+        model.addAttribute("page", "reservingPlace");
+
         return LAYOUT;
     }
 

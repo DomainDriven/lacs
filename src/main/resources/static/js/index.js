@@ -82,4 +82,15 @@ $(document).ready(function () {
         }
     });
 
+    /**
+     * 장소예약 상세화면.
+     * @type {*|jQuery|HTMLElement}
+     */
+    var couponComplete = $("#couponComplete");
+    var couponRestart = $("#couponRestart");
+    toggleBtn(couponComplete, couponRestart);
+
+    var tozComplete = $("#tozComplete");
+    var tozRestart = $("#tozRestart");
+    toggleBtn(tozComplete, tozRestart);
 });
