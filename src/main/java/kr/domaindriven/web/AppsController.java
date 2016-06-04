@@ -147,4 +147,12 @@ public class AppsController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "promoting", method = RequestMethod.GET)
+    public String promoting(Model model) {
+        logger.info("홍보 상세 화면..");
+        model.addAttribute("page", "promoting");
+
+        return LAYOUT;
+    }
+
 }
