@@ -131,4 +131,12 @@ public class AppsController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "makingPoster", method = RequestMethod.GET)
+    public String makingPoster(Model model) {
+        logger.info("포스트 제작 상세 화면..");
+        model.addAttribute("page", "makingPoster");
+
+        return LAYOUT;
+    }
+
 }
