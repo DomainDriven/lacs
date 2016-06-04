@@ -139,4 +139,12 @@ public class AppsController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "registeringOnOffMix", method = RequestMethod.GET)
+    public String registeringOnOffMix(Model model) {
+        logger.info("온오프 믹스 등록 상세 화면..");
+        model.addAttribute("page", "registeringOnOffMix");
+
+        return LAYOUT;
+    }
+
 }

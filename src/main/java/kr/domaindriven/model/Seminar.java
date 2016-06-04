@@ -54,7 +54,6 @@ public class Seminar {
      * @param title
      */
     public Seminar(String title) {
-        this();
         this.title = title;
     }
 

@@ -14,8 +14,8 @@ public class LacsCnst {
     public static final String RESERVE_PLACE_URL = "/reservingPlace";
     public static final String MAKE_POSTER = "포스터 제작";
     public static final String MAKE_POSTER_URL = "/makingPoster";
-    public static final String REGISTER_SEMINAR = "세미나 등록";
-    public static final String REGISTER_SEMINAR_URL = "/registeringSeminar";
+    public static final String REGISTER_SEMINAR = "온오프믹스 등록";
+    public static final String REGISTER_SEMINAR_URL = "/registeringOnOffMix";
     public static final String PROMOTION = "홍보";
     public static final String PROMOTION_URL = "/promoting";
     public static final String REMEMBERANCE = "회고";
