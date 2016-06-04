@@ -116,9 +116,9 @@ public class AppsController {
     }
 
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
-    public String addInstructor(@ModelAttribute SelectedInstructorForm SelectedInstructorForm, Model model) {
-        SelectedInstructorForm selectedInstrouctor = SelectedInstructorForm;
-        model.addAttribute("selectedInstrouctor", selectedInstrouctor);
+    public String castingInstructor(@ModelAttribute SelectedInstructorForm selectedInstructorForm, Model model) {
+        logger.info("강사섭외 진행률:"+ selectedInstructorForm.getProgress()+"%");
+        model.addAttribute("selectedInstrouctor", selectedInstructorForm);
         model.addAttribute("page", "seminarInstructor");
         return LAYOUT;
     }

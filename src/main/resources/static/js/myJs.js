@@ -99,6 +99,9 @@ $('#file').change(function () {
     progressF()
 })
 
+$('#submit').on('click', function () {
+    document.getElementById("progress").value = getProgressValue().toString();
+});
 
 //TextBox에 글씨가 쓰였으면 '완료' 아니면 '진행중'
 function statusChangeforTextBox(isFill, idIndex) {
@@ -115,13 +118,23 @@ function statusChangeforTextBox(isFill, idIndex) {
 
 //현재 진행률을 볼 수 있게 하는 함수.
 function progressF() {
-    var progressValue=0;
-    for(i=0;i<progress.length;i++){
-        if(progress[i]==true){progressValue++}
+    var lastProgressValue = getProgressValue();
+    document.getElementById("progress-bar").setAttribute("style", "width:" + lastProgressValue + "%");
+    document.getElementById("progress-bar").innerHTML = lastProgressValue.toString() + "%";
+}
+
+//진행률 구하기
+function getProgressValue() {
+    var progressValue = 0;
+    for (i = 0; i < progress.length; i++) {
+        if (progress[i] == true) {
+            progressValue++
+        }
     }
     var lastProgressValue = progressValue * 15;
-    if(lastProgressValue>=100){lastProgressValue=100;} // 100보다 커지면 100으로 고정함. ex) 세부항목이 7개 * 15 = 105 로 나오기에.. 100으로 고정
+    if (lastProgressValue >= 100) {
+        lastProgressValue = 100;
+    } // 100보다 커지면 100으로 고정함. ex) 세부항목이 7개 * 15 = 105 로 나오기에.. 100으로 고정
 
-    document.getElementById("progress-bar").setAttribute("style", "width:"+lastProgressValue+"%");
-    document.getElementById("progress-bar").innerHTML = lastProgressValue.toString()+"%";
+    return lastProgressValue;
 }
