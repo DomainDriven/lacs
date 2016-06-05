@@ -29,7 +29,6 @@ public class SeminarService implements ISeminarService {
     public Seminar save(Seminar seminar) {
         if (seminar == null)
             throw new NullPointerException("seminar object is null...");
-
         return repository.save(seminar);
     }
 
@@ -52,4 +51,5 @@ public class SeminarService implements ISeminarService {
     public Long count() {
         return repository.count();
     }
+
 }
