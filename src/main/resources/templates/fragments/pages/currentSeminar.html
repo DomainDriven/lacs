@@ -24,24 +24,14 @@
             </div>
             <div class="box-body">
                 <div class="col-sm-4">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item" th:text="${currentSeminar.title}">
-                            Seminar Title <span class="badge">Seminar State</span>
-                        </a>
-                    </div>
-                    <form onsubmit="return false">
-                        <div class="table">
-                            <div class="table-row-group">
-                                <div class="table-row">
-                                    <div class="table-cell" style="width: 60px; vertical-align: top;">
-                                        <button type="submit" class="btn btn-default pull-right"
-                                                data-toggle="modal" data-target="#modify-seminar">세미나 수정
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" th:value="${currentSeminar.title}"/>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default" data-toggle="modal"
+                                    data-target="#modify-seminar">세미나 수정
+                            </button>
+                        </span>
+                    </div><!-- /input-group -->
                     <div th:replace="fragments/modal/modifySeminar :: modifySeminar"></div>
                 </div>
                 <div class="col-sm-8">
@@ -81,12 +71,13 @@
                         </tr>
                         </tbody>
                     </table>
-                    <form role="form">
-                        <div class="form-group">
-                            <label>Add Task</label>
-                            <input type="text" class="form-control" placeholder="New task"/>
-                        </div>
-                    </form>
+                    <!--TODO: task 추가 기능 추후 구현 - donghoon.-->
+                    <!--<div class="input-group">-->
+                    <!--<input type="text" class="form-control" placeholder="Add Task"/>-->
+                    <!--<span class="input-group-btn">-->
+                    <!--<button class="btn btn-default" type="button">추가</button>-->
+                    <!--</span>-->
+                    <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
                 </div>
             </div>
             <!--.box-body-->
