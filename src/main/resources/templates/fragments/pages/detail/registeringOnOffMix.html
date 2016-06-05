@@ -45,11 +45,10 @@
                     <tbody>
                     <tr>
                         <td>
-                            <a href="http://www.onoffmix.com/event/manage" target="_blank"><p>온오프 믹스 모임등록</p></a>
+                            <a href="http://www.onoffmix.com/event/manage" target="_blank">
+                                <p th:text="${task.taskName}">task name</p></a>
                         </td>
                         <td>
-                            <a th:href="@{/castingInstructor}" href="/castingInstructor">강사 섭외</a>,
-                            <a th:href="@{/reservingPlace(title=${title})}" href="#">장소 예약</a>,
                             <a th:href="@{/makingPoster(title=${title})}" href="#">포스터 제작</a>
                         </td>
                         <td>

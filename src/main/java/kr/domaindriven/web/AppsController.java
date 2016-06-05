@@ -198,6 +198,13 @@ public class AppsController {
     public String promoting(@RequestParam String title, Model model) {
         logger.info("홍보 상세 화면..");
         logger.info("title: " + title);
+
+        Seminar currentSeminar = smService.findByTitle(title);
+        Task promoting = currentSeminar.getTasks().get(4);
+
+        model.addAttribute("title", title);
+        model.addAttribute("order", 4);
+        model.addAttribute("task", promoting);
         model.addAttribute("page", "promoting");
 
         return LAYOUT;

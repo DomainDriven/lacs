@@ -127,7 +127,7 @@ $(document).ready(function () {
     toggleBtn(onOffMixComplete, onOffMixRestart, dummy, 100, 0, true);
 
     /**
-     * 장소 예약 progress 값에 따라 button 상태 변경.
+     * 온오프 믹스 등록 progress 값에 따라 button 상태 변경.
      */
     if (roTaskProgress === '100') {
         onOffMixComplete.css("display", "none");
@@ -135,6 +135,27 @@ $(document).ready(function () {
     } else if (roTaskProgress === '0') {
         onOffMixComplete.css("display", "block");
         onOffMixRestart.css("display", "none");
+    }
+
+    /**
+     * 홍보 상세화면.
+     * @type {jQuery|HTMLElement}
+     */
+    var promotingComplete = $("#promotingComplete");
+    var promotingRestart = $("#promotingRestart");
+    var prTaskProgress = $("#prTaskProgress").val();
+
+    toggleBtn(promotingComplete, promotingRestart, dummy, 100, 0, true);
+
+    /**
+     * 홍보 progress 값에 따라 button 상태 변경.
+     */
+    if (prTaskProgress === '100') {
+        promotingComplete.css("display", "none");
+        promotingRestart.css("display", "block");
+    } else if (prTaskProgress === '0') {
+        promotingComplete.css("display", "block");
+        promotingRestart.css("display", "none");
     }
 
 });

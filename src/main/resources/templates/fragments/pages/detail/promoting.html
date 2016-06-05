@@ -7,15 +7,15 @@
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a th:href="@{/}" href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
-            <li class="active"><a href="">홍보</a></li>
+            <li class="active"><a href="" th:text="${task.getTaskName()}">now breadcrumb</a></li>
         </ol>
     </section>
     <br/><br/>
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">
-                    홍보
+                <h3 class="box-title" th:text="${task.taskName}">
+                    Title
                 </h3>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -30,8 +30,8 @@
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
                          aria-valuemax="100"
-                         style="width: 100%;">
-                        100%
+                         th:style="'width:' + ${task.progress} + '%; color: #0c0c0c;'">
+                        <span th:text="${task.progress} + '%'">Task Progress%</span>
                     </div>
                 </div>
                 <table class="table table-striped">
@@ -44,20 +44,34 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>내용</td>
-                        <td>내용</td>
-                        <td>내용</td>
+                        <td>
+                            <a href="#" target="_blank">
+                                <p th:text="${task.taskName}">task name</p></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/registeringOnOffMix(title=${title})}" href="#">온오프 믹스 모임 등록</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-success full-width" id="promotingComplete"
+                                    style="display: block">완료
+                            </button>
+                            <button type="button" class="btn btn-primary full-width" id="promotingRestart"
+                                    style="display: none">재시작
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <input type="hidden" th:value="${title}" id="currentSeminarTitle"/>
+                        <input type="hidden" th:value="${order}" id="taskOrder"/>
+                        <input type="hidden" th:value="${task.progress}" id="prTaskProgress"/>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <!--.box-body-->
             <div class="box-footer">
-                <div class="form-group row">
-                    <div class="col-sm-offset-1">
-                        <a th:href="@{/}" href="/" class="btn btn-primary">뒤로가기</a>
-                    </div>
-                </div>
+                <a th:href="@{/}" href="/" class="btn btn-primary">메인으로</a>
+                <a class="btn btn-primary backBtn">뒤로가기</a>
             </div>
             <!--.box-footer-->
         </div>
