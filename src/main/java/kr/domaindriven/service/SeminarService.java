@@ -18,8 +18,9 @@ public class SeminarService implements ISeminarService {
     @Autowired
     private SeminarRepository repository;
 
-    public SeminarService(){
+    public SeminarService() {
     }
+
     /**
      * mongodb save 함수는 upsert 로 동작한다.
      *
@@ -29,7 +30,6 @@ public class SeminarService implements ISeminarService {
     public Seminar save(Seminar seminar) {
         if (seminar == null)
             throw new NullPointerException("seminar object is null...");
-
         return repository.save(seminar);
     }
 
@@ -52,4 +52,5 @@ public class SeminarService implements ISeminarService {
     public Long count() {
         return repository.count();
     }
+
 }
