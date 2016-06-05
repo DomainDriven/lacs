@@ -15,25 +15,28 @@ function toggleBtn(completeBtn, restartBtn, nextBtn, completeVal, restartVal, di
     completeBtn.click(function () {
         $(this).css("display", "none");
         restartBtn.css("display", "block");
-        nextBtn.attr("disabled", disableVal);
         progressBar.attr("aria-valuenow", completeVal)
             .css("width", completeVal + "%").text(completeVal + "%");
         ajaxWrapper("/seminar/taskProgress", {
             title: title,
             order: order,
             progress: completeVal
+        }, function () {
+            nextBtn.attr("disabled", disableVal);
         });
+
     });
     restartBtn.click(function () {
         $(this).css("display", "none");
         completeBtn.css("display", "block");
-        nextBtn.attr("disabled", !disableVal);
         progressBar.attr("aria-valuenow", restartVal)
             .css("width", restartVal + "%").text(restartVal + "%");
         ajaxWrapper("/seminar/taskProgress", {
             title: title,
             order: order,
             progress: restartVal
+        }, function () {
+            nextBtn.attr("disabled", !disableVal);
         });
     });
 }

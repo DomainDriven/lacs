@@ -90,29 +90,51 @@ $(document).ready(function () {
     var couponRestart = $("#couponRestart");
     var tozComplete = $("#tozComplete");
     var tozRestart = $("#tozRestart");
-    var taskProgress = $("#taskProgress").val();
+    var rpTaskProgress = $("#rpTaskProgress").val();
 
     toggleBtn(couponComplete, couponRestart, tozComplete, 50, 0, false);
     toggleBtn(tozComplete, tozRestart, couponRestart, 100, 50, true);
 
     /**
-     * progress 값에 따라 button 상태 변경.
+     * 장소 예약 progress 값에 따라 button 상태 변경.
      */
-    if (taskProgress === '100') {
+    if (rpTaskProgress === '100') {
         couponComplete.css("display", "none");
         couponRestart.css("display", "block").attr("disabled", true);
         tozComplete.css("display", "none");
         tozRestart.css("display", "block");
-    } else if (taskProgress === '50') {
+    } else if (rpTaskProgress === '50') {
         couponComplete.css("display", "none");
         couponRestart.css("display", "block");
         tozComplete.css("display", "block").attr("disabled", false);
         tozRestart.css("display", "none");
-    } else if (taskProgress === '0') {
+    } else if (rpTaskProgress === '0') {
         couponComplete.css("display", "block");
         couponRestart.css("display", "none");
         tozComplete.css("display", "block").attr("disabled", true);
         tozRestart.css("display", "none");
+    }
+
+    /**
+     * 온오프 믹스 등록 상세화면.
+     * @type {jQuery|HTMLElement}
+     */
+    var onOffMixComplete = $("#onOffMixComplete");
+    var onOffMixRestart = $("#onOffMixRestart");
+    var dummy = $("#dummy");
+    var roTaskProgress = $("#roTaskProgress").val();
+
+    toggleBtn(onOffMixComplete, onOffMixRestart, dummy, 100, 0, true);
+
+    /**
+     * 장소 예약 progress 값에 따라 button 상태 변경.
+     */
+    if (roTaskProgress === '100') {
+        onOffMixComplete.css("display", "none");
+        onOffMixRestart.css("display", "block");
+    } else if (roTaskProgress === '0') {
+        onOffMixComplete.css("display", "block");
+        onOffMixRestart.css("display", "none");
     }
 
 });

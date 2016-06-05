@@ -83,14 +83,15 @@
                     <tr>
                         <input type="hidden" th:value="${title}" id="currentSeminarTitle"/>
                         <input type="hidden" th:value="${order}" id="taskOrder"/>
-                        <input type="hidden" th:value="${task.progress}" id="taskProgress"/>
+                        <input type="hidden" th:value="${task.progress}" id="rpTaskProgress"/>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <!--.box-body-->
             <div class="box-footer">
-                <a class="btn btn-primary" th:href="@{/}" href="/">뒤로가기</a>
+                <a class="btn btn-primary" th:href="@{/}" href="/">메인으로</a>
+                <a class="btn btn-primary backBtn">뒤로가기</a>
             </div>
             <!--.box-footer-->
         </div>

@@ -41,6 +41,12 @@ public class AppsController {
     private InstructorService instructorService;
 
 
+    /**
+     * 메인 화면.
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
         logger.info("현재 진행중인 세미나 화면..");
@@ -57,6 +63,12 @@ public class AppsController {
         return LAYOUT;
     }
 
+    /**
+     * form 화면
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/addSeminar", method = RequestMethod.GET)
     public String addSeminarForm(Model model) {
         logger.info("세미나 추가 폼 화면..");
@@ -66,6 +78,22 @@ public class AppsController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "/addWorker", method = RequestMethod.GET)
+    public String addInstructorForm(Model model) {
+        logger.info("운영진 추가 폼 화면..");
+
+        model.addAttribute("page", "addWorker");
+
+        return LAYOUT;
+    }
+
+    /**
+     * list 화면
+     *
+     * @param pageable
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/allSeminar", method = RequestMethod.GET)
     public String allSeminar(@PageableDefault Pageable pageable, Model model) {
         logger.info("모든 세미나 리스트 화면..");
@@ -74,15 +102,6 @@ public class AppsController {
         model.addAttribute("seminars", seminars);
 
         model.addAttribute("page", "allSeminar");
-
-        return LAYOUT;
-    }
-
-    @RequestMapping(value = "/addWorker", method = RequestMethod.GET)
-    public String addInstructorForm(Model model) {
-        logger.info("운영진 추가 폼 화면..");
-
-        model.addAttribute("page", "addWorker");
 
         return LAYOUT;
     }
@@ -99,6 +118,14 @@ public class AppsController {
         return LAYOUT;
     }
 
+
+    /**
+     * task 화면
+     *
+     * @param pageable
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.GET)
     public String castingInstructor(@PageableDefault Pageable pageable, Model model) {
         logger.info("강사 섭외 상세 화면..");
@@ -130,6 +157,7 @@ public class AppsController {
     public String reservingPlace(@RequestParam String title, Model model) {
         logger.info("장소 섭외 상세 화면..");
         logger.info("title: " + title);
+
         Seminar currentSeminar = smService.findByTitle(title);
         Task reservingPlace = currentSeminar.getTasks().get(1);
 
@@ -142,32 +170,43 @@ public class AppsController {
     }
 
     @RequestMapping(value = "makingPoster", method = RequestMethod.GET)
-    public String makingPoster(Model model) {
+    public String makingPoster(@RequestParam String title, Model model) {
         logger.info("포스트 제작 상세 화면..");
+        logger.info("title: " + title);
         model.addAttribute("page", "makingPoster");
 
         return LAYOUT;
     }
 
     @RequestMapping(value = "registeringOnOffMix", method = RequestMethod.GET)
-    public String registeringOnOffMix(Model model) {
+    public String registeringOnOffMix(@RequestParam String title, Model model) {
         logger.info("온오프 믹스 등록 상세 화면..");
+        logger.info("title: " + title);
+
+        Seminar currentSeminar = smService.findByTitle(title);
+        Task registeringOnOffMix = currentSeminar.getTasks().get(3);
+
+        model.addAttribute("title", title);
+        model.addAttribute("order", 3);
+        model.addAttribute("task", registeringOnOffMix);
         model.addAttribute("page", "registeringOnOffMix");
 
         return LAYOUT;
     }
 
     @RequestMapping(value = "promoting", method = RequestMethod.GET)
-    public String promoting(Model model) {
+    public String promoting(@RequestParam String title, Model model) {
         logger.info("홍보 상세 화면..");
+        logger.info("title: " + title);
         model.addAttribute("page", "promoting");
 
         return LAYOUT;
     }
 
     @RequestMapping(value = "retrospecting", method = RequestMethod.GET)
-    public String retrospecting(Model model) {
+    public String retrospecting(@RequestParam String title, Model model) {
         logger.info("회고 상세 화면..");
+        logger.info("title: " + title);
         model.addAttribute("page", "retrospecting");
 
         return LAYOUT;
