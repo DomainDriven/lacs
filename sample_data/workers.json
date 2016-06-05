@@ -1,4 +1,4 @@
-{"_id":{"$oid":"574d6ae4f7e4d8579ca7054a"},"_class":"kr.domaindriven.model.Worker","name":"이동훈","phone":"010-1111-1111","email":"domaindriven.kr@gmail.com"}
-{"_id":{"$oid":"574d6af3f7e4d8579ca7054b"},"_class":"kr.domaindriven.model.Worker","name":"안재열","phone":"010-1111-1111","email":"domaindriven.kr@gmail.com"}
 {"_id":{"$oid":"574d6afff7e4d8579ca7054c"},"_class":"kr.domaindriven.model.Worker","name":"박세종","phone":"010-1111-1111","email":"domaindriven.kr@gmail.com"}
 {"_id":{"$oid":"574d6c2bf7e4ea95cf8ffe75"},"_class":"kr.domaindriven.model.Worker","name":"테스트","phone":"010-2222-2222","email":"test@test.com"}
+{"_id":{"$oid":"574d6ae4f7e4d8579ca7054a"},"_class":"kr.domaindriven.model.Worker","name":"이동훈","phone":"010-1111-1111","email":"domaindriven.kr@gmail.com"}
+{"_id":{"$oid":"574d6af3f7e4d8579ca7054b"},"_class":"kr.domaindriven.model.Worker","name":"안재열","phone":"010-1111-1111","email":"domaindriven.kr@gmail.com"}

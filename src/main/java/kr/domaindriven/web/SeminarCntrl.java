@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +52,17 @@ public class SeminarCntrl {
         Seminar newSeminar = new Seminar(form.getTitle(), form.getDate());
 
         return service.save(newSeminar);
+    }
+
+    @RequestMapping(value = "/taskProgress", method = RequestMethod.POST)
+    public Seminar updateTaskProgress(@RequestParam String title,
+                                      @RequestParam String order,
+                                      @RequestParam String progress) {
+        logger.info("태스크 진행률 업데이트.");
+        logger.info("title: {}, order: {}, progress: {}", title, order, progress);
+
+        Seminar currentSeminar = service.findByTitle(title);
+        currentSeminar.getTasks().get(Integer.parseInt(order)).setProgress(Integer.parseInt(progress));
+        return service.save(currentSeminar);
     }
 }

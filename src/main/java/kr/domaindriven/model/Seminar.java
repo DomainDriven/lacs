@@ -28,23 +28,23 @@ public class Seminar {
 
     public Seminar() {
 
-        Task selectInstructor = new Task(LacsCnst.CAST_INSTRUCTOR, LacsCnst.CAST_INSTRUCTOR_URL);
-        Task reservePlace = new Task(LacsCnst.RESERVE_PLACE, LacsCnst.RESERVE_PLACE_URL);
-        Task makePoster = new Task(LacsCnst.MAKE_POSTER, LacsCnst.MAKE_POSTER_URL);
-        Task registerSeminar = new Task(LacsCnst.REGISTER_SEMINAR, LacsCnst.REGISTER_SEMINAR_URL);
-        Task promostion = new Task(LacsCnst.PROMOTION, LacsCnst.PROMOTION_URL);
-        Task rememberance = new Task(LacsCnst.REMEMBERANCE, LacsCnst.REMEMBERANCE_URL);
+        Task castingInstructor = new Task(LacsCnst.CAST_INSTRUCTOR, LacsCnst.CAST_INSTRUCTOR_URL);
+        Task reservingPlace = new Task(LacsCnst.RESERVE_PLACE, LacsCnst.RESERVE_PLACE_URL);
+        Task makingPoster = new Task(LacsCnst.MAKE_POSTER, LacsCnst.MAKE_POSTER_URL);
+        Task registeringSeminar = new Task(LacsCnst.REGISTER_SEMINAR, LacsCnst.REGISTER_SEMINAR_URL);
+        Task promosting = new Task(LacsCnst.PROMOTION, LacsCnst.PROMOTION_URL);
+        Task retrospecting = new Task(LacsCnst.REMEMBERANCE, LacsCnst.REMEMBERANCE_URL);
 
         /**
          * 고정적 으로 예상되는 task 들을 Seminar 생성시 할당한다.
          */
         List<Task> taskList = new ArrayList<Task>();
-        taskList.add(selectInstructor);
-        taskList.add(reservePlace);
-        taskList.add(makePoster);
-        taskList.add(registerSeminar);
-        taskList.add(promostion);
-        taskList.add(rememberance);
+        taskList.add(castingInstructor);
+        taskList.add(reservingPlace);
+        taskList.add(makingPoster);
+        taskList.add(registeringSeminar);
+        taskList.add(promosting);
+        taskList.add(retrospecting);
         this.tasks = taskList;
     }
 

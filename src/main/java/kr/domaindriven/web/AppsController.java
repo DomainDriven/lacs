@@ -1,9 +1,7 @@
 package kr.domaindriven.web;
 
-import kr.domaindriven.model.Instructor;
+import kr.domaindriven.model.*;
 import kr.domaindriven.model.SelectedInstructorForm;
-import kr.domaindriven.model.Seminar;
-import kr.domaindriven.model.Worker;
 import kr.domaindriven.persistance.InstructorRepository;
 import kr.domaindriven.service.InstructorService;
 import kr.domaindriven.service.SeminarService;
@@ -19,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by jerry on 2016-05-15.
@@ -117,15 +116,22 @@ public class AppsController {
 
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
     public String castingInstructor(@ModelAttribute SelectedInstructorForm selectedInstructorForm, Model model) {
-        logger.info("강사섭외 진행률:"+ selectedInstructorForm.getProgress()+"%");
+        logger.info("강사섭외 진행률:" + selectedInstructorForm.getProgress() + "%");
         model.addAttribute("selectedInstrouctor", selectedInstructorForm);
         model.addAttribute("page", "seminarInstructor");
         return LAYOUT;
     }
 
     @RequestMapping(value = "reservingPlace", method = RequestMethod.GET)
-    public String reservingPlace(Model model) {
+    public String reservingPlace(@RequestParam String title, Model model) {
         logger.info("장소 섭외 상세 화면..");
+        logger.info("title: " + title);
+        Seminar currentSeminar = smService.findByTitle(title);
+        Task reservingPlace = currentSeminar.getTasks().get(1);
+
+        model.addAttribute("title", title);
+        model.addAttribute("order", 1);
+        model.addAttribute("task", reservingPlace);
         model.addAttribute("page", "reservingPlace");
 
         return LAYOUT;

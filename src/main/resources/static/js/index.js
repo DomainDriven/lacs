@@ -86,7 +86,33 @@ $(document).ready(function () {
      * 장소예약 상세화면.
      * @type {*|jQuery|HTMLElement}
      */
-    toggleBtn("couponComplete", "couponRestart", "tozComplete", 50, 0, false);
-    toggleBtn("tozComplete", "tozRestart", "couponRestart", 100, 50, true);
+    var couponComplete = $("#couponComplete");
+    var couponRestart = $("#couponRestart");
+    var tozComplete = $("#tozComplete");
+    var tozRestart = $("#tozRestart");
+    var taskProgress = $("#taskProgress").val();
+
+    toggleBtn(couponComplete, couponRestart, tozComplete, 50, 0, false);
+    toggleBtn(tozComplete, tozRestart, couponRestart, 100, 50, true);
+
+    /**
+     * progress 값에 따라 button 상태 변경.
+     */
+    if (taskProgress === '100') {
+        couponComplete.css("display", "none");
+        couponRestart.css("display", "block").attr("disabled", true);
+        tozComplete.css("display", "none");
+        tozRestart.css("display", "block");
+    } else if (taskProgress === '50') {
+        couponComplete.css("display", "none");
+        couponRestart.css("display", "block");
+        tozComplete.css("display", "block").attr("disabled", false);
+        tozRestart.css("display", "none");
+    } else if (taskProgress === '0') {
+        couponComplete.css("display", "block");
+        couponRestart.css("display", "none");
+        tozComplete.css("display", "block").attr("disabled", true);
+        tozRestart.css("display", "none");
+    }
 
 });

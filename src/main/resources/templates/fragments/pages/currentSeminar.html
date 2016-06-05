@@ -58,7 +58,7 @@
                         <tbody>
                         <tr th:each="task: ${currentSeminar.tasks}">
                             <td class="center-y">
-                                <a th:href="${task.getRequestUrl()}" href="#">
+                                <a th:href="@{${task.getRequestUrl()}(title=${currentSeminar.title})}" href="#">
                                     <span class="center-y" th:text="${task.getTaskName()}">Task Name</span>
                                 </a>
                             </td>
@@ -68,14 +68,15 @@
                             <td>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuemax="100" aria-valuemin="0"
-                                         aria-valuenow="{{task.progress}}" style="width: 0%; color: #0c0c0c">
+                                         aria-valuenow="{{task.progress}}"
+                                         th:style="'width:' + ${task.progress} + '%; color: #0c0c0c;'">
                                         <span th:text="${task.progress} + '%'">Task Progress%</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <button class="btn btn-success full-width">Completed
-                                </button>
+                                <span class="label label-primary" th:if="${task.progress} == 100">완료</span>
+                                <span class="label label-success" th:unless="${task.progress} == 100">진행중</span>
                             </td>
                         </tr>
                         </tbody>
