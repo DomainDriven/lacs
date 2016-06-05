@@ -214,6 +214,13 @@ public class AppsController {
     public String retrospecting(@RequestParam String title, Model model) {
         logger.info("회고 상세 화면..");
         logger.info("title: " + title);
+
+        Seminar currentSeminar = smService.findByTitle(title);
+        Task retrospecting = currentSeminar.getTasks().get(5);
+
+        model.addAttribute("title", title);
+        model.addAttribute("order", 5);
+        model.addAttribute("task", retrospecting);
         model.addAttribute("page", "retrospecting");
 
         return LAYOUT;

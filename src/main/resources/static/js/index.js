@@ -158,4 +158,25 @@ $(document).ready(function () {
         promotingRestart.css("display", "none");
     }
 
+    /**
+     * 회고 상세화면.
+     * @type {jQuery|HTMLElement}
+     */
+    var retrospectingComplete = $("#retrospectingComplete");
+    var retrospectingRestart = $("#retrospectingRestart");
+    var rtTaskProgress = $("#rtTaskProgress").val();
+
+    toggleBtn(retrospectingComplete, retrospectingRestart, dummy, 100, 0, true);
+
+    /**
+     * 회고 progress 값에 따라 button 상태 변경.
+     */
+    if (rtTaskProgress === '100') {
+        retrospectingComplete.css("display", "none");
+        retrospectingRestart.css("display", "block");
+    } else if (rtTaskProgress === '0') {
+        retrospectingComplete.css("display", "block");
+        retrospectingRestart.css("display", "none");
+    }
+
 });
