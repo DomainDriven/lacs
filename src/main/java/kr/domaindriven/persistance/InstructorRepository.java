@@ -7,6 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * Created by jerry on 2016-05-30.
  */
 public interface InstructorRepository extends MongoRepository<Instructor, String> {
-
-    public Instructor findByName(String name);
+    Instructor findByName(String name);
 }

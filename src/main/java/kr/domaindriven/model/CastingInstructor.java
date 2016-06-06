@@ -5,49 +5,20 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
- * Created by jerry on 2016-05-24.
- * 강사섭외 작업을 위한 클래스.
- * Task를 상속받으며 강사섭외작업에 대한 정보를 제공한다.
+ * Created by jerry on 2016-06-06.
  */
-public class SelectedInstructorForm extends Task {
+public class CastingInstructor extends Task {
 
-    private List<Instructor> instructors;
-
-    //// TODO: 2016-05-24 아래 세가지 멤버는 리팩토링요구됨 - JERRY
-    @NotNull
     private String selectedInstructor;
-    @NotNull
     private String selectedWorker;
     private String account;
-    /////상위까지
-    @NotNull
-    @Size(min = 10, max = 13)
     private String phone;
-    @NotNull
     private String subject;
-    @NotNull
     private String date;
     private String file;
 
-    public SelectedInstructorForm() {
+    public CastingInstructor() {
         super();
-    }
-
-    public SelectedInstructorForm(String selectedInstructor,String selectedWorker, String date) {
-        super();
-    }
-
-    public SelectedInstructorForm(String name, List<Worker> workers, List<Instructor> instructors) {
-        super(name, workers);
-        this.instructors = instructors;
-    }
-
-    public List<Instructor> getInstructors() {
-        return instructors;
-    }
-
-    public void setInstructors(List<Instructor> instructors) {
-        this.instructors = instructors;
     }
 
     public String getAccount() {
@@ -105,5 +76,4 @@ public class SelectedInstructorForm extends Task {
     public void setSelectedInstructor(String selectedInstructor) {
         this.selectedInstructor = selectedInstructor;
     }
-
 }

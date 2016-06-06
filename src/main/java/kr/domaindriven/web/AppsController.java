@@ -147,7 +147,11 @@ public class AppsController {
         Seminar seminar = smService.findByIsCompleted(false);
         int progress = selectedInstructorForm.getProgress(); //강사섭외 진행률
         seminar.getTasks().get(0).setProgress(progress);// 강사섭외 task의 progress 변경
-        smService.save(seminar); // 강사섭외 진행률 업데이트
+        CastingInstructor castingInstructor = new CastingInstructor();
+        castingInstructor.setSelectedInstructor(selectedInstructorForm.getSelectedInstructor());
+        castingInstructor.setSubject(selectedInstructorForm.getSubject());
+        castingInstructor.setSelectedWorker(selectedInstructorForm.getSelectedWorker());
+        smService.save(seminar,castingInstructor); // 강사섭외 진행률 업데이트
         model.addAttribute("selectedInstrouctor", selectedInstructorForm);
         model.addAttribute("page", "seminarInstructor");
         return LAYOUT;
@@ -171,7 +175,7 @@ public class AppsController {
 
     @RequestMapping(value = "makingPoster", method = RequestMethod.GET)
     public String makingPoster(@RequestParam String title, Model model) {
-        logger.info("포스트 제작 상세 화면..");
+        logger.info("포스터 제작 상세 화면..");
         logger.info("title: " + title);
         model.addAttribute("page", "makingPoster");
 

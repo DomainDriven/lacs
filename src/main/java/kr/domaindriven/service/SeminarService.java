@@ -1,7 +1,8 @@
 package kr.domaindriven.service;
 
-import kr.domaindriven.model.Seminar;
+import kr.domaindriven.model.*;
 import kr.domaindriven.persistance.SeminarRepository;
+import kr.domaindriven.persistance.SubtaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,9 @@ public class SeminarService implements ISeminarService {
     @Autowired
     private SeminarRepository repository;
 
+    @Autowired
+    private SubtaskRepository subtaskRepository;
+
     public SeminarService() {
     }
 
@@ -28,9 +32,28 @@ public class SeminarService implements ISeminarService {
      */
     @Override
     public Seminar save(Seminar seminar) {
-        if (seminar == null)
-            throw new NullPointerException("seminar object is null...");
+        if (seminar == null){
+            throw new NullPointerException("seminar object is null...");}
         return repository.save(seminar);
+    }
+
+    public Seminar save(Seminar seminar, Task task) {
+        if (seminar == null || task ==null){
+            throw new NullPointerException("seminar object is null...");}
+        subTaskSave(seminar.getId(),task);
+        return save(seminar);
+    }
+
+    //SubTask를 추가 및 현재 세미나 id를 넣기 위한 메소드
+    public void subTaskSave(String seminarId, Task task){
+       //강사 섭외일때.
+      //  if(task.getTaskName().equals(LacsCnst.CAST_INSTRUCTOR)){
+            CastingInstructor castingInstructor = (CastingInstructor) task;
+            castingInstructor.setSeminarId(seminarId);
+            Subtask <CastingInstructor> subtask = new <CastingInstructor> Subtask();
+            subtask.setTask(castingInstructor);
+            subtaskRepository.save(subtask);
+    //    }
     }
 
     @Override
@@ -52,5 +75,6 @@ public class SeminarService implements ISeminarService {
     public Long count() {
         return repository.count();
     }
+
 
 }

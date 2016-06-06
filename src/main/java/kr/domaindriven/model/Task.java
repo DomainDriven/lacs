@@ -1,5 +1,8 @@
 package kr.domaindriven.model;
 
+import org.springframework.cglib.core.KeyFactory;
+import org.springframework.data.annotation.Id;
+
 import java.util.List;
 
 /**
@@ -7,8 +10,14 @@ import java.util.List;
  * 이 클래스는 각 작업을 나타내기 위해 만들었음.
  * 각 작업은 하나 이상의 Worker를 포함한다.
  */
-public class Task {
+public class Task implements ITask {
 
+    /**
+     * 연관된 세미나의 아이디
+     */
+    private String seminarId;
+
+    //// TODO: 2016-06-06 아래 id필드?? 무슨말씀이신지 모르겠어요 - 재열
     /**
      * seminars document 에 list 형태로 저장되므로 id 필드는 향후 삭제가 필요해 보임.
      */
@@ -29,6 +38,7 @@ public class Task {
      */
     private String requestUrl;
 
+
     public Task() {
     }
 
@@ -38,6 +48,7 @@ public class Task {
      * @param taskName
      */
     public Task(String taskName, String requestUrl) {
+        this();
         this.taskName = taskName;
         this.requestUrl = requestUrl;
     }
@@ -49,6 +60,15 @@ public class Task {
     public Task(String taskName, List<Worker> workers) {
         this.taskName = taskName;
         this.workers = workers;
+    }
+
+    @Override
+    public String getSeminarId() {
+        return this.seminarId;
+    }
+
+    public void setSeminarId(String seminarId){
+        this.seminarId = seminarId;
     }
 
     public String getTaskName() {
