@@ -28,12 +28,12 @@ public class Seminar {
 
     public Seminar() {
 
-        Task castingInstructor = new Task(LacsCnst.CAST_INSTRUCTOR, LacsCnst.CAST_INSTRUCTOR_URL);
-        Task reservingPlace = new Task(LacsCnst.RESERVE_PLACE, LacsCnst.RESERVE_PLACE_URL);
-        Task makingPoster = new Task(LacsCnst.MAKE_POSTER, LacsCnst.MAKE_POSTER_URL);
-        Task registeringSeminar = new Task(LacsCnst.REGISTER_SEMINAR, LacsCnst.REGISTER_SEMINAR_URL);
-        Task promosting = new Task(LacsCnst.PROMOTION, LacsCnst.PROMOTION_URL);
-        Task retrospecting = new Task(LacsCnst.REMEMBERANCE, LacsCnst.REMEMBERANCE_URL);
+        Task castingInstructor = new Task(LacsCnstE.CAST_INSTRUCTOR.getTaskName(), LacsCnstE.CAST_INSTRUCTOR.getURL());
+        Task reservingPlace = new Task(LacsCnstE.RESERVE_PLACE.getTaskName(), LacsCnstE.RESERVE_PLACE.getURL());
+        Task makingPoster = new Task(LacsCnstE.MAKE_POSTER.getTaskName(), LacsCnstE.MAKE_POSTER.getURL());
+        Task registeringSeminar = new Task(LacsCnstE.REGISTER_SEMINAR.getTaskName(), LacsCnstE.REGISTER_SEMINAR.getURL());
+        Task promosting = new Task(LacsCnstE.PROMOTION.getTaskName(), LacsCnstE.PROMOTION.getURL());
+        Task retrospecting = new Task(LacsCnstE.RETROSPECTION.getTaskName(), LacsCnstE.RETROSPECTION.getURL());
 
         /**
          * 고정적 으로 예상되는 task 들을 Seminar 생성시 할당한다.
