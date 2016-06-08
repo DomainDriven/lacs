@@ -2,6 +2,7 @@ package kr.domaindriven.model;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,7 +16,8 @@ public class SelectedInstructorForm extends CastingInstructor {
     private List<Instructor> instructors;
 
     //// TODO: 2016-05-24 아래 세가지 멤버는 리팩토링요구됨 - JERRY
-    // TODO: 2016-06-08 상속을 받아서 아래의 클래스변수들은 삭제를 해도 되나, @NotNull 과 같은 유효성검증으로 인해 일단 나둠.
+    // TODO: 2016-06-08 상속을 받아서 아래의 클래스변수들은 삭제를 해도 되나, @NotNull 과 같은 유효성검증으로 인해 일단 나둠. - 재열
+    // TODO: 2016-06-08 추후 Instroctor를 가져와서 사용 할 수 있도록 할 것.  - 재열
     @NotNull
     private String selectedInstructor;
     @NotNull
@@ -40,8 +42,9 @@ public class SelectedInstructorForm extends CastingInstructor {
     }
 
     public SelectedInstructorForm(CastingInstructor castingInstructor){
-        this();
+        super(castingInstructor.getTaskName(),new ArrayList<Worker>());
         this.selectedInstructor = castingInstructor.getSelectedInstructor();
+        this.getWorkers().add(new Worker(castingInstructor.getSelectedWorker()));
         this.selectedWorker = castingInstructor.getSelectedWorker();
         this.account = castingInstructor.getAccount();
         this.phone = castingInstructor.getPhone();
@@ -50,6 +53,10 @@ public class SelectedInstructorForm extends CastingInstructor {
         this.file = castingInstructor.getFile();
         // TODO: 2016-06-08 TASK의 생성자 추가해야함 - Jerry
         this.setProgress(castingInstructor.getProgress());
+        this.instructors = new ArrayList<Instructor>();
+
+        instructors.add(new Instructor(castingInstructor.getSelectedInstructor(),castingInstructor.getPhone(),"aaa@email.com"));
+
     }
     public SelectedInstructorForm(String taskName, List<Worker> workers, List<Instructor> instructors) {
         super(taskName, workers);

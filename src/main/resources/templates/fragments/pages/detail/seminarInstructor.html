@@ -27,13 +27,10 @@
                 </div>
             </div>
             <div class="box-body">
-                현재 총 진행률
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                         aria-valuemax="100"
-                         style="width: 100%;">
-                        100%
-                    </div>
+                <div class="progress-bar" role="progressbar" aria-valuemax="100" aria-valuemin="0"
+                     aria-valuenow="{{task.progress}}"
+                     th:style="'width:' + ${selectedInstrouctor.getProgress()} + '%; color: #0c0c0c;'">
+                    <span th:text="${selectedInstrouctor.getProgress()} + '%'">Task Progress%</span>
                 </div>
                 <table class="table table-striped">
                     <tr>

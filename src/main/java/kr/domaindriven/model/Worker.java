@@ -19,6 +19,12 @@ public class Worker {
     private String phone;
     private String email;
 
+    public Worker(){}
+
+    public Worker(String name){
+        this.name = name;
+    }
+
     public Worker(String name, String phone, String email) {
         this.name = name;
         this.phone = phone;
