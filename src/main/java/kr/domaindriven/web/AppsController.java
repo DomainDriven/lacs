@@ -130,10 +130,19 @@ public class AppsController {
     public String castingInstructor(@PageableDefault Pageable pageable, Model model) {
         logger.info("강사 섭외 상세 화면..");
         // TestModel testModel = new TestModel(); //test 데이터 입력을 위한 TestModel
-        String currentSeminarTitle = smService.findByIsCompleted(false).getTitle(); // 현재 진행중인 세미나 이름
-        Page<Instructor> instructors = instructorService.findAll(pageable);
-        Page<Worker> workers = wkService.findAll(pageable);
-        SelectedInstructorForm selectedInstrouctor = new SelectedInstructorForm(currentSeminarTitle, workers.getContent(), instructors.getContent());
+        Seminar seminar = smService.findByIsCompleted(false);
+        String currentSeminarTitle = seminar.getTitle(); // 현재 진행중인 세미나 이름
+        Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
+        Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
+        SelectedInstructorForm selectedInstrouctor = null;
+        if(seminar.getTasks().get(0).getProgress()==0) {
+            selectedInstrouctor = new SelectedInstructorForm(currentSeminarTitle, workers.getContent(), instructors.getContent());
+        }else{
+            CastingInstructor castingInstructor  = (CastingInstructor) smService.findSubtesk(seminar.getId(),LacsCnstE.CAST_INSTRUCTOR.getTaskName());
+            logger.info("DB에서 선택됬던 강사정보 불러옴.."+castingInstructor.toString());
+            selectedInstrouctor = new SelectedInstructorForm(castingInstructor);
+        }
+        logger.info("DB에서 선택됬던 강사 정보 반영.."+selectedInstrouctor.toString());
         model.addAttribute("selectedInstrouctor", selectedInstrouctor);
         model.addAttribute("instructors", instructors);
         model.addAttribute("page", "castingInstructor");
@@ -144,13 +153,11 @@ public class AppsController {
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
     public String castingInstructor(@ModelAttribute SelectedInstructorForm selectedInstructorForm, Model model) {
         logger.info("강사섭외 진행률:" + selectedInstructorForm.getProgress() + "%");
+        // TODO: 2016-06-08 서비스로직은 서비스 패키지로 옮기기. -재열 
         Seminar seminar = smService.findByIsCompleted(false);
         int progress = selectedInstructorForm.getProgress(); //강사섭외 진행률
         seminar.getTasks().get(0).setProgress(progress);// 강사섭외 task의 progress 변경
-        CastingInstructor castingInstructor = new CastingInstructor();
-        castingInstructor.setSelectedInstructor(selectedInstructorForm.getSelectedInstructor());
-        castingInstructor.setSubject(selectedInstructorForm.getSubject());
-        castingInstructor.setSelectedWorker(selectedInstructorForm.getSelectedWorker());
+        CastingInstructor castingInstructor = new CastingInstructor(selectedInstructorForm);
         smService.save(seminar,castingInstructor); // 강사섭외 진행률 업데이트
         model.addAttribute("selectedInstrouctor", selectedInstructorForm);
         model.addAttribute("page", "seminarInstructor");

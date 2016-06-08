@@ -17,7 +17,6 @@ public class Task implements ITask {
      */
     private String seminarId;
 
-    //// TODO: 2016-06-06 아래 id필드?? 무슨말씀이신지 모르겠어요 - 재열
     /**
      * seminars document 에 list 형태로 저장되므로 id 필드는 향후 삭제가 필요해 보임.
      */

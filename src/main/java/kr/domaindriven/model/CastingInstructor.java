@@ -1,13 +1,12 @@
 package kr.domaindriven.model;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 import java.util.List;
 
 /**
  * Created by jerry on 2016-06-06.
  */
-public class CastingInstructor extends Task {
+public class CastingInstructor extends Task implements ICastingInstructor {
 
     private String selectedInstructor;
     private String selectedWorker;
@@ -19,6 +18,24 @@ public class CastingInstructor extends Task {
 
     public CastingInstructor() {
         super();
+        this.setTaskName(LacsCnstE.CAST_INSTRUCTOR.getTaskName());
+    }
+
+    public CastingInstructor(String TaskName, List<Worker> worker){
+        super(TaskName,worker);
+    }
+
+    public CastingInstructor(kr.domaindriven.model.SelectedInstructorForm selectedInstructorForm){
+        this();
+        this.selectedInstructor = selectedInstructorForm.getSelectedInstructor();
+        this.selectedWorker = selectedInstructorForm.getSelectedWorker();
+        this.account = selectedInstructorForm.getAccount();
+        this.phone = selectedInstructorForm.getPhone();
+        this.subject = selectedInstructorForm.getSubject();
+        this.date = selectedInstructorForm.getDate();
+        this.file = selectedInstructorForm.getFile();
+        // TODO: 2016-06-08 TASK의 생성자 추가해야함 - Jerry
+        this.setProgress(selectedInstructorForm.getProgress());
     }
 
     public String getAccount() {
@@ -75,5 +92,18 @@ public class CastingInstructor extends Task {
 
     public void setSelectedInstructor(String selectedInstructor) {
         this.selectedInstructor = selectedInstructor;
+    }
+
+    @Override
+    public String toString() {
+        return "CastingInstructor{" +
+                "selectedInstructor='" + selectedInstructor + '\'' +
+                ", selectedWorker='" + selectedWorker + '\'' +
+                ", account='" + account + '\'' +
+                ", phone='" + phone + '\'' +
+                ", subject='" + subject + '\'' +
+                ", date='" + date + '\'' +
+                ", file='" + file + '\'' +
+                '}';
     }
 }

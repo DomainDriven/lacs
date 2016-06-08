@@ -74,7 +74,7 @@ $('#selectedWorker').on('click', function () {
 });
 
 $('#phone').change(function () {
-    statusChangeforTextBox(document.getElementById("phone").value, 5);
+    statusChangeforTextBox(document.getElementById("phone").value, 3);
     progressF()
 })
 

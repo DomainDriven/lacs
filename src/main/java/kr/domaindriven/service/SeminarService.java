@@ -38,6 +38,7 @@ public class SeminarService implements ISeminarService {
         return repository.save(seminar);
     }
 
+    //세미나와 하위 task의 상태를 함께 저장함.
     public Seminar save(Seminar seminar, Task task) {
         if (seminar == null || task == null) {
             throw new NullPointerException("seminar object is null...");
@@ -46,6 +47,7 @@ public class SeminarService implements ISeminarService {
         return save(seminar);
     }
 
+    // TODO: 2016-06-08 세부 태스크별 타입변환 클래스 혹은 메소드 필요 - Jerry
     //SubTask를 추가 및 현재 세미나 id를 넣기 위한 메소드
     public void subTaskSave(String seminarId, Task task) {
         //강사 섭외일때.
@@ -56,6 +58,14 @@ public class SeminarService implements ISeminarService {
         subtask.setTask(castingInstructor);
         subtaskRepository.save(subtask);
         //    }
+    }
+
+    //현재 세미나의 서브 테스크를 조회 및 반환하는 기능
+    public Task findSubtesk(String seminarID, String subTaskName){
+        //강사섭외일때
+        Subtask castingInstructor = subtaskRepository.castingInstructor_findBySeminarIDWithTaskName(seminarID,subTaskName);
+        CastingInstructor task = (CastingInstructor) castingInstructor.getTask();
+        return task;
     }
 
     @Override

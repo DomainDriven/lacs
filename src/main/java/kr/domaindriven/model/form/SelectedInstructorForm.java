@@ -4,16 +4,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+
 /**
  * Created by jerry on 2016-05-24.
  * 강사섭외 작업을 위한 클래스.
  * Task를 상속받으며 강사섭외작업에 대한 정보를 제공한다.
  */
-public class SelectedInstructorForm extends Task {
+public class SelectedInstructorForm extends CastingInstructor {
 
     private List<Instructor> instructors;
 
     //// TODO: 2016-05-24 아래 세가지 멤버는 리팩토링요구됨 - JERRY
+    // TODO: 2016-06-08 상속을 받아서 아래의 클래스변수들은 삭제를 해도 되나, @NotNull 과 같은 유효성검증으로 인해 일단 나둠.
     @NotNull
     private String selectedInstructor;
     @NotNull
@@ -37,9 +39,22 @@ public class SelectedInstructorForm extends Task {
         super();
     }
 
-    public SelectedInstructorForm(String name, List<Worker> workers, List<Instructor> instructors) {
-        super(name, workers);
+    public SelectedInstructorForm(CastingInstructor castingInstructor){
+        this();
+        this.selectedInstructor = castingInstructor.getSelectedInstructor();
+        this.selectedWorker = castingInstructor.getSelectedWorker();
+        this.account = castingInstructor.getAccount();
+        this.phone = castingInstructor.getPhone();
+        this.subject = castingInstructor.getSubject();
+        this.date = castingInstructor.getDate();
+        this.file = castingInstructor.getFile();
+        // TODO: 2016-06-08 TASK의 생성자 추가해야함 - Jerry
+        this.setProgress(castingInstructor.getProgress());
+    }
+    public SelectedInstructorForm(String taskName, List<Worker> workers, List<Instructor> instructors) {
+        super(taskName, workers);
         this.instructors = instructors;
+        this.setTaskName(LacsCnstE.CAST_INSTRUCTOR.getTaskName());
     }
 
     public List<Instructor> getInstructors() {
@@ -106,4 +121,17 @@ public class SelectedInstructorForm extends Task {
         this.selectedInstructor = selectedInstructor;
     }
 
+    @Override
+    public String toString() {
+        return "SelectedInstructorForm{" +
+                "instructors=" + instructors +
+                ", selectedInstructor='" + selectedInstructor + '\'' +
+                ", selectedWorker='" + selectedWorker + '\'' +
+                ", account='" + account + '\'' +
+                ", phone='" + phone + '\'' +
+                ", subject='" + subject + '\'' +
+                ", date='" + date + '\'' +
+                ", file='" + file + '\'' +
+                '}';
+    }
 }
