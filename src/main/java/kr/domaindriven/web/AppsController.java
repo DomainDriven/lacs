@@ -134,6 +134,7 @@ public class AppsController {
         Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
         Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
         model.addAttribute("instructors", instructors);
+        model.addAttribute("workers",workers);
         model.addAttribute("page", "castingInstructor");
 
         return LAYOUT;
