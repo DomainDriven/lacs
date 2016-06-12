@@ -17,6 +17,19 @@ public class Instructor {
     private String phoneNumber;
     private String mail;
 
+    public String getPreferredDate() {
+        return preferredDate;
+    }
+
+    public void setPreferredDate(String preferredDate) {
+        this.preferredDate = preferredDate;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String preferredDate;
     private String account;
 
     public Instructor() {

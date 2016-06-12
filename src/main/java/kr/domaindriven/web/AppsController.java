@@ -1,7 +1,6 @@
 package kr.domaindriven.web;
 
 import kr.domaindriven.model.*;
-import kr.domaindriven.model.SelectedInstructorForm;
 import kr.domaindriven.persistance.InstructorRepository;
 import kr.domaindriven.service.InstructorService;
 import kr.domaindriven.service.SeminarService;
@@ -134,23 +133,13 @@ public class AppsController {
         String currentSeminarTitle = seminar.getTitle(); // 현재 진행중인 세미나 이름
         Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
         Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
-        SelectedInstructorForm selectedInstrouctor = null;
-        if(seminar.getTasks().get(0).getProgress()==0) {
-            selectedInstrouctor = new SelectedInstructorForm(currentSeminarTitle, workers.getContent(), instructors.getContent());
-        }else{
-            CastingInstructor castingInstructor  = (CastingInstructor) smService.findSubtesk(seminar.getId(),LacsCnstE.CAST_INSTRUCTOR.getTaskName());
-            logger.info("DB에서 선택됬던 강사정보 불러옴.."+castingInstructor.toString());
-            selectedInstrouctor = new SelectedInstructorForm(castingInstructor);
-        }
-        logger.info("DB에서 선택됬던 강사 정보 반영.."+selectedInstrouctor.toString());
-        model.addAttribute("selectedInstrouctor", selectedInstrouctor);
         model.addAttribute("instructors", instructors);
         model.addAttribute("page", "castingInstructor");
 
         return LAYOUT;
     }
 
-    @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
     public String castingInstructor(@ModelAttribute SelectedInstructorForm selectedInstructorForm, Model model) {
         logger.info("강사섭외 진행률:" + selectedInstructorForm.getProgress() + "%");
         // TODO: 2016-06-08 서비스로직은 서비스 패키지로 옮기기. -재열 
@@ -162,7 +151,7 @@ public class AppsController {
         model.addAttribute("selectedInstrouctor", selectedInstructorForm);
         model.addAttribute("page", "seminarInstructor");
         return LAYOUT;
-    }
+    }*/
 
     @RequestMapping(value = "reservingPlace", method = RequestMethod.GET)
     public String reservingPlace(@RequestParam String title, Model model) {
