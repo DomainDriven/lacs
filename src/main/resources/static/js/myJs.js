@@ -36,6 +36,18 @@ function loadDoc() {
     }
 }
 
+function progressUpdate1(title, order, progress){
+    $.ajax({
+        type: "POST",
+        url: "../seminar/taskProgress",
+        data: {"title": title, "order":order, "progress":progress},
+        dataType: "html",
+        success: function(msg){
+            alert( "Data Saved ");
+        }
+    });
+}
+
 //document.getElementById("selectedInstructor").addEventListener("click", function(){} 과 같음
 
 ////TODO 중복구분이 많아서 리팩토링 필요함 - 재열
@@ -83,7 +95,12 @@ $('#date').change(function () {
 
 //제출
 $('#submit').on('click', function () {
-    document.getElementById("progress").value = getProgressValue().toString();
+    alert("제출버튼눌림");
+    var title = $('#currentSeminarTitle').val();
+    var order = $('#taskOrder').val();
+    var progress = getProgressValue().toString();
+    progressUpdate1(title,order,progress);
+    document.getElementById("progress").value = progress;
 });
 
 //TextBox에 글씨가 쓰였으면 '완료' 아니면 '진행중'

@@ -78,8 +78,13 @@
                             <td><span class="label label-default" id="status7">진행중</span>
                                 <span class="label label-success" id="status8">완  료</span></td>
                         </tr>
+                        <tr>
+                            <input type="hidden" th:value="${title}" id="currentSeminarTitle"/>
+                            <input type="hidden" th:value="${order}" id="taskOrder"/>
+                            <input type="text" name="progress" id="progress"/>
+                        </tr>
                     </table>
-                    <input type="text" name="progress" id="progress"/>
+
                     <input type="submit" class="btn btn-primary" id="submit"/>
                     <input type="submit" class="btn btn-primary backBtn" th:value="뒤로가기"/>
                 </form>

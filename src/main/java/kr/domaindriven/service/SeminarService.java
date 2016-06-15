@@ -54,4 +54,6 @@ public class SeminarService implements ISeminarService {
         return repository.count();
     }
 
+
+
 }

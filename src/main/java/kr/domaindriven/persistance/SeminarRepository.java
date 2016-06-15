@@ -22,4 +22,6 @@ public interface SeminarRepository extends MongoRepository<Seminar, String> {
 
     @Query(value = "{ 'isCompleted' : ?0 }")
     Seminar findByIsCompleted(boolean isCompleted);
+
+
 }

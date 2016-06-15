@@ -6,59 +6,61 @@ package kr.domaindriven.model.form;
  */
 public class CastingInstructorForm {
 
-    private String selectedInstructor;
-    private String selectedWorker;
-    private String Subject;
-    private String Date;
+    private String instructorName;
+    private String workerName;
+    private String subject;
+    private String date;
+    private String progress;
 
+    //get(set)+document.elementById로 타임리프는 객체생성
     public String getSelectedInstructor() {
-        return selectedInstructor;
+        return instructorName;
     }
 
-    public void setSelectedInstructor(String selectedInstructor) {
-        this.selectedInstructor = selectedInstructor;
+    public void setSelectedInstructor(String instructorName) {
+        this.instructorName = instructorName;
     }
 
     public String getSelectedWorker() {
-        return selectedWorker;
+        return workerName;
     }
 
-    public void setSelectedWorker(String selectedWorker) {
-        this.selectedWorker = selectedWorker;
+    public void setSelectedWorker(String workerName) {
+        this.workerName = workerName;
     }
 
     public String getSubject() {
-        return Subject;
+        return subject;
     }
 
     public void setSubject(String subject) {
-        Subject = subject;
+        this.subject = subject;
     }
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
-    public CastingInstructorForm(){}
+    public String getProgress() {
+        return progress;
+    }
 
-    public CastingInstructorForm(String selectedInstructor, String selectedWorker, String subject, String date) {
-        this.selectedInstructor = selectedInstructor;
-        this.selectedWorker = selectedWorker;
-        Subject = subject;
-        Date = date;
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     @Override
     public String toString() {
         return "CastingInstructorForm{" +
-                "selectedInstructor='" + selectedInstructor + '\'' +
-                ", selectedWorker='" + selectedWorker + '\'' +
-                ", Subject='" + Subject + '\'' +
-                ", Date='" + Date + '\'' +
+                "instructorName='" + instructorName + '\'' +
+                ", workerName='" + workerName + '\'' +
+                ", subject='" + subject + '\'' +
+                ", date='" + date + '\'' +
+                ", progress='" + progress + '\'' +
                 '}';
     }
 
