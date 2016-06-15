@@ -1,13 +1,13 @@
 package kr.domaindriven.service;
 
 import kr.domaindriven.model.Instructor;
-import kr.domaindriven.model.Seminar;
 import kr.domaindriven.persistance.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 /**
  * Created by jerry on 2016-06-02.

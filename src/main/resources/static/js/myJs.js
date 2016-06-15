@@ -7,7 +7,7 @@
  progress[(idIndex/2-0.5)] 와 같이 사용하는 이유는, 각 작업의 숫자는 1,3,5,7로 증가 되기에 2로 나누어서 본래 숫자로 만들었으며, 소수점자리 절삭을 위해 0.5를 넣었다.
  */
 
-var progress = [false, false, false, false, false, false, false];
+var progress = [false, false, false, false];
 
 
 //선택한 값 넘겨주기
@@ -39,66 +39,49 @@ function loadDoc() {
 //document.getElementById("selectedInstructor").addEventListener("click", function(){} 과 같음
 
 ////TODO 중복구분이 많아서 리팩토링 필요함 - 재열
+//강사선정 : 작업번호 0 : progress[0]
 $('#selectedInstructor').on('click', function () {
     var target = document.getElementById("selectedInstructor");
     if (target.selectedIndex == 0) {
         document.getElementById("status2").style.visibility = 'hidden'
         document.getElementById("status1").style.visibility = 'visible'
-        document.getElementById("status4").style.visibility = 'hidden'
-        document.getElementById("status3").style.visibility = 'visible'
         progress[0] = false;
-        progress[1] = false;
     } else {
         document.getElementById("status1").style.visibility = 'hidden'
         document.getElementById("status2").style.visibility = 'visible'
+        progress[0] = true;
+    }
+    progressF()
+});
+
+//작업자선정  : 작업번호 1 : progress[1]
+$('#selectedWorker').on('click', function () {
+    var target = document.getElementById("selectedWorker");
+    if (target.selectedIndex == 0) {
+        document.getElementById("status4").style.visibility = 'hidden'
+        document.getElementById("status3").style.visibility = 'visible'
+        progress[1] = false;
+    } else {
         document.getElementById("status3").style.visibility = 'hidden'
         document.getElementById("status4").style.visibility = 'visible'
-        progress[0] = true;
         progress[1] = true;
     }
     progressF()
 });
 
-$('#selectedWorker').on('click', function () {
-    var target = document.getElementById("selectedWorker");
-    if (target.selectedIndex == 0) {
-        document.getElementById("status6").style.visibility = 'hidden'
-        document.getElementById("status5").style.visibility = 'visible'
-        progress[2] = false;
-    } else {
-        document.getElementById("status5").style.visibility = 'hidden'
-        document.getElementById("status6").style.visibility = 'visible'
-        progress[2] = true;
-    }
-    progressF()
-});
-
-$('#phone').change(function () {
-    statusChangeforTextBox(document.getElementById("phone").value, 3);
-    progressF()
-})
-
-
+//주제입력  : 작업번호 2 : progress[2]
 $('#subject').change(function () {
-    statusChangeforTextBox(document.getElementById("subject").value, 7);
+    statusChangeforTextBox(document.getElementById("subject").value, 5);
     progressF()
 })
 
+//날짜입력  : 작업번호 3 : progress[3]
 $('#date').change(function () {
-    statusChangeforTextBox(document.getElementById("date").value, 9);
+    statusChangeforTextBox(document.getElementById("date").value, 7);
     progressF();
 })
 
-$('#account').change(function () {
-    statusChangeforTextBox(document.getElementById("account").value, 11);
-    progressF()
-})
-
-$('#file').change(function () {
-    statusChangeforTextBox(document.getElementById("file").value, 13);
-    progressF()
-})
-
+//제출
 $('#submit').on('click', function () {
     document.getElementById("progress").value = getProgressValue().toString();
 });
@@ -108,7 +91,7 @@ function statusChangeforTextBox(isFill, idIndex) {
     if (isFill != '') {
         document.getElementById("status" + idIndex).style.visibility = 'hidden'
         document.getElementById("status" + (idIndex + 1)).style.visibility = 'visible'
-        progress[(idIndex / 2 - 0.5)] = true; //
+        progress[(idIndex / 2 - 0.5)] = true;
     } else {
         document.getElementById("status" + (idIndex + 1)).style.visibility = 'hidden'
         document.getElementById("status" + idIndex).style.visibility = 'visible'
@@ -126,12 +109,12 @@ function progressF() {
 //진행률 구하기
 function getProgressValue() {
     var progressValue = 0;
-    for (i = 0; i < progress.length; i++) {
+    for (var i = 0; i < progress.length; i++) {
         if (progress[i] == true) {
             progressValue++
         }
     }
-    var lastProgressValue = progressValue * 15;
+    var lastProgressValue = progressValue * 25;
     if (lastProgressValue >= 100) {
         lastProgressValue = 100;
     } // 100보다 커지면 100으로 고정함. ex) 세부항목이 7개 * 15 = 105 로 나오기에.. 100으로 고정
