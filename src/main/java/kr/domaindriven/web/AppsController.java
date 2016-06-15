@@ -1,6 +1,7 @@
 package kr.domaindriven.web;
 
 import kr.domaindriven.model.*;
+import kr.domaindriven.model.form.CastingInstructorForm;
 import kr.domaindriven.persistance.InstructorRepository;
 import kr.domaindriven.service.InstructorService;
 import kr.domaindriven.service.SeminarService;
@@ -140,19 +141,12 @@ public class AppsController {
         return LAYOUT;
     }
 
-    /*@RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
-    public String castingInstructor(@ModelAttribute SelectedInstructorForm selectedInstructorForm, Model model) {
-        logger.info("강사섭외 진행률:" + selectedInstructorForm.getProgress() + "%");
-        // TODO: 2016-06-08 서비스로직은 서비스 패키지로 옮기기. -재열 
-        Seminar seminar = smService.findByIsCompleted(false);
-        int progress = selectedInstructorForm.getProgress(); //강사섭외 진행률
-        seminar.getTasks().get(0).setProgress(progress);// 강사섭외 task의 progress 변경
-        CastingInstructor castingInstructor = new CastingInstructor(selectedInstructorForm);
-        smService.save(seminar,castingInstructor); // 강사섭외 진행률 업데이트
-        model.addAttribute("selectedInstrouctor", selectedInstructorForm);
-        model.addAttribute("page", "seminarInstructor");
+    @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
+    public String castingInstructor(@ModelAttribute CastingInstructorForm castingInstructorForm, Model model) {
+        logger.info(castingInstructorForm.toString());
+
         return LAYOUT;
-    }*/
+    }
 
     @RequestMapping(value = "reservingPlace", method = RequestMethod.GET)
     public String reservingPlace(@RequestParam String title, Model model) {
