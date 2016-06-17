@@ -3,8 +3,7 @@
  */
 
 /*
- 진행도 확인을 위한 값. 세부 작업은 7개. 완료시 각 배열 인덱스의 인자는 true로 변경
- progress[(idIndex/2-0.5)] 와 같이 사용하는 이유는, 각 작업의 숫자는 1,3,5,7로 증가 되기에 2로 나누어서 본래 숫자로 만들었으며, 소수점자리 절삭을 위해 0.5를 넣었다.
+ 진행도 확인을 위한 값. 세부 작업은 4개. 완료시 각 배열 인덱스의 인자는 true로 변경
  */
 
 var progress = [false, false, false, false];
@@ -42,7 +41,7 @@ function progressUpdate1(title, order, progress){
         url: "../seminar/taskProgress",
         data: {"title": title, "order":order, "progress":progress},
         dataType: "html",
-        success: function(msg){
+        success: function(){
             alert( "Data Saved ");
         }
     });

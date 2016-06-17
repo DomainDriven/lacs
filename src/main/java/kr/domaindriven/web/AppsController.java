@@ -147,6 +147,9 @@ public class AppsController {
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
     public String castingInstructor(@ModelAttribute CastingInstructorForm castingInstructorForm, Model model) {
         logger.info(castingInstructorForm.toString());
+        Seminar seminar = smService.findByIsCompleted(false);
+        String title = seminar.getTitle(); // 현재 진행중인 세미나 이름
+        smService.insertTasksElements(title,castingInstructorForm.getSelectedInstructor());
         return LAYOUT;
     }
 
