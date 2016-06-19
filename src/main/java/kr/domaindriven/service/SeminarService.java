@@ -68,11 +68,13 @@ public class SeminarService implements ISeminarService {
     //강사섭외 task에 섭외중인 강사 명 추가.
 
     public void insertTasksElements(String titleName, String instructorName){
-        logger.info(titleName+"의 task 0 에 섭외강사명 : "+instructorName+" 추가");
+        logger.info(titleName+"의 task 0 에 selectedInstructor : "+instructorName+" 추가");
         Query query = new Query();
         query.addCriteria(Criteria.where("title").is(titleName));
         Update update = new Update();
-        update.set("tasks.0.섭외강사명", instructorName);
+        update.set("tasks.0.selectedInstructor", instructorName);
         mongoOperation.upsert(query, update, Seminar.class);
     }
+    
+    //// TODO: 2016-06-20 task에는 selectedInstructor가 없기에,강사명 조회기능 추가해야함. - 재열 
 }
