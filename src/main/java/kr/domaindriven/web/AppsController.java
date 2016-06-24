@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by jerry on 2016-05-15.
  */
@@ -40,68 +43,14 @@ public class AppsController {
     @Autowired
     private InstructorService instructorService;
 
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-    /**
-     * 메인 화면.
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
-        logger.info("현재 진행중인 세미나 화면..");
-
-        Seminar currentSeminar = smService.findByIsCompleted(false);
-
-
-        if (currentSeminar == null) {
-            currentSeminar = new Seminar("현재 진행중인 세미나가 없습니다.");
-        }
-        model.addAttribute("currentSeminar", currentSeminar);
-        model.addAttribute("page", "currentSeminar");
-
-        return LAYOUT;
-    }
-
-    /**
-     * form 화면
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/addSeminar", method = RequestMethod.GET)
-    public String addSeminarForm(Model model) {
-        logger.info("세미나 추가 폼 화면..");
-
-        model.addAttribute("page", "addSeminar");
-
-        return LAYOUT;
-    }
 
     @RequestMapping(value = "/addWorker", method = RequestMethod.GET)
     public String addInstructorForm(Model model) {
         logger.info("운영진 추가 폼 화면..");
 
         model.addAttribute("page", "addWorker");
-
-        return LAYOUT;
-    }
-
-    /**
-     * list 화면
-     *
-     * @param pageable
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/allSeminar", method = RequestMethod.GET)
-    public String allSeminar(@PageableDefault Pageable pageable, Model model) {
-        logger.info("모든 세미나 리스트 화면..");
-
-        Page<Seminar> seminars = smService.findAll(pageable);
-        model.addAttribute("seminars", seminars);
-
-        model.addAttribute("page", "allSeminar");
 
         return LAYOUT;
     }
@@ -137,15 +86,15 @@ public class AppsController {
         Task castingInstructor = currentseminar.getTasks().get(0);
         String pageModelsValue = "castingInstructor";  // 등록이 하나라도 진행됬으면 확인페이지로. 최소 강사명은 선정해야할것같음
 
-        if(currentseminar.getTasks().get(0).getProgress() ==0){
-          pageModelsValue = "castingInstructorForm";
-          model.addAttribute("title", title);
-          model.addAttribute("order", 0);
-          model.addAttribute("instructors", instructors);
-          model.addAttribute("workers",workers);
+        if (currentseminar.getTasks().get(0).getProgress() == 0) {
+            pageModelsValue = "castingInstructorForm";
+            model.addAttribute("title", title);
+            model.addAttribute("order", 0);
+            model.addAttribute("instructors", instructors);
+            model.addAttribute("workers", workers);
         }
         //// TODO: 2016-06-20 task가 아닌 필요한 모델에 대해 직접 데이터를 넘겨야 할 것 같음 예_String 강사명 - jerry 
-        model.addAttribute("task",castingInstructor);        
+        model.addAttribute("task", castingInstructor);
         model.addAttribute("page", pageModelsValue);
 
         return LAYOUT;
@@ -156,7 +105,7 @@ public class AppsController {
         logger.info(castingInstructorForm.toString());
         Seminar seminar = smService.findByIsCompleted(false);
         String title = seminar.getTitle(); // 현재 진행중인 세미나 이름
-        smService.insertTasksElements(title,castingInstructorForm.getSelectedInstructor());
+        smService.insertTasksElements(title, castingInstructorForm.getSelectedInstructor());
         return LAYOUT;
     }
 

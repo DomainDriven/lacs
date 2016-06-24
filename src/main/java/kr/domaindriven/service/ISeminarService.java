@@ -11,6 +11,8 @@ public interface ISeminarService {
 
     Seminar save(Seminar seminar);
 
+    Seminar findOne(String id);
+
     Page<Seminar> findAll(Pageable pageable);
 
     Seminar findByTitle(String title);

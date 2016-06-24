@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class Seminar {
     private String title;
     private boolean isCompleted = false;
     private List<Task> tasks;
-    private String date;
+    private Date date;
 
     public Seminar() {
 
@@ -64,7 +65,7 @@ public class Seminar {
      * @param title
      * @param date
      */
-    public Seminar(String title, String date) {
+    public Seminar(String title, Date date) {
         this();
         this.title = title;
         this.date = date;
@@ -103,11 +104,11 @@ public class Seminar {
         this.tasks = tasks;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

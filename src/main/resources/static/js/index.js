@@ -2,12 +2,67 @@
  * Created by donghoon on 2016. 5. 27..
  */
 $(document).ready(function () {
+
     $('input[name="daterange"]').daterangepicker();
-    $("#seminarDate").datepicker();
-    $("#seminars").DataTable();
     $(".instructor-multiple").select2();
-    $("#workers").DataTable();
     $("#workerPhone").inputmask("999-9999-9999");
+
+    /**
+     * DatePicker 함수.
+     */
+
+    var datePickerList = [
+        "#seminarDate", "#seminarEditDate"
+    ];
+
+    datePickerList.forEach(function (dp) {
+        $(dp).datepicker();
+    });
+
+    /**
+     * DataTable 함수.
+     */
+
+    var dataTableList = [
+        '#seminars', '#workers'
+    ];
+
+    dataTableList.forEach(function (dt) {
+        $(dt).DataTable();
+    });
+
+    /**
+     * 이벤트 핸들러 함수 모음.
+     */
+
+    $(".cancelBtn").on("click", function () {
+        $("#seminarEditDateForm").submit(function (event) {
+            event.preventDefault();
+            location.replace("/");
+            return false;
+        });
+    });
+
+    $("#seminarDateIcon").on("click", function () {
+        $("#seminarDateInfoBox").css("display", "none");
+        $("#seminarEditDateInput").css("display", "");
+
+        $("#seminarEditDateBtn").click(function () {
+
+            $("#seminarEditDateForm").submit(function (event) {
+                event.preventDefault();
+
+                var seminarEditDateVal = $("#seminarEditDate").val();
+                if (seminarEditDateVal === "") {
+                    alert("세미나 날짜 정보가 비어 있습니다.");
+                    return false;
+                } else {
+                    this.submit(true);
+                }
+            });
+
+        });
+    });
 
     $("#addSeminar").on("click", function () {
         var seminarTitle = $("#seminarTitle").val();

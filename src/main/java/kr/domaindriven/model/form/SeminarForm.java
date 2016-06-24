@@ -2,6 +2,7 @@ package kr.domaindriven.model.form;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  * Created by donghoon on 2016. 5. 29..
@@ -13,8 +14,7 @@ public class SeminarForm {
     @Size(min = 2, max = 100)
     private String title;
     @NotNull
-    @Size(min = 2)
-    private String date;
+    private Date date;
 
     public String getTitle() {
         return title;
@@ -24,11 +24,11 @@ public class SeminarForm {
         this.title = title;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

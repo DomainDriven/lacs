@@ -20,8 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/seminar")
-public class SeminarCntrl {
-    private Logger logger = LoggerFactory.getLogger(SeminarCntrl.class);
+public class SeminarRestCntrl {
+    private Logger logger = LoggerFactory.getLogger(SeminarRestCntrl.class);
 
     @Autowired
     private SeminarService service;
@@ -65,4 +65,5 @@ public class SeminarCntrl {
         currentSeminar.getTasks().get(Integer.parseInt(order)).setProgress(Integer.parseInt(progress));
         return service.save(currentSeminar);
     }
+
 }

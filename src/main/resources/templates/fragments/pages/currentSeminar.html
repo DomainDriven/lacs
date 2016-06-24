@@ -23,18 +23,39 @@
                 </div>
             </div>
             <div class="box-body">
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" th:value="${currentSeminar.title}"/>
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-default" data-toggle="modal"
-                                    data-target="#modify-seminar">세미나 수정
-                            </button>
-                        </span>
-                    </div><!-- /input-group -->
-                    <div th:replace="fragments/modal/modifySeminar :: modifySeminar"></div>
+                <div class="col-md-3">
+
+                    <div class="info-box bg-aqua" id="seminarDateInfoBox">
+                        <span id="seminarDateIcon" class="info-box-icon" data-toggle="tooltip" data-placement="bottom"
+                              title="세미나 날짜를 수정하려면 클릭하세요."><i class="fa fa-calendar"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">세미나 예정일 </span>
+                            <span th:text="${#dates.format(currentSeminar.date, 'yyyy년 MMM dd일')}"
+                                  class="info-box-number"></span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-description" style="padding-left: 10px;"
+                              th:text="(${diffDate} > 0) ? '세미나가 ' + ${diffDate} + '일 남았습니다.' : '세미나가 ' + ${diffDate} + '일 지났습니다.' ">세미나가 7일 남았습니다.</span>
+                        <!-- /.info-box-content -->
+                    </div>
+
+                    <form th:action="@{/seminar/editDate}" method="post" id="seminarEditDateForm">
+                        <div class="input-group" style="display: none" id="seminarEditDateInput">
+                            <input type="text" name="date" class="form-control" id="seminarEditDate"/>
+                            <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
+                            <span class="input-group-btn">
+                                <button id="seminarEditDateBtn" class="btn btn-info">세미나 날짜 수정</button>
+                                <button class="btn btn-danger cancelBtn">취소</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+
+                    <!--<div th:replace="fragments/modal/modifySeminar :: modifySeminar"></div>-->
                 </div>
-                <div class="col-sm-8">
+                <div class="col-md-9">
                     <h3 th:text="${currentSeminar.title}">Current Semiar Title</h3>
                     <table class="table table-striped">
                         <thead>

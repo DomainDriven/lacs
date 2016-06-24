@@ -37,25 +37,25 @@
 <aside th:replace="fragments/commons/left_sidebar :: left_sidebar">&nbsp;</aside>  <!-- main sidebar -->
 
 <div class="content-wrapper" th:switch="${page}">
-    <div class="container" th:case="currentSeminar" th:include="fragments/pages/currentSeminar :: currentSeminar"></div>
-    <div class="container" th:case="addSeminar" th:include="fragments/pages/form/addSeminar :: addSeminar"></div>
-    <div class="container" th:case="allSeminar" th:include="fragments/pages/list/allSeminar :: allSeminar"></div>
-    <div class="container" th:case="castingInstructor"
+    <div class="container-fluid" th:case="currentSeminar" th:include="fragments/pages/currentSeminar :: currentSeminar"></div>
+    <div class="container-fluid" th:case="addSeminar" th:include="fragments/pages/form/addSeminar :: addSeminar"></div>
+    <div class="container-fluid" th:case="allSeminar" th:include="fragments/pages/list/allSeminar :: allSeminar"></div>
+    <div class="container-fluid" th:case="castingInstructor"
     th:include="fragments/pages/detail/castingInstructor :: castingInstructor"></div>
-    <div class="container" th:case="castingInstructorForm"
+    <div class="container-fluid" th:case="castingInstructorForm"
          th:include="fragments/pages/detail/castingInstructorForm :: castingInstructorForm"></div>
-    <div class="container" th:case="reservingPlace"
+    <div class="container-fluid" th:case="reservingPlace"
          th:include="fragments/pages/detail/reservingPlace :: reservingPlace"></div>
-    <div class="container" th:case="makingPoster"
+    <div class="container-fluid" th:case="makingPoster"
          th:include="fragments/pages/detail/makingPoster :: makingPoster"></div>
-    <div class="container" th:case="registeringOnOffMix"
+    <div class="container-fluid" th:case="registeringOnOffMix"
          th:include="fragments/pages/detail/registeringOnOffMix :: registeringOnOffMix"></div>
-    <div class="container" th:case="promoting"
+    <div class="container-fluid" th:case="promoting"
          th:include="fragments/pages/detail/promoting :: promoting"></div>
-    <div class="container" th:case="retrospecting"
+    <div class="container-fluid" th:case="retrospecting"
          th:include="fragments/pages/detail/retrospecting :: retrospecting"></div>
-    <div class="container" th:case="addWorker" th:include="fragments/pages/form/addWorker :: addWorker"></div>
-    <div class="container" th:case="allWorker" th:include="fragments/pages/list/allWorker :: allWorker"></div>
+    <div class="container-fluid" th:case="addWorker" th:include="fragments/pages/form/addWorker :: addWorker"></div>
+    <div class="container-fluid" th:case="allWorker" th:include="fragments/pages/list/allWorker :: allWorker"></div>
 </div>
 
 <footer th:replace="fragments/commons/footer :: footer">&copy;</footer>
