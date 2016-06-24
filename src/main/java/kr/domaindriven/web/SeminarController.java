@@ -87,6 +87,20 @@ public class SeminarController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "/seminar/editTitle", method = RequestMethod.POST)
+    public String updateSerminarTitle(Model model, @RequestParam String id, @RequestParam String title) {
+        logger.info("세미나 주제 업데이트.");
+        logger.info("id: {}, title: {}", id, title);
+
+        Seminar currentSeminar = smService.findOne(id);
+        currentSeminar.setTitle(title);
+        smService.save(currentSeminar);
+
+        model.addAttribute("page", "currentSeminar");
+
+        return REDIRECT;
+    }
+
     @RequestMapping(value = "/seminar/editDate", method = RequestMethod.POST)
     public String updateSerminarDate(Model model, @RequestParam String id, @RequestParam Date date) {
         logger.info("세미나 날짜 업데이트.");

@@ -48,7 +48,7 @@
                             <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
                             <span class="input-group-btn">
                                 <button id="seminarEditDateBtn" class="btn btn-info">세미나 날짜 수정</button>
-                                <button class="btn btn-danger cancelBtn">취소</button>
+                                <button class="btn btn-danger" id="cancelDateBtn">취소</button>
                             </span>
                         </div><!-- /input-group -->
                     </form>
@@ -56,7 +56,20 @@
                     <!--<div th:replace="fragments/modal/modifySeminar :: modifySeminar"></div>-->
                 </div>
                 <div class="col-md-9">
-                    <h3 th:text="${currentSeminar.title}">Current Semiar Title</h3>
+                    <h3 th:text="${currentSeminar.title}" id="seminarTitleText" style="width: 350px;"
+                        data-toggle="tooltip" data-placement="top" title="세미나 주제를 수정하려면 클릭하세요."></h3>
+
+                    <form th:action="@{/seminar/editTitle}" method="post" id="seminarEditTitleForm">
+                        <div class="input-group" style="display: none" id="seminarEditTitleInput">
+                            <input type="text" name="title" class="form-control" id="seminarEditTitle"/>
+                            <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
+                            <span class="input-group-btn">
+                                <button id="seminarEditTitleBtn" class="btn btn-info">세미나 주제 수정</button>
+                                <button class="btn btn-danger" id="cancelTitleBtn">취소</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </form>
+
                     <table class="table table-striped">
                         <thead>
                         <tr>

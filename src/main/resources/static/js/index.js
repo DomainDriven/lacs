@@ -35,11 +35,42 @@ $(document).ready(function () {
      * 이벤트 핸들러 함수 모음.
      */
 
-    $(".cancelBtn").on("click", function () {
+    $("#cancelTitleBtn").on("click", function () {
+
+        $("#seminarEditTitleForm").submit(function (event) {
+            event.preventDefault();
+            location.replace("/");
+            return false;
+        });
+    });
+
+    $("#cancelDateBtn").on("click", function () {
+
         $("#seminarEditDateForm").submit(function (event) {
             event.preventDefault();
             location.replace("/");
             return false;
+        });
+    });
+
+    $("#seminarTitleText").on("click", function () {
+        $("#seminarTitleText").css("display", "none");
+        $("#seminarEditTitleInput").css("display", "");
+
+        $("#seminarEditTitleBtn").click(function () {
+
+            $("#seminarEditTitleForm").submit(function (event) {
+                event.preventDefault();
+
+                var seminarEditTitleVal = $("#seminarEditTitle").val();
+                if (seminarEditTitleVal === "") {
+                    alert("세미나 주제 정보가 비어 있습니다.");
+                    return false;
+                } else {
+                    this.submit(true);
+                }
+            });
+
         });
     });
 
