@@ -56,6 +56,7 @@ public class Seminar {
      */
     public Seminar(String placeHolder) {
         this.title = placeHolder;
+        this.date = new Date();
     }
 
     /**

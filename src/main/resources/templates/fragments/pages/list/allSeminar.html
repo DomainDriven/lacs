@@ -52,7 +52,7 @@
                             <tr role="row" class="odd" th:each="seminar : ${seminars}">
                                 <td class="" th:text="${seminar.id}">세미나 아이디</td>
                                 <td class="sorting_1" th:text="${seminar.title}">세미나 타이틀</td>
-                                <td th:text="${seminar.date}">세미나 날짜</td>
+                                <td th:text="${#dates.format(seminar.date, 'yyyy년 MMM dd일')}">세미나 날짜</td>
                                 <td th:if="${seminar.isCompleted}">
                                     <span class="badge bg-green">completed</span>
                                 </td>

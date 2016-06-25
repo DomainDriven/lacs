@@ -39,13 +39,14 @@ public class SeminarController {
         logger.info("현재 진행중인 세미나 화면..");
 
         Seminar currentSeminar = smService.findByIsCompleted(false);
+        long diffDate = 0;
 
-
-        if (currentSeminar == null) {
+        if (currentSeminar == null)
             currentSeminar = new Seminar("현재 진행중인 세미나가 없습니다.");
-        }
+        else
+            diffDate = (currentSeminar.getDate().getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
 
-        long diffDate = (currentSeminar.getDate().getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
+
         model.addAttribute("diffDate", diffDate);
         model.addAttribute("currentSeminar", currentSeminar);
         model.addAttribute("page", "currentSeminar");
