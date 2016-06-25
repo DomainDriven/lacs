@@ -3,15 +3,13 @@ package kr.domaindriven.web;
 import kr.domaindriven.model.Seminar;
 import kr.domaindriven.model.form.SeminarForm;
 import kr.domaindriven.service.SeminarService;
+import kr.domaindriven.util.ControllerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by donghoon on 2016. 5. 29..
@@ -25,6 +23,8 @@ public class SeminarRestCntrl {
 
     @Autowired
     private SeminarService service;
+    @Autowired
+    private ControllerUtil util;
 
     @ModelAttribute
     public SeminarForm setUpForm() {
@@ -42,10 +42,7 @@ public class SeminarRestCntrl {
     public Seminar save(@Validated SeminarForm form, BindingResult result) {
         logger.info("세미나 생성.");
         if (result.hasErrors()) {
-            List<ObjectError> errorList = result.getAllErrors();
-            for (ObjectError error : errorList) {
-                logger.error(error.toString());
-            }
+            util.LoggingError(result, logger);
             return null;
         }
 

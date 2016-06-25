@@ -64,7 +64,7 @@ $(document).ready(function () {
 
                 var seminarEditTitleVal = $("#seminarEditTitle").val();
                 if (seminarEditTitleVal === "") {
-                    alert("세미나 주제 정보가 비어 있습니다.");
+                    $("#seminarEditTitle").attr("placeholder", "세미나 타이틀은 비어 있으면 안됩니다.");
                     return false;
                 } else {
                     this.submit(true);
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     $("#seminarDateIcon").on("click", function () {
         $("#seminarDateInfoBox").css("display", "none");
-        $("#seminarEditDateInput").css("display", "");
+        $("#seminarEditDateForm").css("display", "");
 
         $("#seminarEditDateBtn").click(function () {
 
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
                 var seminarEditDateVal = $("#seminarEditDate").val();
                 if (seminarEditDateVal === "") {
-                    alert("세미나 날짜 정보가 비어 있습니다.");
+                    $("#seminarEditDate").attr("placeholder", "세미나 날짜는 비어 있으면 안됩니다.");
                     return false;
                 } else {
                     this.submit(true);

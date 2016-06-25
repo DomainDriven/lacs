@@ -42,15 +42,15 @@
                         <!-- /.info-box-content -->
                     </div>
 
-                    <form th:action="@{/seminar/editDate}" method="post" id="seminarEditDateForm">
-                        <div class="input-group" style="display: none" id="seminarEditDateInput">
-                            <input type="text" name="date" class="form-control" id="seminarEditDate"/>
+                    <form class="form" th:action="@{/seminar/editDate}" method="post" id="seminarEditDateForm" style="display: none">
+                        <div class="form-group">
+                            <input type="text" name="date" class="form-control" id="seminarEditDate" placeholder="ex) 25/06/2016"/>
+                        </div><!--.form-group -->
+                        <div class="form-group">
                             <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
-                            <span class="input-group-btn">
-                                <button id="seminarEditDateBtn" class="btn btn-info">세미나 날짜 수정</button>
-                                <button class="btn btn-danger" id="cancelDateBtn">취소</button>
-                            </span>
-                        </div><!-- /input-group -->
+                        </div>
+                        <button id="seminarEditDateBtn" class="btn btn-info">날짜 수정</button>
+                        <button class="btn btn-danger" id="cancelDateBtn">취소</button>
                     </form>
 
                     <!--<div th:replace="fragments/modal/modifySeminar :: modifySeminar"></div>-->
@@ -61,10 +61,10 @@
 
                     <form th:action="@{/seminar/editTitle}" method="post" id="seminarEditTitleForm">
                         <div class="input-group" style="display: none" id="seminarEditTitleInput">
-                            <input type="text" name="title" class="form-control" id="seminarEditTitle"/>
+                            <input type="text" name="title" class="form-control" id="seminarEditTitle" placeholder="ex) 개발자 경력 개발 세미나"/>
                             <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
                             <span class="input-group-btn">
-                                <button id="seminarEditTitleBtn" class="btn btn-info">세미나 주제 수정</button>
+                                <button id="seminarEditTitleBtn" class="btn btn-info">주제 수정</button>
                                 <button class="btn btn-danger" id="cancelTitleBtn">취소</button>
                             </span>
                         </div><!-- /input-group -->

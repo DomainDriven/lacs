@@ -35,3 +35,12 @@
     width: 90px;
     height: 50px;
 }
+
+.error-input {
+    border-color: #b94a48;
+    margin-left: 5px;
+}
+
+.error-messages {
+    color: #b94a48;
+}
