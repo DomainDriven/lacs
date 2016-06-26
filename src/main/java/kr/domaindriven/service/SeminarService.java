@@ -66,6 +66,11 @@ public class SeminarService implements ISeminarService {
     }
 
     @Override
+    public void deleteSeminar(String id) {
+        repository.delete(id);
+    }
+
+    @Override
     public Long count() {
         return repository.count();
     }

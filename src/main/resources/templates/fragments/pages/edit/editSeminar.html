@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body th:fragment="editSeminar">
+<div class="col-md-12">
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a th:href="@{/}" href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+            <li class="active"><a href="">세미나 편집</a></li>
+        </ol>
+    </section>
+    <br/><br/>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">세미나 편집</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                            class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i>
+                    </button>
+                </div>
+            </div>
+            <form>
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="seminarTitle">세미나 타이틀</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="ex) 개발자 경력 개발 세미나." id="seminarTitle"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="seminarDate">세미나 예정일</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right" placeholder="ex) 05/29/2016"
+                                   id="seminarDate"/>
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="form-group row">
+                        <div class="col-sm-offset-1">
+                            <button type="button" class="btn btn-primary" id="editSeminar">등록</button>
+                            <button type="reset" class="btn btn-secondary">리셋</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+</body>
+</html>

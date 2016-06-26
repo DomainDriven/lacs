@@ -23,8 +23,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/worker")
-public class WorkerCntrl {
-    private Logger logger = LoggerFactory.getLogger(WorkerCntrl.class);
+public class WorkerRestCntrl {
+    private Logger logger = LoggerFactory.getLogger(WorkerRestCntrl.class);
 
     @Autowired
     private WorkerService service;

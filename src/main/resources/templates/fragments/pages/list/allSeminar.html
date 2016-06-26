@@ -33,7 +33,7 @@
                             <tr role="row">
                                 <th class="sorting_desc" tabindex="0" aria-controls="seminars" rowspan="1" colspan="1"
                                     aria-label="Id: activate to sort column ascending" aria-sort="descending"
-                                    style="width: 316px;">Id
+                                    style="width: 316px;">No.
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="seminars" rowspan="1" colspan="1"
                                     aria-label="Name: activate to sort column ascending" style="width: 207px;">세미나 타이틀
@@ -46,18 +46,35 @@
                                     aria-label="Explanation: activate to sort column ascending" style="width: 156px;">
                                     세미나 상태
                                 </th>
+                                <th>편집</th>
+                                <th>삭제</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr role="row" class="odd" th:each="seminar : ${seminars}">
-                                <td class="" th:text="${seminar.id}">세미나 아이디</td>
-                                <td class="sorting_1" th:text="${seminar.title}">세미나 타이틀</td>
-                                <td th:text="${#dates.format(seminar.date, 'yyyy년 MMM dd일')}">세미나 날짜</td>
-                                <td th:if="${seminar.isCompleted}">
+                            <tr role="row" class="odd" th:each="seminar, itrStat : ${seminars}">
+                                <td class="" th:text="${itrStat.index} + 1" style="width: 15%">No.</td>
+                                <td class="sorting_1" th:text="${seminar.title}" style="width: 45%">세미나 타이틀</td>
+                                <td th:text="${#dates.format(seminar.date, 'yyyy년 MMM dd일')}" style="width: 25%">세미나
+                                    날짜
+                                </td>
+                                <td th:if="${seminar.isCompleted}" style="width: 15%">
                                     <span class="badge bg-green">completed</span>
                                 </td>
-                                <td th:unless="${seminar.isCompleted}">
-                                    <span class="badge bg-red">uncompleted</span>
+                                <td th:unless="${seminar.isCompleted}" style="width: 15%">
+                                    <span class="badge bg-yellow">uncompleted</span>
+                                </td>
+                                <td>
+                                    <form th:action="@{/editSeminar}" method="get">
+                                        <button class="btn btn-info full-width" type="submit">편집</button>
+                                        <input type="hidden" name="id" th:value="${seminar.id}"/>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form th:action="@{/deleteSeminar}" method="post"
+                                          onsubmit="return confirm('정말 삭제 하시겠습니까?')">
+                                        <input class="btn btn-danger full-width" type="submit" value="삭제"/>
+                                        <input type="hidden" name="id" th:value="${seminar.id}"/>
+                                    </form>
                                 </td>
                             </tr>
                             </tbody>

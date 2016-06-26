@@ -42,9 +42,11 @@
                         <!-- /.info-box-content -->
                     </div>
 
-                    <form class="form" th:action="@{/seminar/editDate}" method="post" id="seminarEditDateForm" style="display: none">
+                    <form class="form" th:action="@{/editDate}" method="post" id="seminarEditDateForm"
+                          style="display: none">
                         <div class="form-group">
-                            <input type="text" name="date" class="form-control" id="seminarEditDate" placeholder="ex) 25/06/2016"/>
+                            <input type="text" name="date" class="form-control" id="seminarEditDate"
+                                   placeholder="ex) 25/06/2016"/>
                         </div><!--.form-group -->
                         <div class="form-group">
                             <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
@@ -59,9 +61,10 @@
                     <h3 th:text="${currentSeminar.title}" id="seminarTitleText" style="width: 350px;"
                         data-toggle="tooltip" data-placement="top" title="세미나 주제를 수정하려면 클릭하세요."></h3>
 
-                    <form th:action="@{/seminar/editTitle}" method="post" id="seminarEditTitleForm">
+                    <form th:action="@{/editTitle}" method="post" id="seminarEditTitleForm">
                         <div class="input-group" style="display: none" id="seminarEditTitleInput">
-                            <input type="text" name="title" class="form-control" id="seminarEditTitle" placeholder="ex) 개발자 경력 개발 세미나"/>
+                            <input type="text" name="title" class="form-control" id="seminarEditTitle"
+                                   placeholder="ex) 개발자 경력 개발 세미나"/>
                             <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
                             <span class="input-group-btn">
                                 <button id="seminarEditTitleBtn" class="btn btn-info">주제 수정</button>
@@ -73,6 +76,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
+                            <th>No.</th>
                             <th>Task</th>
                             <th>Worker</th>
                             <th>Progress</th>
@@ -80,16 +84,35 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="task: ${currentSeminar.tasks}">
-                            <td class="center-y">
+                        <tr th:each="task, itrStat: ${currentSeminar.tasks}">
+                            <td th:text="${itrStat.index} + 1"></td>
+                            <td class="center-y" style="width: 15%">
                                 <a th:href="@{${task.getRequestUrl()}(title=${currentSeminar.title})}" href="#">
                                     <span class="center-y" th:text="${task.getTaskName()}">Task Name</span>
                                 </a>
                             </td>
-                            <td class="center-y">
-                                <a href="#"><span class="center-y">Task Worker</span></a>
+                            <td class="center-y" style="width: 25%">
+                                <div class="input-group">
+                                    <span class="center-y">Task Worker</span>
+
+                                    <!--<select class="form-control" id="workerList">-->
+                                    <!--<option th:each="worker : ${workers}" th:text="${worker.getName()}"-->
+                                    <!--th:value="${worker.getName()}">worker-->
+                                    <!--</option>-->
+                                    <!--</select>-->
+                                    <!--<span style="display: none"></span>-->
+                                    <!--<span class="input-group-btn">-->
+                                    <!--<button class="btn btn-info workerSelectBtn" style="margin-left: 5px;">선택-->
+                                    <!--</button>-->
+                                    <!--<button class="btn btn-success workerReSelectBtn"-->
+                                    <!--style="display: none; margin-left: 5px;">재선택-->
+                                    <!--</button>-->
+                                    <!--</span>-->
+                                    <!--<input type="hidden" name="id" th:value="${currentSeminar.id}"-->
+                                    <!--id="currentSeminarId"/>-->
+                                </div>
                             </td>
-                            <td>
+                            <td style="width: 45%">
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" aria-valuemax="100" aria-valuemin="0"
                                          aria-valuenow="{{task.progress}}"
@@ -98,7 +121,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td style="width: 15%">
                                 <span class="label label-primary" th:if="${task.progress} == 100">완료</span>
                                 <span class="label label-success" th:unless="${task.progress} == 100">진행중</span>
                             </td>
@@ -121,5 +144,6 @@
     <!--.content-->
 </div>
 <!--.col-md-12-->
+
 </body>
 </html>

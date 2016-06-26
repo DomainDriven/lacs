@@ -32,7 +32,31 @@ $(document).ready(function () {
     });
 
     /**
-     * 이벤트 핸들러 함수 모음.
+     * 당월 세미나 태스크의 운영진 할당 버튼.
+     */
+
+    //var workerSelectBtnList = $(".workerSelectBtn");
+    //var workerReSelectBtnList = $(".workerReSelectBtn");
+    //
+    //workerSelectBtnList.on("click", function () {
+    //    var index = workerSelectBtnList.index(this);
+    //
+    //    workerSelectBtnList[index].style.display = "none";
+    //    workerReSelectBtnList[index].style.display = "block";
+    //
+    //});
+    //
+    //workerReSelectBtnList.on("click", function () {
+    //    var index = workerReSelectBtnList.index(this);
+    //
+    //    workerReSelectBtnList[index].style.display = "none";
+    //    workerSelectBtnList[index].style.display = "block";
+    //
+    //});
+
+
+    /**
+     * 당월 세미나의 예정일 과 주제 변경 취소 버튼
      */
 
     $("#cancelTitleBtn").on("click", function () {
@@ -52,6 +76,10 @@ $(document).ready(function () {
             return false;
         });
     });
+
+    /**
+     * 당월 세미나의 예정일 과 주제 변경 전송 버튼
+     */
 
     $("#seminarTitleText").on("click", function () {
         $("#seminarTitleText").css("display", "none");
@@ -95,6 +123,10 @@ $(document).ready(function () {
         });
     });
 
+    /**
+     * 세미나 추가 폼 전송 버튼
+     */
+
     $("#addSeminar").on("click", function () {
         var seminarTitle = $("#seminarTitle").val();
         var seminarDate = $("#seminarDate").val();
@@ -128,6 +160,10 @@ $(document).ready(function () {
             })
         }
     });
+
+    /**
+     * 운영진 추가 폼 전송 버튼
+     */
 
     $("#addWorker").on("click", function () {
         var workerName = $("#workerName").val();

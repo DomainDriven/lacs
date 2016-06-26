@@ -29,33 +29,7 @@ public class SeminarController {
     private SeminarService smService;
 
     /**
-     * 메인 화면.
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
-        logger.info("현재 진행중인 세미나 화면..");
-
-        Seminar currentSeminar = smService.findByIsCompleted(false);
-        long diffDate = 0;
-
-        if (currentSeminar == null)
-            currentSeminar = new Seminar("현재 진행중인 세미나가 없습니다.");
-        else
-            diffDate = (currentSeminar.getDate().getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
-
-
-        model.addAttribute("diffDate", diffDate);
-        model.addAttribute("currentSeminar", currentSeminar);
-        model.addAttribute("page", "currentSeminar");
-
-        return LAYOUT;
-    }
-
-    /**
-     * form 화면
+     * add form 화면
      *
      * @param model
      * @return
@@ -68,6 +42,24 @@ public class SeminarController {
 
         return LAYOUT;
     }
+
+    /**
+     * edit form 화면
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/editSeminar", method = RequestMethod.GET)
+    public String editSeminarForm(Model model, @RequestParam String id) {
+        logger.info("세미나 편집 폼 화면..");
+        logger.info("세미나 id: {}", id);
+
+        model.addAttribute("page", "editSeminar");
+
+        return LAYOUT;
+    }
+
+    //TODO: seminar edit 기능 구현.
 
     /**
      * list 화면
@@ -88,7 +80,7 @@ public class SeminarController {
         return LAYOUT;
     }
 
-    @RequestMapping(value = "/seminar/editTitle", method = RequestMethod.POST)
+    @RequestMapping(value = "/editTitle", method = RequestMethod.POST)
     public String updateSerminarTitle(Model model, @RequestParam String id, @RequestParam String title) {
         logger.info("세미나 주제 업데이트.");
         logger.info("id: {}, title: {}", id, title);
@@ -102,7 +94,7 @@ public class SeminarController {
         return REDIRECT;
     }
 
-    @RequestMapping(value = "/seminar/editDate", method = RequestMethod.POST)
+    @RequestMapping(value = "/editDate", method = RequestMethod.POST)
     public String updateSerminarDate(Model model, @RequestParam String id, @RequestParam Date date) {
         logger.info("세미나 날짜 업데이트.");
         logger.info("id: {}, date: {}", id, date);
@@ -116,4 +108,13 @@ public class SeminarController {
         return REDIRECT;
     }
 
+    @RequestMapping(value = "/deleteSeminar", method = RequestMethod.POST)
+    public String deleteSeminar(@PageableDefault Pageable pageable, Model model, @RequestParam String id) {
+        logger.info("세미나 삭제.");
+        logger.info("세미나 id: {}", id);
+
+        smService.deleteSeminar(id);
+
+        return allSeminar(pageable, model);
+    }
 }

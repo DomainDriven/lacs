@@ -19,5 +19,7 @@ public interface ISeminarService {
 
     Seminar findByIsCompleted(boolean isCompleted);
 
+    void deleteSeminar(String id);
+
     Long count();
 }

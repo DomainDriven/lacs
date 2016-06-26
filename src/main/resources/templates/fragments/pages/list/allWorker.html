@@ -33,7 +33,7 @@
                             <tr role="row">
                                 <th class="sorting_desc" tabindex="0" aria-controls="workers" rowspan="1" colspan="1"
                                     aria-label="Id: activate to sort column ascending" aria-sort="descending"
-                                    style="width: 316px;">Id
+                                    style="width: 316px;">No.
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="workers" rowspan="1" colspan="1"
                                     aria-label="Name: activate to sort column ascending" style="width: 207px;">이름
@@ -46,14 +46,29 @@
                                     aria-label="Explanation: activate to sort column ascending" style="width: 156px;">
                                     이메일
                                 </th>
+                                <th>편집</th>
+                                <th>삭제</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr role="row" class="odd" th:each="worker : ${workers}">
-                                <td class="" th:text="${worker.id}">아이디</td>
-                                <td class="sorting_1" th:text="${worker.name}">이름</td>
-                                <td th:text="${worker.phone}">전화번호</td>
-                                <td th:text="${worker.email}">이메일</td>
+                            <tr role="row" class="odd" th:each="worker, itrStat : ${workers}" style="width: 10%">
+                                <td class="" th:text="${itrStat.index} + 1">No.</td>
+                                <td class="sorting_1" th:text="${worker.name}" style="width: 20%">이름</td>
+                                <td th:text="${worker.phone}" style="width: 30%">전화번호</td>
+                                <td th:text="${worker.email}" style="width: 40%">이메일</td>
+                                <td>
+                                    <form th:action="@{/editWorker}" method="get">
+                                        <button class="btn btn-info full-width" type="submit">편집</button>
+                                        <input type="hidden" name="id" th:value="${worker.id}"/>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form th:action="@{/deleteWorker}" method="post"
+                                          onsubmit="return confirm('정말 삭제 하시겠습니까?')">
+                                        <input class="btn btn-danger full-width" type="submit" value="삭제"/>
+                                        <input type="hidden" name="id" th:value="${worker.id}"/>
+                                    </form>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

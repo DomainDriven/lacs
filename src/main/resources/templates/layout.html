@@ -37,11 +37,14 @@
 <aside th:replace="fragments/commons/left_sidebar :: left_sidebar">&nbsp;</aside>  <!-- main sidebar -->
 
 <div class="content-wrapper" th:switch="${page}">
-    <div class="container-fluid" th:case="currentSeminar" th:include="fragments/pages/currentSeminar :: currentSeminar"></div>
+    <div class="container-fluid" th:case="currentSeminar"
+         th:include="fragments/pages/currentSeminar :: currentSeminar"></div>
     <div class="container-fluid" th:case="addSeminar" th:include="fragments/pages/form/addSeminar :: addSeminar"></div>
+    <div class="container-fluid" th:case="editSeminar"
+         th:include="fragments/pages/edit/editSeminar :: editSeminar"></div>
     <div class="container-fluid" th:case="allSeminar" th:include="fragments/pages/list/allSeminar :: allSeminar"></div>
     <div class="container-fluid" th:case="castingInstructor"
-    th:include="fragments/pages/detail/castingInstructor :: castingInstructor"></div>
+         th:include="fragments/pages/detail/castingInstructor :: castingInstructor"></div>
     <div class="container-fluid" th:case="castingInstructorForm"
          th:include="fragments/pages/detail/castingInstructorForm :: castingInstructorForm"></div>
     <div class="container-fluid" th:case="reservingPlace"
@@ -55,6 +58,7 @@
     <div class="container-fluid" th:case="retrospecting"
          th:include="fragments/pages/detail/retrospecting :: retrospecting"></div>
     <div class="container-fluid" th:case="addWorker" th:include="fragments/pages/form/addWorker :: addWorker"></div>
+    <div class="container-fluid" th:case="editWorker" th:include="fragments/pages/edit/editWorker :: editWorker"></div>
     <div class="container-fluid" th:case="allWorker" th:include="fragments/pages/list/allWorker :: allWorker"></div>
 </div>
 
@@ -81,6 +85,8 @@
         src="/static/node_modules/admin-lte/plugins/input-mask/jquery.inputmask.js"></script>
 <script th:src="@{/static/node_modules/admin-lte/dist/js/app.min.js}"
         src="/static/node_modules/admin-lte/dist/js/app.min.js"></script>
+<script th:src="@{/static/node_modules/lodash/lodash.min.js}"
+        src="../static/node_modules/lodash/lodash.min.js"></script>
 <script th:src="@{/static/js/util.js}" src="/static/js/util.js"></script>
 <script th:src="@{/static/js/index.js}" src="/static/js/index.js"></script>
 <script th:src="@{/static/js/myJs.js}" src="/static/js/myJs.js"></script>

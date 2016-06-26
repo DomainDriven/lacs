@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by donghoon on 2016. 5. 31..
  */
@@ -33,6 +35,11 @@ public class WorkerService implements IWorkerService {
     }
 
     @Override
+    public List<Worker> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public Page<Worker> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
@@ -40,6 +47,11 @@ public class WorkerService implements IWorkerService {
     @Override
     public Worker findByName(String name) {
         return repository.findByName(name);
+    }
+
+    @Override
+    public void deleteWorker(String id) {
+        repository.delete(id);
     }
 
     @Override

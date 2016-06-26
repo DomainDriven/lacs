@@ -6,7 +6,7 @@ package kr.domaindriven.model;
 public enum LacsCnstE {
 
     CAST_INSTRUCTOR("강사 섭외", "/castingInstructor"), RESERVE_PLACE("장소 예약", "/reservingPlace"), MAKE_POSTER("포스터 제작", "/makingPoster"),
-    REGISTER_SEMINAR("세미나 등록", "/registeringSeminar"), PROMOTION("홍보", "/promoting"), RETROSPECTION("회고", "/rememberancing");
+    REGISTER_SEMINAR("세미나 등록", "/registeringOnOffMix"), PROMOTION("홍보", "/promoting"), RETROSPECTION("회고", "/retrospecting");
 
     private String taskName;
     private String URL;
