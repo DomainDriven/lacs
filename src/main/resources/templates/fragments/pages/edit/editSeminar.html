@@ -7,6 +7,7 @@
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a th:href="@{/}" href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+            <li><a th:href="@{/allSeminar}" href="/allSeminar"><i class="fa fa-list"></i> 세미나 리스트</a></li>
             <li class="active"><a href="">세미나 편집</a></li>
         </ol>
     </section>
@@ -26,32 +27,33 @@
             <form>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="seminarTitle">세미나 타이틀</label>
+                        <input type="hidden" name="id" th:value="${editSeminar.getId()}" id="editSeminarId"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="editSeminarTitle">세미나 타이틀</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-pencil"></i>
                             </div>
-                            <input type="text" class="form-control" placeholder="ex) 개발자 경력 개발 세미나." id="seminarTitle"/>
+                            <input type="text" class="form-control" th:value="${editSeminar.getTitle()}"
+                                   id="editSeminarTitle" name="title"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="seminarDate">세미나 예정일</label>
+                        <label for="editSeminarDate">세미나 예정일</label>
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right" placeholder="ex) 05/29/2016"
-                                   id="seminarDate"/>
+                            <input type="text" class="form-control pull-right"
+                                   th:value="${#dates.format(editSeminar.getDate(), 'dd/MM/yyyy')}"
+                                   id="editSeminarDate" name="date"/>
                         </div>
                         <!-- /.input group -->
                     </div>
-                </div>
-                <div class="box-footer">
-                    <div class="form-group row">
-                        <div class="col-sm-offset-1">
-                            <button type="button" class="btn btn-primary" id="editSeminar">등록</button>
-                            <button type="reset" class="btn btn-secondary">리셋</button>
-                        </div>
+                    <div class="form-group">
+                        <input type="button" class="btn btn-primary" value="제출" id="editSeminarBtn"/>
+                        <input type="reset" class="btn btn-secondary" value="리셋"/>
                     </div>
                 </div>
             </form>

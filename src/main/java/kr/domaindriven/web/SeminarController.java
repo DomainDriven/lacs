@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 
@@ -44,24 +45,6 @@ public class SeminarController {
     }
 
     /**
-     * edit form 화면
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/editSeminar", method = RequestMethod.GET)
-    public String editSeminarForm(Model model, @RequestParam String id) {
-        logger.info("세미나 편집 폼 화면..");
-        logger.info("세미나 id: {}", id);
-
-        model.addAttribute("page", "editSeminar");
-
-        return LAYOUT;
-    }
-
-    //TODO: seminar edit 기능 구현.
-
-    /**
      * list 화면
      *
      * @param pageable
@@ -78,6 +61,39 @@ public class SeminarController {
         model.addAttribute("page", "allSeminar");
 
         return LAYOUT;
+    }
+
+    /**
+     * edit form 화면
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/editSeminar", method = RequestMethod.GET)
+    public String editSeminarForm(Model model, @RequestParam String id) {
+        logger.info("세미나 편집 폼 화면..");
+        logger.info("세미나 id: {}", id);
+
+        Seminar editSeminar = smService.findOne(id);
+
+        model.addAttribute("editSeminar", editSeminar);
+        model.addAttribute("page", "editSeminar");
+
+        return LAYOUT;
+    }
+
+    @RequestMapping(value = "/editSeminar", method = RequestMethod.POST)
+    @ResponseBody
+    public Seminar editSeminar(@RequestParam String id, @RequestParam String title, @RequestParam Date date) {
+        logger.info("seminar 편집.");
+        logger.info("id: {}, title: {}, date: {}", id, title, date);
+
+        Seminar editSeminar = smService.findOne(id);
+        editSeminar.setTitle(title);
+        editSeminar.setDate(date);
+
+        return smService.save(editSeminar);
+
     }
 
     @RequestMapping(value = "/editTitle", method = RequestMethod.POST)

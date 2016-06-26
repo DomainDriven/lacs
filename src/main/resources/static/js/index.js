@@ -12,7 +12,7 @@ $(document).ready(function () {
      */
 
     var datePickerList = [
-        "#seminarDate", "#seminarEditDate"
+        "#seminarDate", "#seminarEditDate", "#editSeminarDate"
     ];
 
     datePickerList.forEach(function (dp) {
@@ -29,6 +29,36 @@ $(document).ready(function () {
 
     dataTableList.forEach(function (dt) {
         $(dt).DataTable();
+    });
+
+    /**
+     * 세미나 편집 버튼.
+     */
+    $("#editSeminarBtn").on("click", function () {
+
+        var editSeminarId = $("#editSeminarId").val();
+        var editSeminarTitle = $("#editSeminarTitle").val();
+        var editSeminarDate = $("#editSeminarDate").val();
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/editSeminar",
+            data: {
+                id: editSeminarId,
+                title: editSeminarTitle,
+                date: editSeminarDate
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/allSeminar");
+            },
+            error: function (error) {
+                console.log("세미나 편집 실패.");
+                console.log(error);
+            }
+        });
     });
 
     /**
