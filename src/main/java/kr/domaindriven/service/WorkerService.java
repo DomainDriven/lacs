@@ -35,6 +35,11 @@ public class WorkerService implements IWorkerService {
     }
 
     @Override
+    public Worker findOne(String id) {
+        return repository.findOne(id);
+    }
+
+    @Override
     public List<Worker> findAll() {
         return repository.findAll();
     }

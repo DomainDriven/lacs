@@ -32,6 +32,38 @@ $(document).ready(function () {
     });
 
     /**
+     * 운영진 편집 버튼.
+     */
+    $("#editWorkerBtn").on("click", function () {
+
+        var editWorkerId = $("#editWorkerId").val();
+        var editWorkerName = $("#editWorkerName").val();
+        var editWorkerPhone = $("#editWorkerPhone").val();
+        var editWorkerEmail = $("#editWorkerEmail").val();
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/editWorker",
+            data: {
+                id: editWorkerId,
+                name: editWorkerName,
+                phone: editWorkerPhone,
+                email: editWorkerEmail
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/allWorker");
+            },
+            error: function (error) {
+                console.log("운영진 편집 실패.");
+                console.log(error);
+            }
+        });
+    });
+
+    /**
      * 세미나 편집 버튼.
      */
     $("#editSeminarBtn").on("click", function () {

@@ -13,6 +13,8 @@ public interface IWorkerService {
 
     Worker save(Worker worker);
 
+    Worker findOne(String id);
+
     List<Worker> findAll();
 
     Page<Worker> findAll(Pageable pageable);

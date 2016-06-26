@@ -7,7 +7,9 @@
     <section class="content-header">
         <ol class="breadcrumb">
             <li><a th:href="@{/}" href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+            <li><a th:href="@{/allWorker}" href="/allWorker"><i class="fa fa-list"></i> 운영 리스트</a></li>
             <li class="active"><a href="">운영진 편집</a></li>
+            진
         </ol>
     </section>
     <br/><br/>
@@ -26,16 +28,19 @@
             <form>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="workerName">이름</label>
+                        <input type="hidden" name="id" th:value="${editWorker.getId()}" id="editWorkerId"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="editWorkerName">이름</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-user"></i>
                             </div>
-                            <input type="text" class="form-control" placeholder="이름을 입력해 주세요." id="workerName"/>
+                            <input type="text" class="form-control" id="editWorkerName" th:value="${editWorker.getName()}"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="workerPhone">전화 번호</label>
+                        <label for="editWorkerPhone">전화 번호</label>
 
                         <div class="input-group">
                             <div class="input-group-addon">
@@ -43,24 +48,25 @@
                             </div>
                             <input type="text" class="form-control"
                                    data-inputmask="&quot;mask&quot;: &quot;(999) 999-9999&quot;" data-mask=""
-                                   id="workerPhone" placeholder="전화번호를 입력해 주세요."/>
+                                   id="editWorkerPhone" th:value="${editWorker.getPhone()}"/>
                         </div>
                         <!-- /.input group -->
                     </div>
                     <div class="form-group">
-                        <label for="workerEmail">이메일</label>
+                        <label for="editWorkerEmail">이메일</label>
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <i class="fa fa-envelope"></i>
                             </div>
-                            <input type="email" class="form-control" id="workerEmail" placeholder="이메일을 입력해 주세요."/>
+                            <input type="email" class="form-control" id="editWorkerEmail"
+                                   th:value="${editWorker.getEmail()}"/>
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     <div class="form-group row">
                         <div class="col-sm-offset-1">
-                            <button type="button" class="btn btn-primary" id="editWorker">등록</button>
+                            <button type="button" class="btn btn-primary" id="editWorkerBtn">등록</button>
                             <button type="reset" class="btn btn-secondary">리셋</button>
                         </div>
                     </div>
