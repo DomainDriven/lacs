@@ -34,6 +34,7 @@ $(document).ready(function () {
     /**
      * 운영진 편집 버튼.
      */
+
     $("#editWorkerBtn").on("click", function () {
 
         var editWorkerId = $("#editWorkerId").val();
@@ -66,6 +67,7 @@ $(document).ready(function () {
     /**
      * 세미나 편집 버튼.
      */
+
     $("#editSeminarBtn").on("click", function () {
 
         var editSeminarId = $("#editSeminarId").val();
@@ -76,7 +78,7 @@ $(document).ready(function () {
             type: "post",
             async: true,
             dataType: "json",
-            url: "/editSeminar",
+            url: "/seminar/editSeminar",
             data: {
                 id: editSeminarId,
                 title: editSeminarTitle,
@@ -131,74 +133,107 @@ $(document).ready(function () {
      * 당월 세미나의 예정일, 주제 변경, 청중수 변경 취소 버튼
      */
 
-    $("#cancelTitleBtn").on("click", function () {
+    var editCancelBtnList = [
+        {
+            "selector" : "#cancelTitleBtn",
+            "display" : "#seminarTitleText",
+            "form" : "#seminarEditTitleForm"
+        },
+        {
+            "selector" : "#cancelDateBtn",
+            "display" : "#seminarDateInfoBox",
+            "form" : "#seminarEditDateForm"
+        },
+        {
+            "selector" : "#cancelAudienceBtn",
+            "display" : "#seminarAudienceInfoBox",
+            "form" : "#seminarEditAudienceForm"
+        }
+    ];
 
-        $("#seminarEditTitleForm").submit(function (event) {
-            event.preventDefault();
-            location.replace("/");
-            return false;
+    editCancelBtnList.forEach(function(obj){
+        $(obj.selector).on("click", function(){
+            $(obj.display).css("display", "block");
+            $(obj.form).css("display", "none");
         });
     });
-
-    $("#cancelDateBtn").on("click", function () {
-
-        $("#seminarEditDateForm").submit(function (event) {
-            event.preventDefault();
-            location.replace("/");
-            return false;
-        });
-    });
-
-    $("#cancelAudienceBtn").on("click", function () {
-
-        $("#seminarAudienceInfoBox").css("display", "block");
-        $("#seminarEditAudienceForm").css("display", "none");
-    });
-
+    
     /**
-     * 당월 세미나의 예정일 과 주제 변경 전송 버튼
+     * 당월 세미나의 주제 변경 전송 버튼
      */
 
     $("#seminarTitleText").on("click", function () {
+
         $("#seminarTitleText").css("display", "none");
-        $("#seminarEditTitleInput").css("display", "");
+        $("#seminarEditTitleForm").css("display", "block");
 
-        $("#seminarEditTitleBtn").click(function () {
-
-            $("#seminarEditTitleForm").submit(function (event) {
-                event.preventDefault();
-
-                var seminarEditTitleVal = $("#seminarEditTitle").val();
-                if (seminarEditTitleVal === "") {
-                    $("#seminarEditTitle").attr("placeholder", "세미나 타이틀은 비어 있으면 안됩니다.");
-                    return false;
-                } else {
-                    this.submit(true);
-                }
-            });
-
-        });
     });
 
-    $("#seminarDateIcon").on("click", function () {
-        $("#seminarDateInfoBox").css("display", "none");
-        $("#seminarEditDateForm").css("display", "");
+    $("#seminarEditTitleBtn").click(function () {
 
-        $("#seminarEditDateBtn").click(function () {
+        var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
+        var editTitle = $("#seminarEditTitle").val();
 
-            $("#seminarEditDateForm").submit(function (event) {
-                event.preventDefault();
-
-                var seminarEditDateVal = $("#seminarEditDate").val();
-                if (seminarEditDateVal === "") {
-                    $("#seminarEditDate").attr("placeholder", "세미나 날짜는 비어 있으면 안됩니다.");
-                    return false;
-                } else {
-                    this.submit(true);
-                }
-            });
-
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/seminar/editTitle",
+            data: {
+                id: currentSeminarId,
+                title: editTitle
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/");
+            },
+            error: function (error) {
+                console.log("타이틀 편집 실패.");
+                console.log(error);
+                $("#seminarTitleInfoBox").css("display", "block");
+                $("#seminarEditTitleForm").css("display", "none");
+            }
         });
+
+    });
+
+    /**
+     * 당월 세미나의 예정일 변경 전송 버튼
+     */
+
+    $("#seminarDateIcon").on("click", function () {
+
+        $("#seminarDateInfoBox").css("display", "none");
+        $("#seminarEditDateForm").css("display", "block");
+
+    });
+
+    $("#seminarEditDateBtn").click(function () {
+
+        var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
+        var editDate = $("#seminarEditDate").val();
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/seminar/editDate",
+            data: {
+                id: currentSeminarId,
+                date: editDate
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/");
+            },
+            error: function (error) {
+                console.log("예정일 편집 실패.");
+                console.log(error);
+                $("#seminarDateInfoBox").css("display", "block");
+                $("#seminarEditDateForm").css("display", "none");
+            }
+        });
+
     });
 
     /**

@@ -43,18 +43,14 @@
                         <!-- /.info-box-content -->
                     </div>
 
-                    <form class="form" th:action="@{/editDate}" method="post" id="seminarEditDateForm"
-                          style="display: none; margin-bottom: 10px;">
+                    <div id="seminarEditDateForm" style="display: none; margin-bottom: 10px;">
                         <div class="form-group">
                             <input type="text" name="date" class="form-control" id="seminarEditDate"
                                    th:value="${#dates.format(currentSeminar.date, 'dd/MM/yyyy')}"/>
                         </div><!--.form-group -->
-                        <div class="form-group">
-                            <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
-                        </div>
                         <button id="seminarEditDateBtn" class="btn btn-info">날짜 수정</button>
                         <button class="btn btn-danger" id="cancelDateBtn">취소</button>
-                    </form>
+                    </div>
 
                     <!--<div th:replace="fragments/modal/modifySeminar :: modifySeminar"></div>-->
 
@@ -90,17 +86,16 @@
                     <h3 th:text="${currentSeminar.title}" id="seminarTitleText" style="width: 350px;"
                         data-toggle="tooltip" data-placement="top" title="세미나 주제를 수정하려면 클릭하세요."></h3>
 
-                    <form th:action="@{/editTitle}" method="post" id="seminarEditTitleForm">
-                        <div class="input-group" style="display: none" id="seminarEditTitleInput">
+                    <div id="seminarEditTitleForm" style="display: none">
+                        <div class="input-group">
                             <input type="text" name="title" class="form-control" id="seminarEditTitle"
                                    th:value="${currentSeminar.title}"/>
-                            <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
                             <span class="input-group-btn">
                                 <button id="seminarEditTitleBtn" class="btn btn-info">주제 수정</button>
                                 <button class="btn btn-danger" id="cancelTitleBtn">취소</button>
                             </span>
                         </div><!-- /input-group -->
-                    </form>
+                    </div>
 
                     <table class="table table-striped">
                         <thead>

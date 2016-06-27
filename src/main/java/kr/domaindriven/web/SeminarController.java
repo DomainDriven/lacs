@@ -116,48 +116,6 @@ public class SeminarController {
         return LAYOUT;
     }
 
-    @RequestMapping(value = "/editSeminar", method = RequestMethod.POST)
-    @ResponseBody
-    public Seminar editSeminar(@RequestParam String id, @RequestParam String title, @RequestParam Date date) {
-        logger.info("seminar 편집.");
-        logger.info("id: {}, title: {}, date: {}", id, title, date);
-
-        Seminar editSeminar = smService.findOne(id);
-        editSeminar.setTitle(title);
-        editSeminar.setDate(date);
-
-        return smService.save(editSeminar);
-
-    }
-
-    @RequestMapping(value = "/editTitle", method = RequestMethod.POST)
-    public String updateSerminarTitle(Model model, @RequestParam String id, @RequestParam String title) {
-        logger.info("세미나 주제 업데이트.");
-        logger.info("id: {}, title: {}", id, title);
-
-        Seminar currentSeminar = smService.findOne(id);
-        currentSeminar.setTitle(title);
-        smService.save(currentSeminar);
-
-        model.addAttribute("page", "currentSeminar");
-
-        return REDIRECT;
-    }
-
-    @RequestMapping(value = "/editDate", method = RequestMethod.POST)
-    public String updateSerminarDate(Model model, @RequestParam String id, @RequestParam Date date) {
-        logger.info("세미나 날짜 업데이트.");
-        logger.info("id: {}, date: {}", id, date);
-
-        Seminar currentSeminar = smService.findOne(id);
-        currentSeminar.setDate(date);
-        smService.save(currentSeminar);
-
-        model.addAttribute("page", "currentSeminar");
-
-        return REDIRECT;
-    }
-
     @RequestMapping(value = "/deleteSeminar", method = RequestMethod.POST)
     public String deleteSeminar(@PageableDefault Pageable pageable, Model model, @RequestParam String id) {
         logger.info("세미나 삭제.");

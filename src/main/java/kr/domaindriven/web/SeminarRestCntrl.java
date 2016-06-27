@@ -9,11 +9,13 @@ import kr.domaindriven.util.ControllerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by donghoon on 2016. 5. 29..
@@ -79,6 +81,41 @@ public class SeminarRestCntrl {
         Seminar currentSeminar = smService.findOne(id);
         Worker selectedWorker = wService.findByName(workerName);
         currentSeminar.getTasks().get(index).setWorkers(Arrays.asList(selectedWorker));
+
+        return smService.save(currentSeminar);
+    }
+
+    @RequestMapping(value = "/editSeminar", method = RequestMethod.POST)
+    public Seminar editSeminar(@RequestParam String id, @RequestParam String title, @RequestParam Date date) {
+        logger.info("seminar 편집.");
+        logger.info("id: {}, title: {}, date: {}", id, title, date);
+
+        Seminar editSeminar = smService.findOne(id);
+        editSeminar.setTitle(title);
+        editSeminar.setDate(date);
+
+        return smService.save(editSeminar);
+
+    }
+
+    @RequestMapping(value = "/editTitle", method = RequestMethod.POST)
+    public Seminar updateSerminarTitle(@RequestParam String id, @RequestParam String title) {
+        logger.info("세미나 주제 업데이트.");
+        logger.info("id: {}, title: {}", id, title);
+
+        Seminar currentSeminar = smService.findOne(id);
+        currentSeminar.setTitle(title);
+
+        return smService.save(currentSeminar);
+    }
+
+    @RequestMapping(value = "/editDate", method = RequestMethod.POST)
+    public Seminar updateSerminarDate(@RequestParam String id, @RequestParam Date date) {
+        logger.info("세미나 날짜 업데이트.");
+        logger.info("id: {}, date: {}", id, date);
+
+        Seminar currentSeminar = smService.findOne(id);
+        currentSeminar.setDate(date);
 
         return smService.save(currentSeminar);
     }
