@@ -72,49 +72,61 @@ $(document).ready(function () {
         var editSeminarTitle = $("#editSeminarTitle").val();
         var editSeminarDate = $("#editSeminarDate").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/editSeminar",
-            data: {
-                id: editSeminarId,
-                title: editSeminarTitle,
-                date: editSeminarDate
-            },
-            success: function (response) {
-                console.log(response);
-                location.replace("/allSeminar");
-            },
-            error: function (error) {
-                console.log("세미나 편집 실패.");
-                console.log(error);
-            }
-        });
+
     });
 
     /**
      * 당월 세미나 태스크의 운영진 할당 버튼.
      */
 
-    //var workerSelectBtnList = $(".workerSelectBtn");
-    //var workerReSelectBtnList = $(".workerReSelectBtn");
-    //
-    //workerSelectBtnList.on("click", function () {
-    //    var index = workerSelectBtnList.index(this);
-    //
-    //    workerSelectBtnList[index].style.display = "none";
-    //    workerReSelectBtnList[index].style.display = "block";
-    //
-    //});
-    //
-    //workerReSelectBtnList.on("click", function () {
-    //    var index = workerReSelectBtnList.index(this);
-    //
-    //    workerReSelectBtnList[index].style.display = "none";
-    //    workerSelectBtnList[index].style.display = "block";
-    //
-    //});
+    var workerSelectBtnList = $(".workerSelectBtn");
+    var workerReSelectBtnList = $(".workerReSelectBtn");
+    var selectedWorkerList = $(".selectedWorker");
+    var workerList = $(".workerList");
+
+    workerSelectBtnList.on("click", function () {
+        var index = workerSelectBtnList.index(this);
+        var workerName = workerList[index].options[workerList[index].selectedIndex].text;
+        var currentSeminarId = $("#currentSeminarId").val();
+        console.log("Index: " + index + ", WorkerName: " + workerName + ", CurrentSeminarId: " + currentSeminarId);
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/seminar/assignWorker",
+            data: {
+                id: currentSeminarId,
+                workerName: workerName,
+                index: index
+            },
+            success: function (response) {
+                console.log(response);
+
+                workerSelectBtnList[index].style.display = "none";
+                workerReSelectBtnList[index].style.display = "block";
+                selectedWorkerList[index].style.display = "block";
+                selectedWorkerList[index].innerHTML = workerName;
+                workerList[index].style.display = "none";
+            },
+            error: function (error) {
+                console.log("운영진 작업 할당 실패.");
+                console.log(error);
+            }
+        });
+    });
+
+    workerReSelectBtnList.on("click", function () {
+        var index = workerReSelectBtnList.index(this);
+        console.log("Index: " + index);
+
+        workerSelectBtnList[index].style.display = "block";
+        workerReSelectBtnList[index].style.display = "none";
+
+        selectedWorkerList[index].style.display = "none";
+        workerList[index].style.display = "block";
+
+    });
 
 
     /**

@@ -93,23 +93,23 @@
                             </td>
                             <td class="center-y" style="width: 25%">
                                 <div class="input-group">
-                                    <span class="center-y">Task Worker</span>
+                                    <span class="center-y selectedWorker" style="display: none;">Task Worker</span>
 
-                                    <!--<select class="form-control" id="workerList">-->
-                                    <!--<option th:each="worker : ${workers}" th:text="${worker.getName()}"-->
-                                    <!--th:value="${worker.getName()}">worker-->
-                                    <!--</option>-->
-                                    <!--</select>-->
-                                    <!--<span style="display: none"></span>-->
-                                    <!--<span class="input-group-btn">-->
-                                    <!--<button class="btn btn-info workerSelectBtn" style="margin-left: 5px;">선택-->
-                                    <!--</button>-->
-                                    <!--<button class="btn btn-success workerReSelectBtn"-->
-                                    <!--style="display: none; margin-left: 5px;">재선택-->
-                                    <!--</button>-->
-                                    <!--</span>-->
-                                    <!--<input type="hidden" name="id" th:value="${currentSeminar.id}"-->
-                                    <!--id="currentSeminarId"/>-->
+                                    <select class="form-control workerList">
+                                        <option th:each="worker : ${workers}" th:text="${worker.getName()}"
+                                                th:value="${worker.getName()}">worker
+                                        </option>
+                                    </select>
+                                    <span style="display: none"></span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info workerSelectBtn" style="margin-left: 5px;">선택
+                                        </button>
+                                        <button class="btn btn-success workerReSelectBtn"
+                                                style="display: none; margin-left: 5px;">재선택
+                                        </button>
+                                    </span>
+                                    <input type="hidden" name="id" th:value="${currentSeminar.id}"
+                                           id="currentSeminarId"/>
                                 </div>
                             </td>
                             <td style="width: 45%">

@@ -43,32 +43,6 @@ public class AppsController {
     private InstructorService instructorService;
 
     /**
-     * 메인 화면.
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
-        logger.info("현재 진행중인 세미나 화면..");
-
-        Seminar currentSeminar = smService.findByIsCompleted(false);
-        long diffDate = 0;
-
-        if (currentSeminar == null)
-            currentSeminar = new Seminar("현재 진행중인 세미나가 없습니다.");
-        else
-            diffDate = (currentSeminar.getDate().getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
-
-
-        model.addAttribute("diffDate", diffDate);
-        model.addAttribute("currentSeminar", currentSeminar);
-        model.addAttribute("page", "currentSeminar");
-
-        return LAYOUT;
-    }
-
-    /**
      * task 화면
      *
      * @param pageable

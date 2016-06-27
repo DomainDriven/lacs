@@ -1,8 +1,10 @@
 package kr.domaindriven.web;
 
 import kr.domaindriven.model.Seminar;
+import kr.domaindriven.model.Worker;
 import kr.domaindriven.model.form.SeminarForm;
 import kr.domaindriven.service.SeminarService;
+import kr.domaindriven.service.WorkerService;
 import kr.domaindriven.util.ControllerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 /**
  * Created by donghoon on 2016. 5. 29..
@@ -22,7 +26,9 @@ public class SeminarRestCntrl {
     private Logger logger = LoggerFactory.getLogger(SeminarRestCntrl.class);
 
     @Autowired
-    private SeminarService service;
+    private SeminarService smService;
+    @Autowired
+    private WorkerService wService;
     @Autowired
     private ControllerUtil util;
 
@@ -48,7 +54,7 @@ public class SeminarRestCntrl {
 
         Seminar newSeminar = new Seminar(form.getTitle(), form.getDate());
 
-        return service.save(newSeminar);
+        return smService.save(newSeminar);
     }
 
     @RequestMapping(value = "/taskProgress", method = RequestMethod.POST)
@@ -58,9 +64,23 @@ public class SeminarRestCntrl {
         logger.info("태스크 진행률 업데이트.");
         logger.info("title: {}, order: {}, progress: {}", title, order, progress);
 
-        Seminar currentSeminar = service.findByTitle(title);
+        Seminar currentSeminar = smService.findByTitle(title);
         currentSeminar.getTasks().get(Integer.parseInt(order)).setProgress(Integer.parseInt(progress));
-        return service.save(currentSeminar);
+        return smService.save(currentSeminar);
+    }
+
+    @RequestMapping(value = "/assignWorker", method = RequestMethod.POST)
+    public Seminar assignWorker(@RequestParam String id,
+                                @RequestParam String workerName,
+                                @RequestParam int index) {
+        logger.info("운영진 작업 할당.");
+        logger.info("CurrentSeminarId: {}, WorkerName: {}, Index: {}", id, workerName, index);
+
+        Seminar currentSeminar = smService.findOne(id);
+        Worker selectedWorker = wService.findByName(workerName);
+        currentSeminar.getTasks().get(index).setWorkers(Arrays.asList(selectedWorker));
+
+        return smService.save(currentSeminar);
     }
 
 }

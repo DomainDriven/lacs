@@ -1,7 +1,9 @@
 package kr.domaindriven.web;
 
 import kr.domaindriven.model.Seminar;
+import kr.domaindriven.model.Worker;
 import kr.domaindriven.service.SeminarService;
+import kr.domaindriven.service.WorkerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by donghoon on 2016-06-24.
@@ -28,6 +31,37 @@ public class SeminarController {
 
     @Autowired
     private SeminarService smService;
+    @Autowired
+    private WorkerService wService;
+
+    /**
+     * 메인 화면.
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index(Model model) {
+        logger.info("현재 진행중인 세미나 화면..");
+
+        Seminar currentSeminar = smService.findByIsCompleted(false);
+        List<Worker> workers = wService.findAll();
+
+        long diffDate = 0;
+
+        if (currentSeminar == null)
+            currentSeminar = new Seminar("현재 진행중인 세미나가 없습니다.");
+        else
+            diffDate = (currentSeminar.getDate().getTime() - new Date().getTime()) / (24 * 60 * 60 * 1000);
+
+
+        model.addAttribute("currentSeminar", currentSeminar);
+        model.addAttribute("workers", workers);
+        model.addAttribute("diffDate", diffDate);
+        model.addAttribute("page", "currentSeminar");
+
+        return LAYOUT;
+    }
 
     /**
      * add form 화면
