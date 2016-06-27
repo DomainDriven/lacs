@@ -102,12 +102,6 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
-
-                workerSelectBtnList[index].style.display = "none";
-                workerReSelectBtnList[index].style.display = "block";
-                selectedWorkerList[index].style.display = "block";
-                selectedWorkerList[index].innerHTML = workerName;
-                workerList[index].style.display = "none";
             },
             error: function (error) {
                 console.log("운영진 작업 할당 실패.");
@@ -115,19 +109,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    workerReSelectBtnList.on("click", function () {
-        var index = workerReSelectBtnList.index(this);
-        console.log("Index: " + index);
-
-        workerSelectBtnList[index].style.display = "block";
-        workerReSelectBtnList[index].style.display = "none";
-
-        selectedWorkerList[index].style.display = "none";
-        workerList[index].style.display = "block";
-
-    });
-
 
     /**
      * 당월 세미나의 예정일 과 주제 변경 취소 버튼

@@ -103,6 +103,13 @@ public class AppsController {
     public String makingPoster(@RequestParam String title, Model model) {
         logger.info("포스터 제작 상세 화면..");
         logger.info("title: " + title);
+
+        Seminar currentSeminar = smService.findByTitle(title);
+        Task makingPoster = currentSeminar.getTasks().get(2);
+
+        model.addAttribute("title", title);
+        model.addAttribute("order", 2);
+        model.addAttribute("task", makingPoster);
         model.addAttribute("page", "makingPoster");
 
         return LAYOUT;

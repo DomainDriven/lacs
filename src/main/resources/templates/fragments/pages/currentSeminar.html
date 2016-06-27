@@ -46,7 +46,7 @@
                           style="display: none">
                         <div class="form-group">
                             <input type="text" name="date" class="form-control" id="seminarEditDate"
-                                   placeholder="ex) 25/06/2016"/>
+                                   th:value="${#dates.format(currentSeminar.date, 'dd/MM/yyyy')}"/>
                         </div><!--.form-group -->
                         <div class="form-group">
                             <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
@@ -64,7 +64,7 @@
                     <form th:action="@{/editTitle}" method="post" id="seminarEditTitleForm">
                         <div class="input-group" style="display: none" id="seminarEditTitleInput">
                             <input type="text" name="title" class="form-control" id="seminarEditTitle"
-                                   placeholder="ex) 개발자 경력 개발 세미나"/>
+                                   th:value="${currentSeminar.title}"/>
                             <input type="hidden" name="id" th:value="${currentSeminar.id}"/>
                             <span class="input-group-btn">
                                 <button id="seminarEditTitleBtn" class="btn btn-info">주제 수정</button>
@@ -93,21 +93,19 @@
                             </td>
                             <td class="center-y" style="width: 25%">
                                 <div class="input-group">
-                                    <span class="center-y selectedWorker" style="display: none;">Task Worker</span>
-
                                     <select class="form-control workerList">
+                                        <option disabled="" selected=""
+                                                th:text="(${task.getWorkers()} != null) ? ${task.getWorkers().get(0).getName()} : '담당자를 선택해 주세요.'"></option>
                                         <option th:each="worker : ${workers}" th:text="${worker.getName()}"
                                                 th:value="${worker.getName()}">worker
                                         </option>
                                     </select>
-                                    <span style="display: none"></span>
+
                                     <span class="input-group-btn">
                                         <button class="btn btn-info workerSelectBtn" style="margin-left: 5px;">선택
                                         </button>
-                                        <button class="btn btn-success workerReSelectBtn"
-                                                style="display: none; margin-left: 5px;">재선택
-                                        </button>
                                     </span>
+
                                     <input type="hidden" name="id" th:value="${currentSeminar.id}"
                                            id="currentSeminarId"/>
                                 </div>

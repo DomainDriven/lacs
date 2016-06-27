@@ -14,9 +14,8 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title" th:text="${task.getTaskName()}">
-                    title
-                </h3>
+                <h3 class="box-title" th:text="${task.getTaskName()}">title</h3>
+                <small th:text="(${task.getWorkers()} != null) ? ' - 담당자: ' + ${task.getWorkers().get(0).getName()} : ' - 담당자가 아직 할당되지 않았습니다. '"></small>
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
