@@ -72,6 +72,25 @@ $(document).ready(function () {
         var editSeminarTitle = $("#editSeminarTitle").val();
         var editSeminarDate = $("#editSeminarDate").val();
 
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/editSeminar",
+            data: {
+                id: editSeminarId,
+                title: editSeminarTitle,
+                date: editSeminarDate
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/allSeminar");
+            },
+            error: function (error) {
+                console.log("세미나 편집 실패.");
+                console.log(error);
+            }
+        });
 
     });
 
@@ -80,8 +99,6 @@ $(document).ready(function () {
      */
 
     var workerSelectBtnList = $(".workerSelectBtn");
-    var workerReSelectBtnList = $(".workerReSelectBtn");
-    var selectedWorkerList = $(".selectedWorker");
     var workerList = $(".workerList");
 
     workerSelectBtnList.on("click", function () {
@@ -111,7 +128,7 @@ $(document).ready(function () {
     });
 
     /**
-     * 당월 세미나의 예정일 과 주제 변경 취소 버튼
+     * 당월 세미나의 예정일, 주제 변경, 청중수 변경 취소 버튼
      */
 
     $("#cancelTitleBtn").on("click", function () {
@@ -130,6 +147,12 @@ $(document).ready(function () {
             location.replace("/");
             return false;
         });
+    });
+
+    $("#cancelAudienceBtn").on("click", function () {
+
+        $("#seminarAudienceInfoBox").css("display", "block");
+        $("#seminarEditAudienceForm").css("display", "none");
     });
 
     /**
@@ -175,6 +198,43 @@ $(document).ready(function () {
                 }
             });
 
+        });
+    });
+
+    /**
+     * 당월 세미나 청중수 입력 버튼
+     */
+    $("#seminarAudienceIcon").on("click", function () {
+
+        $("#seminarAudienceInfoBox").css("display", "none");
+        $("#seminarEditAudienceForm").css("display", "block");
+
+    });
+
+    $("#seminarEditAudienceBtn").click(function () {
+
+        var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
+        var audienceCount = $("#seminarEditAudience").val();
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/seminar/editAudience",
+            data: {
+                id: currentSeminarId,
+                audienceCount: audienceCount
+            },
+            success: function (response) {
+                console.log(response.audience);
+                location.replace("/");
+            },
+            error: function (error) {
+                console.log("청중수 편집 실패.");
+                console.log(error);
+                $("#seminarAudienceInfoBox").css("display", "block");
+                $("#seminarEditAudienceForm").css("display", "none");
+            }
         });
     });
 

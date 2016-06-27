@@ -83,4 +83,15 @@ public class SeminarRestCntrl {
         return smService.save(currentSeminar);
     }
 
+    @RequestMapping(value = "/editAudience", method = RequestMethod.POST)
+    public Seminar editAudience(@RequestParam String id, @RequestParam int audienceCount) {
+        logger.info("청중수 편집.");
+        logger.info("id: {}, audience: {}", id, audienceCount);
+
+        Seminar currentSeminar = smService.findOne(id);
+        currentSeminar.setAudience(audienceCount);
+
+        return smService.save(currentSeminar);
+    }
+
 }

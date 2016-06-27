@@ -26,6 +26,11 @@ public class Seminar {
     private boolean isCompleted = false;
     private List<Task> tasks;
     private Date date;
+    /**
+     * 세미나 청중수 표현 필드.
+     * 초기값 0.
+     */
+    private int audience = 0;
 
     public Seminar() {
 
@@ -115,5 +120,13 @@ public class Seminar {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getAudience() {
+        return audience;
+    }
+
+    public void setAudience(int audience) {
+        this.audience = audience;
     }
 }

@@ -25,6 +25,7 @@
             <div class="box-body">
                 <div class="col-md-3">
 
+                    <!-- 세미나 예정일 info box -->
                     <div class="info-box bg-aqua" id="seminarDateInfoBox">
                         <span id="seminarDateIcon" class="info-box-icon" data-toggle="tooltip" data-placement="bottom"
                               title="세미나 날짜를 수정하려면 클릭하세요."><i class="fa fa-calendar"></i></span>
@@ -43,7 +44,7 @@
                     </div>
 
                     <form class="form" th:action="@{/editDate}" method="post" id="seminarEditDateForm"
-                          style="display: none">
+                          style="display: none; margin-bottom: 10px;">
                         <div class="form-group">
                             <input type="text" name="date" class="form-control" id="seminarEditDate"
                                    th:value="${#dates.format(currentSeminar.date, 'dd/MM/yyyy')}"/>
@@ -56,6 +57,34 @@
                     </form>
 
                     <!--<div th:replace="fragments/modal/modifySeminar :: modifySeminar"></div>-->
+
+                    <!-- 세미나 청중수 info box -->
+                    <div class="info-box bg-yellow" id="seminarAudienceInfoBox">
+                        <span id="seminarAudienceIcon" class="info-box-icon" data-toggle="tooltip"
+                              data-placement="bottom" title="세미나 청중수를 입력하려면 클릭하세요."><i class="fa fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">세미나 청중수 </span>
+                            <span th:text="${currentSeminar.getAudience()} + '명'"
+                                  class="info-box-number"></span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 100%"></div>
+                        </div>
+                        <span class="progress-description" style="padding-left: 10px;"
+                              th:text="'현재 청중이 목표치에 ' + (35 - ${currentSeminar.getAudience()}) +'명 부족합니다.'"></span>
+                        <!-- /.info-box-content -->
+                    </div>
+
+                    <div id="seminarEditAudienceForm" style="display: none;">
+                        <div class="form-group">
+                            <input type="text" name="audience" class="form-control" id="seminarEditAudience"
+                                   th:value="${currentSeminar.getAudience()}"/>
+                        </div>
+                        <button id="seminarEditAudienceBtn" class="btn btn-info">입력</button>
+                        <button class="btn btn-danger" id="cancelAudienceBtn">취소</button>
+                    </div>
+
                 </div>
                 <div class="col-md-9">
                     <h3 th:text="${currentSeminar.title}" id="seminarTitleText" style="width: 350px;"
