@@ -73,7 +73,7 @@
                                     <form th:action="@{/deleteSeminar}" method="post"
                                           onsubmit="return confirm('정말 삭제 하시겠습니까?')">
                                         <input class="btn btn-danger full-width" type="submit" value="삭제"/>
-                                        <input type="hidden" name="id" th:value="${seminar.id}"/>
+                                        <input type="hidden" name="id" th:value="${seminar.id}" id="currentSeminarId"/>
                                     </form>
                                 </td>
                             </tr>

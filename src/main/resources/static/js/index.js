@@ -32,6 +32,63 @@ $(document).ready(function () {
     });
 
     /**
+     * 세미나 완료 버튼.
+     */
+
+    $("#completeSeminar").on("click", function () {
+
+        var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/seminar/isCompleted",
+            data: {
+                id: currentSeminarId,
+                isCompleted: true
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/allSeminar");
+            },
+            error: function (error) {
+                console.log("세미나 완료상태 편집 실패.");
+                console.log(error);
+            }
+        });
+
+    });
+
+    /**
+     * 세미나 재시작 버튼.
+     */
+    $("#restartSeminar").on("click", function () {
+
+        var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/seminar/isCompleted",
+            data: {
+                id: currentSeminarId,
+                isCompleted: false
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/allSeminar");
+            },
+            error: function (error) {
+                console.log("세미나 완료상태 편집 실패.");
+                console.log(error);
+            }
+        });
+
+    });
+
+    /**
      * 운영진 편집 버튼.
      */
 
@@ -70,7 +127,7 @@ $(document).ready(function () {
 
     $("#editSeminarBtn").on("click", function () {
 
-        var editSeminarId = $("#editSeminarId").val();
+        var editSeminarId = $("#currentSeminarId").val();
         var editSeminarTitle = $("#editSeminarTitle").val();
         var editSeminarDate = $("#editSeminarDate").val();
 
@@ -135,29 +192,29 @@ $(document).ready(function () {
 
     var editCancelBtnList = [
         {
-            "selector" : "#cancelTitleBtn",
-            "display" : "#seminarTitleText",
-            "form" : "#seminarEditTitleForm"
+            "selector": "#cancelTitleBtn",
+            "display": "#seminarTitleText",
+            "form": "#seminarEditTitleForm"
         },
         {
-            "selector" : "#cancelDateBtn",
-            "display" : "#seminarDateInfoBox",
-            "form" : "#seminarEditDateForm"
+            "selector": "#cancelDateBtn",
+            "display": "#seminarDateInfoBox",
+            "form": "#seminarEditDateForm"
         },
         {
-            "selector" : "#cancelAudienceBtn",
-            "display" : "#seminarAudienceInfoBox",
-            "form" : "#seminarEditAudienceForm"
+            "selector": "#cancelAudienceBtn",
+            "display": "#seminarAudienceInfoBox",
+            "form": "#seminarEditAudienceForm"
         }
     ];
 
-    editCancelBtnList.forEach(function(obj){
-        $(obj.selector).on("click", function(){
+    editCancelBtnList.forEach(function (obj) {
+        $(obj.selector).on("click", function () {
             $(obj.display).css("display", "block");
             $(obj.form).css("display", "none");
         });
     });
-    
+
     /**
      * 당월 세미나의 주제 변경 전송 버튼
      */

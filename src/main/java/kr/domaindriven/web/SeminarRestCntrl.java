@@ -131,4 +131,15 @@ public class SeminarRestCntrl {
         return smService.save(currentSeminar);
     }
 
+    @RequestMapping(value = "/isCompleted", method = RequestMethod.POST)
+    public Seminar editAudience(@RequestParam String id, @RequestParam boolean isCompleted) {
+        logger.info("세미나 상태 변경.");
+        logger.info("id: {}, isCompleted: {}", id, isCompleted);
+
+        Seminar currentSeminar = smService.findOne(id);
+        currentSeminar.setIsCompleted(isCompleted);
+
+        return smService.save(currentSeminar);
+    }
+
 }
