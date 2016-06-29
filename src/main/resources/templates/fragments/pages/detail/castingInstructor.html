@@ -36,21 +36,72 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>섭외강사</th>
-                        <th>담당자</th>
+                        <th>Task</th>
+                        <th>Info</th>
                         <th>State</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>
-                            <!-- //todo 강사정보를 모델로 받아서 보여줘야함. -->
+                            <p>강사선정</p>
+                        </td>
+                        <td>
                             <a href="..강사정보" target="_blank">
                                 <p th:text="${task.getSelectedInstructor()}">강사이름</p>
                             </a>
                         </td>
                         <td>
+                            <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
+                                    style="display: block">완료
+                            </button>
+                            <button type="button" class="btn btn-primary full-width" id="onOffMixRestart"
+                                    style="display: none">재시작
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>담당자선정</p>
+                        </td>
+                        <td><a href="..강사정보" target="_blank">
                             <p th:text="${task.getWorkers().get(0).getName()}">담당자</p>
+                            </a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
+                                    style="display: block">완료
+                            </button>
+                            <button type="button" class="btn btn-primary full-width" id="onOffMixRestart"
+                                    style="display: none">재시작
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>선호날짜</p>
+                        </td>
+                        <td><a href="선호날짜" target="_blank">
+                            <!--<p th:text="${task.getWorkers().get(0).getName()}">담당자</p>
+                            --><p>선호날짜</p>
+                        </a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
+                                    style="display: block">완료
+                            </button>
+                            <button type="button" class="btn btn-primary full-width" id="onOffMixRestart"
+                                    style="display: none">재시작
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>주제선정</p>
+                        </td>
+                        <td><a href="주제선정" target="_blank">
+                            <p th:text="${seminar.getTitle()}">주제</p>
+                        </a>
                         </td>
                         <td>
                             <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
