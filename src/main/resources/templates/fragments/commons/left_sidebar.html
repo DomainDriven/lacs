@@ -9,24 +9,38 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview">
+            <li th:class="${homeMenu}" class="treeview">
+                <a href="#">
+                    <i class="fa fa-home"></i> <span>Home</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li th:class="${currentSeminarClass}"><a th:href="@{/}" href="/">
+                        <i class="fa fa-circle-o"></i>당월 세미나</a></li>
+                </ul>
+            </li>
+            <li th:class="${listMenu}" class="treeview">
                 <a href="#">
                     <i class="fa fa-list"></i> <span>Lists</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a th:href="@{/allSeminar}" href="/allSeminar"><i class="fa fa-circle-o"></i>세미나 리스트</a></li>
-                    <li><a th:href="@{/allWorker}" href="/allWorker"><i class="fa fa-circle-o"></i>운영진 리스트</a></li>
+                    <li th:class="${allSeminarClass}"><a th:href="@{/allSeminar}" href="/allSeminar">
+                        <i class="fa fa-circle-o"></i>세미나 리스트</a></li>
+                    <li th:class="${allWorkerClass}"><a th:href="@{/allWorker}" href="/allWorker">
+                        <i class="fa fa-circle-o"></i>운영진 리스트</a></li>
                 </ul>
             </li>
-            <li class="treeview">
+            <li th:class="${formMenu}" class="treeview">
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>Forms</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a th:href="@{/addSeminar}" href="/addSeminar"><i class="fa fa-circle-o"></i>세미나 추가</a></li>
-                    <li><a th:href="@{/addWorker}" href="/addWorker"><i class="fa fa-circle-o"></i>운영진 추가</a></li>
+                    <li th:class="${addSeminarClass}"><a th:href="@{/addSeminar}" href="/addSeminar">
+                        <i class="fa fa-circle-o"></i>세미나 추가</a></li>
+                    <li th:class="${addWorkerClass}"><a th:href="@{/addWorker}" href="/addWorker">
+                        <i class="fa fa-circle-o"></i>운영진 추가</a></li>
                 </ul>
             </li>
         </ul>

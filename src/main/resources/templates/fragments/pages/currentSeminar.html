@@ -72,7 +72,7 @@
                         <!-- /.info-box-content -->
                     </div>
 
-                    <div id="seminarEditAudienceForm" style="display: none;">
+                    <div id="seminarEditAudienceForm" style="display: none; margin-bottom: 10px;">
                         <div class="form-group">
                             <input type="text" name="audience" class="form-control" id="seminarEditAudience"
                                    th:value="${currentSeminar.getAudience()}"/>
@@ -120,7 +120,7 @@
                                 <div class="input-group">
                                     <select class="form-control workerList">
                                         <option disabled="" selected=""
-                                                th:text="(${task.getWorkers()} != null) ? ${task.getWorkers().get(0).getName()} : '담당자를 선택해 주세요.'"></option>
+                                                th:text="(${task.getWorkers().get(0).getName()} != null) ? ${task.getWorkers().get(0).getName()} : '담당자를 선택해 주세요.'"></option>
                                         <option th:each="worker : ${workers}" th:text="${worker.getName()}"
                                                 th:value="${worker.getName()}">worker
                                         </option>

@@ -9,7 +9,6 @@
             <li><a th:href="@{/}" href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
             <li><a th:href="@{/allWorker}" href="/allWorker"><i class="fa fa-list"></i> 운영 리스트</a></li>
             <li class="active"><a href="">운영진 편집</a></li>
-            진
         </ol>
     </section>
     <br/><br/>
@@ -36,7 +35,8 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-user"></i>
                             </div>
-                            <input type="text" class="form-control" id="editWorkerName" th:value="${editWorker.getName()}"/>
+                            <input type="text" class="form-control" id="editWorkerName"
+                                   th:value="${editWorker.getName()}"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,8 +66,8 @@
                 <div class="box-footer">
                     <div class="form-group row">
                         <div class="col-sm-offset-1">
-                            <button type="button" class="btn btn-primary" id="editWorkerBtn">등록</button>
-                            <button type="reset" class="btn btn-secondary">리셋</button>
+                            <input type="button" class="btn btn-primary" id="editWorkerBtn" value="등록"/>
+                            <input type="button" class="btn btn-secondary" value="취소" onclick="location.replace('/allWorker')"/>
                         </div>
                     </div>
                 </div>

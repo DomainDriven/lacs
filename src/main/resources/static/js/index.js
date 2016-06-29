@@ -103,7 +103,7 @@ $(document).ready(function () {
             type: "post",
             async: true,
             dataType: "json",
-            url: "/editWorker",
+            url: "/worker/edit",
             data: {
                 id: editWorkerId,
                 name: editWorkerName,
@@ -178,6 +178,8 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
+                alert(response.tasks[index].taskName + "에 운영진 "
+                    + response.tasks[index].workers[0].name + "이 할당 되었습니다.");
             },
             error: function (error) {
                 console.log("운영진 작업 할당 실패.");

@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,5 +53,19 @@ public class WorkerRestCntrl {
         Worker newWorker = new Worker(form.getName(), form.getPhone(), form.getEmail());
 
         return service.save(newWorker);
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public Worker editWorker(@RequestParam String id, @RequestParam String name, @RequestParam String phone, @RequestParam String email) {
+        logger.info("운영진 편집.");
+        logger.info("id: {}, name: {}, phone: {}, email: {}", id, name, phone, email);
+
+        Worker editWorker = service.findOne(id);
+        editWorker.setName(name);
+        editWorker.setPhone(phone);
+        editWorker.setEmail(email);
+
+        return service.save(editWorker);
+
     }
 }

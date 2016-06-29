@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 import java.util.List;
@@ -28,6 +27,7 @@ public class SeminarController {
     private final Logger logger = LoggerFactory.getLogger(SeminarController.class);
     private final String LAYOUT = "layout";
     private final String REDIRECT = "redirect:/";
+    private final String ACTIVE_CLASS = "active";
 
     @Autowired
     private SeminarService smService;
@@ -58,6 +58,8 @@ public class SeminarController {
         model.addAttribute("currentSeminar", currentSeminar);
         model.addAttribute("workers", workers);
         model.addAttribute("diffDate", diffDate);
+        model.addAttribute("homeMenu", ACTIVE_CLASS);
+        model.addAttribute("currentSeminarClass", ACTIVE_CLASS);
         model.addAttribute("page", "currentSeminar");
 
         return LAYOUT;
@@ -73,6 +75,8 @@ public class SeminarController {
     public String addSeminarForm(Model model) {
         logger.info("세미나 추가 폼 화면..");
 
+        model.addAttribute("formMenu", ACTIVE_CLASS);
+        model.addAttribute("addSeminarClass", ACTIVE_CLASS);
         model.addAttribute("page", "addSeminar");
 
         return LAYOUT;
@@ -92,6 +96,8 @@ public class SeminarController {
         Page<Seminar> seminars = smService.findAll(pageable);
         model.addAttribute("seminars", seminars);
 
+        model.addAttribute("listMenu", ACTIVE_CLASS);
+        model.addAttribute("allSeminarClass", ACTIVE_CLASS);
         model.addAttribute("page", "allSeminar");
 
         return LAYOUT;
