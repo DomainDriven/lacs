@@ -23,7 +23,4 @@ public interface SeminarRepository extends MongoRepository<Seminar, String>{
     @Query(value = "{ 'isCompleted' : ?0 }")
     Seminar findByIsCompleted(boolean isCompleted);
 
-    //db.seminars.update({"title":"Go 프로그래밍 소개."},{$set: {"tasks.0.test":"kkkk"}});
-  /*  @Query(value = "update({\"title\":\"Go 프로그래밍 소개.\"},{$set: {\"tasks.0.test\":\"kkkk\"})")
-    Seminar insertTasksElements();*/
 }

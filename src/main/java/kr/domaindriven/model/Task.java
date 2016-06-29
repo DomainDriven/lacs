@@ -3,6 +3,7 @@ package kr.domaindriven.model;
 import org.springframework.cglib.core.KeyFactory;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class Task implements ITask {
      * seminars document 에 list 형태로 저장되므로 id 필드는 향후 삭제가 필요해 보임.
      */
     private String taskName;
-    private List<Worker> workers;
+    private List<Worker> workers ;
 
     /**
      * 테스크가 처음 생성된 시점에서 progress 는 0 이므로 default 0 으로 할당함.
@@ -37,9 +38,14 @@ public class Task implements ITask {
      */
     private String requestUrl;
 
+    private String SelectedInstructor;
 
     public Task() {
+       //elements를 넣어주지 않으면 추후 사용시 문제발생
+        this.workers = new ArrayList<Worker>();
+        workers.add(new Worker());
     }
+
 
     /**
      * 테스크의 이름을 default 인자로 설정함.
@@ -108,5 +114,13 @@ public class Task implements ITask {
 
     public void setRequestUrl(String requestUrl) {
         this.requestUrl = requestUrl;
+    }
+
+    public String getSelectedInstructor() {
+        return SelectedInstructor;
+    }
+
+    public void setSelectedInstructor(String selectedInstructor) {
+        SelectedInstructor = selectedInstructor;
     }
 }

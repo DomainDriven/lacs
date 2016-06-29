@@ -67,7 +67,6 @@ public class AppsController {
             model.addAttribute("instructors", instructors);
             model.addAttribute("workers", workers);
         }
-        //// TODO: 2016-06-20 task가 아닌 필요한 모델에 대해 직접 데이터를 넘겨야 할 것 같음 예_String 강사명 - jerry 
         model.addAttribute("task", castingInstructor);
         model.addAttribute("page", pageModelsValue);
 
@@ -78,8 +77,25 @@ public class AppsController {
     public String castingInstructor(@ModelAttribute CastingInstructorForm castingInstructorForm, Model model) {
         logger.info(castingInstructorForm.toString());
         Seminar seminar = smService.findByIsCompleted(false);
-        String title = seminar.getTitle(); // 현재 진행중인 세미나 이름
-        smService.insertTasksElements(title, castingInstructorForm.getSelectedInstructor());
+        Task castingInstructorTask = seminar.getTasks().get(0);
+        Worker worker = wkService.findByName(castingInstructorForm.getSelectedWorker());
+
+        // TODO: 2016-06-29 아래 진행률, 선택된강사,작업자 등록은 service로 옮기기 - 재열  
+        
+        //진행률 업데이트
+        castingInstructorTask.setProgress(Integer.parseInt(castingInstructorForm.getProgress()));
+        //선택된 강사 등록
+        castingInstructorTask.setSelectedInstructor(castingInstructorForm.getSelectedInstructor());
+        //선택된 작업자 등록
+        if(castingInstructorTask.getWorkers().get(0).getId()==null){
+        castingInstructorTask.getWorkers().clear();}
+        
+        castingInstructorTask.getWorkers().add(0,worker);
+        model.addAttribute("task", castingInstructorTask);
+        smService.save(seminar);
+
+        model.addAttribute("page", "castingInstructor");
+        model.addAttribute("seminar",seminar);
         return LAYOUT;
     }
 

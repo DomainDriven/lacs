@@ -36,8 +36,8 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>SubTask</th>
-                        <th>Info</th>
+                        <th>섭외강사</th>
+                        <th>담당자</th>
                         <th>State</th>
                     </tr>
                     </thead>
@@ -46,12 +46,11 @@
                         <td>
                             <!-- //todo 강사정보를 모델로 받아서 보여줘야함. -->
                             <a href="..강사정보" target="_blank">
-                               <!-- <p th:text="${task.taskName}">강사이름</p>-->
-                                <p>강사이름</p>
+                                <p th:text="${task.getSelectedInstructor()}">강사이름</p>
                             </a>
                         </td>
                         <td>
-                            <a>강사 섭외</a>
+                            <p th:text="${task.getWorkers().get(0).getName()}">담당자</p>
                         </td>
                         <td>
                             <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
