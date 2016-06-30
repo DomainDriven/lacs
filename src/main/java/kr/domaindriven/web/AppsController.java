@@ -75,11 +75,13 @@ public class AppsController {
     }
 
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
-    public String castingInstructor(@ModelAttribute CastingInstructorForm castingInstructorForm, Model model) {
+    public String castingInstructor(@ModelAttribute CastingInstructorForm castingInstructorForm, Model model, @PageableDefault Pageable pageable) {
         logger.info(castingInstructorForm.toString());
         Seminar seminar = smService.findByIsCompleted(false);
         Task castingInstructorTask = seminar.getTasks().get(0);
         Worker worker = wkService.findByName(castingInstructorForm.getSelectedWorker());
+        Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
+        Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
 
         // TODO: 2016-06-29 아래 진행률, 선택된강사,작업자 등록은 service로 옮기기 - 재열
         
@@ -97,6 +99,8 @@ public class AppsController {
 
         model.addAttribute("page", "castingInstructor");
         model.addAttribute("seminar",seminar);
+        model.addAttribute("instructors", instructors);
+        model.addAttribute("workers", workers);
         return LAYOUT;
     }
 

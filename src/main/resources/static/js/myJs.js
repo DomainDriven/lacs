@@ -102,6 +102,15 @@ $('#submit').on('click', function () {
     document.getElementById("progress").value = progress;
 });
 
+//수정버튼 클릭시, selected 정보를 반영하기 위함.
+$("#changeCasting").on('click', function () {
+    var selectedINST = $("#selectedInstructor").text(); //선택 된 강사정보
+    var selectedWorker = $("#selectedWorker").text(); //선택 된 강사정보
+    
+    $("#selectedInstructorList").val(selectedINST).val(); //이렇게 왜 되나? 우연히발견
+    $("#selectedWorkerList").val(selectedWorker).val(); //이렇게 왜 되나? 우연히발견
+});
+
 //TextBox에 글씨가 쓰였으면 '완료' 아니면 '진행중'
 function statusChangeforTextBox(isFill, idIndex) {
     if (isFill != '') {
