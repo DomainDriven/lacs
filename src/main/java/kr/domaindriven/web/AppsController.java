@@ -67,6 +67,9 @@ public class AppsController {
             model.addAttribute("instructors", instructors);
             model.addAttribute("workers", workers);
         }
+
+        model.addAttribute("instructors", instructors);
+        model.addAttribute("workers", workers);
         model.addAttribute("seminar",currentseminar);
         model.addAttribute("task", castingInstructor);
         model.addAttribute("page", pageModelsValue);
@@ -80,6 +83,7 @@ public class AppsController {
         Seminar seminar = smService.findByIsCompleted(false);
         Task castingInstructorTask = seminar.getTasks().get(0);
         Worker worker = wkService.findByName(castingInstructorForm.getSelectedWorker());
+
         Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
         Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
 

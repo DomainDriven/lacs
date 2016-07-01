@@ -104,11 +104,17 @@ $('#submit').on('click', function () {
 
 //수정버튼 클릭시, selected 정보를 반영하기 위함.
 $("#changeCasting").on('click', function () {
-    var selectedINST = $("#selectedInstructor").text(); //선택 된 강사정보
-    var selectedWorker = $("#selectedWorker").text(); //선택 된 강사정보
+    var selectedINST = $("#selectedInstructor").text(); //선택 된 강사 명
+    var selectedWorker = $("#selectedWorker").text(); //선택 된 담당자 명
+    var progress = $("#progressInfo").text(); //선택된 진행률
+
+    alert(selectedINST +" "+ selectedWorker +" "+ progress)
+
+   // $("#selectedInstructorList").val(selectedINST).val(); //이렇게 왜 되나? 우연히발견
+   // $("#selectedWorkerList").val(selectedWorker).val(); //이렇게 왜 되나? 우연히발견
     
-    $("#selectedInstructorList").val(selectedINST).val(); //이렇게 왜 되나? 우연히발견
-    $("#selectedWorkerList").val(selectedWorker).val(); //이렇게 왜 되나? 우연히발견
+    $("#progress-bar-inside").css("width",progress);
+    $("#progress-bar-inside").text(progress);
 });
 
 //TextBox에 글씨가 쓰였으면 '완료' 아니면 '진행중'
