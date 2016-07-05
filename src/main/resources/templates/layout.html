@@ -16,8 +16,8 @@
           href="/static/node_modules/admin-lte/dist/css/AdminLTE.min.css"/>
     <link th:href="@{/static/node_modules/admin-lte/dist/css/skins/skin-black-light.min.css}"
           href="../static/node_modules/admin-lte/dist/css/skins/skin-black-light.min.css" rel="stylesheet"/>
-    <link th:href="@{/static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css}"
-          href="../static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet"/>
+    <link th:href="@{/static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css}"
+          href="../static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css" rel="stylesheet"/>
     <link th:href="@{/static/node_modules/admin-lte/plugins/datepicker/datepicker3.css}"
           href="../static/node_modules/admin-lte/plugins/datepicker/datepicker3.css" rel="stylesheet"/>
     <link th:href="@{/static/node_modules/admin-lte/plugins/datatables/dataTables.bootstrap.css}"
@@ -65,12 +65,13 @@
 <footer th:replace="fragments/commons/footer :: footer">&copy;</footer>
 <!-- Bootstrap core JavaScript
 ================================================== -->
-<script th:src="@{/static/node_modules/admin-lte/plugins/jQuery/jQuery-2.2.0.min.js}"
-        src="/static/node_modules/admin-lte/plugins/jQuery/jQuery-2.2.0.min.js"></script>
+<script th:src="@{/static/node_modules/admin-lte/plugins/jQuery/jQuery-2.2.3.min.js}"
+        src="/static/node_modules/admin-lte/plugins/jQuery/jQuery-2.2.3.min.js"></script>
 <script th:src="@{/static/node_modules/admin-lte/bootstrap/js/bootstrap.min.js}"
         src="/static/node_modules/admin-lte/bootstrap/js/bootstrap.min.js"></script>
-<script th:src="@{/static/node_modules/moment/min/moment.min.js}"
-        src="/static/node_modules/moment/min/moment.min.js"></script>
+<!--todo 디버깅 과정 중 오류나는 부분. 무엇에 사용되는지 파악이 안되어 일단 주석처리 - 2-16.07.05 재열-->
+<!--<script th:src="@{/static/node_modules/moment/min/moment.min.js}"
+        src="/static/node_modules/moment/min/moment.min.js"></script>-->
 <script th:src="@{/static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js}"
         src="/static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js"></script>
 <script th:src="@{/static/node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js}"
@@ -85,8 +86,9 @@
         src="/static/node_modules/admin-lte/plugins/input-mask/jquery.inputmask.js"></script>
 <script th:src="@{/static/node_modules/admin-lte/dist/js/app.min.js}"
         src="/static/node_modules/admin-lte/dist/js/app.min.js"></script>
-<script th:src="@{/static/node_modules/lodash/lodash.min.js}"
-        src="../static/node_modules/lodash/lodash.min.js"></script>
+<!--todo 디버깅 과정 중 오류나는 부분. 무엇에 사용되는지 파악이 안되어 일단 주석처리 - 2-16.07.05 재열-->
+<!--<script th:src="@{/static/node_modules/lodash/lodash.min.js}"
+        src="../static/node_modules/lodash/lodash.min.js"></script>-->
 <script th:src="@{/static/js/util.js}" src="/static/js/util.js"></script>
 <script th:src="@{/static/js/index.js}" src="/static/js/index.js"></script>
 <script th:src="@{/static/js/myJs.js}" src="/static/js/myJs.js"></script>
