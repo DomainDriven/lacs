@@ -67,3 +67,12 @@ function ajaxWrapper(url, data, successFunc, errorFunc) {
         error: errorFunc
     })
 }
+
+// 날짜입력 Datepicker
+$(function() {
+    $( "#date" ).datepicker();
+});
+
+$(function() {
+    $( "#dateModal" ).datepicker();
+});

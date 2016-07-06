@@ -79,11 +79,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <p>선호날짜</p>
+                            <p>주제선정</p>
                         </td>
-                        <td>
-                            <!--<p th:text="${task.getWorkers().get(0).getName()}">담당자</p>
-                            <p>선호날짜</p>-->
+                        <td><a href="주제선정" target="_blank">
+                            <p th:text="${seminar.getTitle()}">주제</p>
+                        </a>
                         </td>
                         <td>
                             <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
@@ -96,11 +96,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <p>주제선정</p>
+                            <p>선호날짜</p>
                         </td>
-                        <td><a href="주제선정" target="_blank">
-                            <p th:text="${seminar.getTitle()}">주제</p>
-                        </a>
+                        <td>
+                            <!--<p th:text="${seminar.getDate()}">주제</p>-->
                         </td>
                         <td>
                             <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
@@ -179,13 +178,13 @@
                                                         </tr>
                                                         <tr>
                                                             <th>강의주제</th>
-                                                            <td><input type="text" name="subject" id="subject"/></td>
+                                                            <td><input type="text" name="subject" id="subjectModal" th:value="${seminar.getTitle()}"/></td>
                                                             <td><span class="label label-default" id="status5">진행중</span>
                                                                 <span class="label label-success" id="status6">완  료</span></td>
                                                         </tr>
                                                         <tr>
                                                             <th>선호날짜</th>
-                                                            <td><input type="text" name="date" id="date"/></td>
+                                                            <td><input type="text" name="dateModal" id="dateModal"/></td>
                                                             <td><span class="label label-default" id="status7">진행중</span>
                                                                 <span class="label label-success" id="status8">완  료</span></td>
                                                         </tr>

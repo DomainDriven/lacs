@@ -94,7 +94,7 @@ $(window).load(function () {
         }
         statusChangeforTextBox(document.getElementById("subject").value, 5);
         progressF("progress-bar", getProgressValue(2, target));
-    })
+    });
 
 //날짜입력  : 작업번호 3 : progress[3]
     $('#date').change(function () {
@@ -104,7 +104,7 @@ $(window).load(function () {
         }
         statusChangeforTextBox(document.getElementById("date").value, 7);
         progressF("progress-bar", getProgressValue(3, target));
-    })
+    });
 
 //제출
     $('#submit').on('click', function () {
@@ -119,14 +119,24 @@ $(window).load(function () {
 //강사섭외에서 수정버튼 클릭시,modal정보 연동을 위한 함수
     $("#changeCasting").on('click', function () {
         var selectedINST = $("#selectedInstructor").text(); //선택 된 강사 명
+        var selectedWorker = $("#selectedWorker").text(); //선택 된 담당자 명
+        var progressInfo = $("#progressInfo").text(); //선택된 진행률
+        
+        //수정버튼 클릭시 진행도 추가를 1회로 제한하기 위한 사전요건. 예를 들어 각 항목에 값이 이미 있고, 
+        // 진행도가 반영된 상태라면 해당 progress[] 위치를 true로 변경함. 
         if (selectedINST != '') {
             progress[0] = true;
         }
-        var selectedWorker = $("#selectedWorker").text(); //선택 된 담당자 명
         if (selectedWorker != '') {
             progress[1] = true;
         }
-        var progressInfo = $("#progressInfo").text(); //선택된 진행률
+        if ($("#subjectModal").val() != '') {
+            progress[2] = true;
+        }
+        if ($("#dateModal").val() != '') {
+            progress[3] = true;
+        }
+        
 
         alert(selectedINST + " " + selectedWorker + " " + progressInfo)
 
