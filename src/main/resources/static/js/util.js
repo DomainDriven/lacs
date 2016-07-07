@@ -70,9 +70,5 @@ function ajaxWrapper(url, data, successFunc, errorFunc) {
 
 // 날짜입력 Datepicker
 $(function() {
-    $( "#date" ).datepicker();
-});
-
-$(function() {
-    $( "#dateModal" ).datepicker();
+    $( "#date,#dateModal" ).datepicker();
 });
