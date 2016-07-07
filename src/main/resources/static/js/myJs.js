@@ -8,13 +8,10 @@ $(window).load(function () {
 
     var progress = [false, false, false, false];
 
-
-//선택한 값 넘겨주기
-    function getSelectValue() {
-        var target = document.getElementById("selectedInstructor");
-        var selectedInstructorId = target.options[target.selectedIndex].id;
-        alert(selectedInstructorId);
-        document.getElementById("phone").value = document.getElementById("pn" + selectedInstructorId).innerHTML;
+// 강의주제가 선택되어있다면 미리 25%의 진행률과 진행 상황을 check 함.
+    if ($("#subject").val() != '') {
+        progress[2] = true;
+        progressF("progress-bar", 25);
     }
 
 //AJAX를 사용한 강사연락처 가져오기 기능
@@ -34,7 +31,7 @@ $(window).load(function () {
             xhttp.send(target.selectedIndex);
         }
     }
-
+//AJAX 활용법 현재쓰이지 않음. - 20160708
     function progressUpdate1(title, order, progress) {
         $.ajax({
             type: "POST",
@@ -109,11 +106,7 @@ $(window).load(function () {
 //제출
     $('#submit').on('click', function () {
         alert("제출버튼눌림");
-        var title = $('#currentSeminarTitle').val();
-        var order = $('#taskOrder').val();
-        var progress = getProgressValue().toString();
-        progressUpdate1(title, order, progress);
-        document.getElementById("progress").value = progress;
+        $("#progress").val($("#progress-bar").text().replace("%","")); //최종 현재 진행률을 반영해서 CastringInstructorForm 으로 전달하기 위해 castingInstructroForm.html의 id:progress 의 값을 채워줌.
     });
 
 //강사섭외에서 수정버튼 클릭시,modal정보 연동을 위한 함수

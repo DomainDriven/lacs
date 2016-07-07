@@ -2,7 +2,7 @@ package kr.domaindriven.model.form;
 
 /**
  * Created by jerry on 2016-06-15.
- * 강사선정시 CastringInstructor.html 로부터 값을 전달받을 때 사용하는 Form 입니다.
+ * 강사선정시 CastringInstructorForm.html 로부터 값을 전달받을 때 사용하는 Form 입니다.
  */
 public class CastingInstructorForm {
 

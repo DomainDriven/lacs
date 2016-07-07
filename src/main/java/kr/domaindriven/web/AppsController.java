@@ -52,15 +52,15 @@ public class AppsController {
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.GET)
     public String castingInstructor(@PageableDefault Pageable pageable, Model model) {
         logger.info("강사 섭외 상세 화면..");
-        Seminar currentseminar = smService.findByIsCompleted(false);
-        String title = currentseminar.getTitle(); // 현재 진행중인 세미나 이름
+        Seminar currentSeminar = smService.findByIsCompleted(false);
+        String title = currentSeminar.getTitle(); // 현재 진행중인 세미나 이름
         logger.info("title: " + title);
         Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
         Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
-        Task castingInstructor = currentseminar.getTasks().get(0);
+        Task castingInstructor = currentSeminar.getTasks().get(0);
         String pageModelsValue = "castingInstructor";  // 등록이 하나라도 진행됬으면 확인페이지로. 최소 강사명은 선정해야할것같음
 
-        if (currentseminar.getTasks().get(0).getProgress() == 0) {
+        if (currentSeminar.getTasks().get(0).getProgress() == 0) {
             pageModelsValue = "castingInstructorForm";
             model.addAttribute("title", title);
             model.addAttribute("order", 0);
@@ -70,7 +70,7 @@ public class AppsController {
 
         model.addAttribute("instructors", instructors);
         model.addAttribute("workers", workers);
-        model.addAttribute("seminar",currentseminar);
+        model.addAttribute("seminar",currentSeminar);
         model.addAttribute("task", castingInstructor);
         model.addAttribute("page", pageModelsValue);
 
