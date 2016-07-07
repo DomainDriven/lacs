@@ -8,7 +8,7 @@ public class CastingInstructorForm {
 
     private String instructorName;
     private String workerName;
-    private String subject;
+    private String title;
     private String date;
     private String progress;
 
@@ -29,12 +29,12 @@ public class CastingInstructorForm {
         this.workerName = workerName;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDate() {
@@ -58,7 +58,7 @@ public class CastingInstructorForm {
         return "CastingInstructorForm{" +
                 "instructorName='" + instructorName + '\'' +
                 ", workerName='" + workerName + '\'' +
-                ", subject='" + subject + '\'' +
+                ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
                 ", progress='" + progress + '\'' +
                 '}';

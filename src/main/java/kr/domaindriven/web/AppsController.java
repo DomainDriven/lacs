@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
-
 /**
  * Created by jerry on 2016-05-15.
  */
@@ -70,7 +68,7 @@ public class AppsController {
 
         model.addAttribute("instructors", instructors);
         model.addAttribute("workers", workers);
-        model.addAttribute("seminar",currentSeminar);
+        model.addAttribute("seminar", currentSeminar);
         model.addAttribute("task", castingInstructor);
         model.addAttribute("page", pageModelsValue);
 
@@ -88,21 +86,26 @@ public class AppsController {
         Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
 
         // TODO: 2016-06-29 아래 진행률, 선택된강사,작업자 등록은 service로 옮기기 - 재열
-        
+
         //진행률 업데이트
         castingInstructorTask.setProgress(Integer.parseInt(castingInstructorForm.getProgress()));
         //선택된 강사 등록
         castingInstructorTask.setSelectedInstructor(castingInstructorForm.getSelectedInstructor());
         //선택된 작업자 등록
-        if(castingInstructorTask.getWorkers().get(0).getId()==null){
-        castingInstructorTask.getWorkers().clear();}
-        
-        castingInstructorTask.getWorkers().add(0,worker);
+        if (castingInstructorTask.getWorkers().get(0).getId() == null) {
+            castingInstructorTask.getWorkers().clear();
+            castingInstructorTask.getWorkers().add(0, worker);
+        } else {
+            castingInstructorTask.getWorkers().add(0, worker);
+        }
+
+        //선택된 주제 등록 및 수정
+        seminar.setTitle(castingInstructorForm.getTitle());
         model.addAttribute("task", castingInstructorTask);
         smService.save(seminar);
 
         model.addAttribute("page", "castingInstructor");
-        model.addAttribute("seminar",seminar);
+        model.addAttribute("seminar", seminar);
         model.addAttribute("instructors", instructors);
         model.addAttribute("workers", workers);
         return LAYOUT;
