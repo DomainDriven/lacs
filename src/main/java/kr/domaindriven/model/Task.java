@@ -40,6 +40,8 @@ public class Task implements ITask {
 
     private String SelectedInstructor;
 
+    private String favoriteDate;
+
     public Task() {
        //elements를 넣어주지 않으면 추후 사용시 문제발생
         this.workers = new ArrayList<Worker>();
@@ -122,5 +124,13 @@ public class Task implements ITask {
 
     public void setSelectedInstructor(String selectedInstructor) {
         SelectedInstructor = selectedInstructor;
+    }
+
+    public String getFavoriteDate() {
+        return favoriteDate;
+    }
+
+    public void setFavoriteDate(String favoriteDate) {
+        this.favoriteDate = favoriteDate;
     }
 }

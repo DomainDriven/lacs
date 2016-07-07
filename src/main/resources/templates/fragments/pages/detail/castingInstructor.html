@@ -99,7 +99,7 @@
                             <p>선호날짜</p>
                         </td>
                         <td>
-                            <!--<p th:text="${seminar.getDate()}">주제</p>-->
+                            <p th:text="${task.getFavoriteDate()}">주제</p>
                         </td>
                         <td>
                             <button type="button" class="btn btn-success full-width" id="onOffMixComplete"
@@ -184,7 +184,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th>선호날짜</th>
-                                                            <td><div><input type="text" name="dateModal" id="dateModal"/></div></td>
+                                                            <td><div><input type="text" name="dateModal" id="dateModal" th:value="${task.getFavoriteDate()}"/></div></td>
                                                             <td><span class="label label-default" id="status7">진행중</span>
                                                                 <span class="label label-success" id="status8">완  료</span></td>
                                                         </tr>

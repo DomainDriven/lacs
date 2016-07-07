@@ -98,9 +98,11 @@ public class AppsController {
         } else {
             castingInstructorTask.getWorkers().add(0, worker);
         }
-
         //선택된 주제 등록 및 수정
         seminar.setTitle(castingInstructorForm.getTitle());
+        //선택된 선호 날짜 등록
+        castingInstructorTask.setFavoriteDate(castingInstructorForm.getDate());
+
         model.addAttribute("task", castingInstructorTask);
         smService.save(seminar);
 
