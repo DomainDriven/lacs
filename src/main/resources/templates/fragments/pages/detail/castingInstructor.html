@@ -184,16 +184,16 @@
                                                         </tr>
                                                         <tr>
                                                             <th>선호날짜</th>
-                                                            <td><div><input type="text" name="dateModal" id="dateModal" th:value="${task.getFavoriteDate()}"/></div></td>
+                                                            <td><input type="text" name="date" id="date" th:value="${task.getFavoriteDate()}"/></td>
                                                             <td><span class="label label-default" id="status7">진행중</span>
                                                                 <span class="label label-success" id="status8">완  료</span></td>
                                                         </tr>
                                                         <tr>
-                                                            <input type="hidden" th:value="${title}" id="currentSeminarTitle"/>
-                                                            <input type="hidden" th:value="${order}" id="taskOrder"/>
                                                             <input type="text" name="progress" id="progress"/>
                                                         </tr>
                                                     </table>
+                                                    <input type="submit" class="btn btn-primary" id="submit"/>
+                                                    <input type="submit" class="btn btn-primary backBtn" th:value="뒤로가기"/>
                                                 </form>
                                             </div>
                                             <!--box-body-->
@@ -204,8 +204,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                              <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>-->
                             </div>
                         </div>
                     </div>

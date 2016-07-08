@@ -9,8 +9,9 @@ $(window).load(function () {
     var progress = [false, false, false, false];
 
 // 강의주제가 선택되어있다면 미리 25%의 진행률과 진행 상황을 check 함.
-    if ($("#subject").val() != '') {
-        progress[2] = true;
+    if ($("#title").val() != '') {
+       // progress[2] = true;
+        statusChangeforTextBox(document.getElementById("title").value, 5);
         progressF("progress-bar", 25);
     }
 
@@ -84,9 +85,9 @@ $(window).load(function () {
     });
 
 //주제입력  : 작업번호 2 : progress[2]
-    $('#subject').change(function () {
+    $('#title').change(function () {
         var target = 0;
-        if ($('#subject').val() != "") {
+        if ($('#title').val() != "") {
             target = 1;
         }
         statusChangeforTextBox(document.getElementById("subject").value, 5);
