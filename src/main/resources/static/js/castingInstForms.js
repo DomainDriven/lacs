@@ -10,8 +10,8 @@ $(window).load(function () {
 
 // 강의주제가 선택되어있다면 미리 25%의 진행률과 진행 상황을 check 함.
     if ($("#title").val() != '') {
-       // progress[2] = true;
-        statusChangeforTextBox(document.getElementById("title").value, 5);
+        statusChangeforTextBox('주제가있음', 5);
+        progress[2]=true;
         progressF("progress-bar", 25);
     }
 
@@ -56,11 +56,9 @@ $(window).load(function () {
             target = $("#selectedInstructorList option").index($("#selectedInstructorList option:selected"));
         }
         if (target == 0) {
-            document.getElementById("status2").style.visibility = 'hidden'
-            document.getElementById("status1").style.visibility = 'visible'
+            statusChangeforTextBox('',1);
         } else {
-            document.getElementById("status1").style.visibility = 'hidden'
-            document.getElementById("status2").style.visibility = 'visible'
+            statusChangeforTextBox('not0',1);
         }
         progressF("progress-bar", getProgressValue(0, target));
     });
@@ -71,15 +69,10 @@ $(window).load(function () {
         if (target == -1) {
             target = $("#selectedWorkerList option").index($("#selectedWorkerList option:selected"));
         }
-        if (target == null) {
-            target = document.getElementById("selectedWorkerList");
-        }
-        if (target.selectedIndex == 0) {
-            document.getElementById("status4").style.visibility = 'hidden'
-            document.getElementById("status3").style.visibility = 'visible'
+        if (target == 0) {
+            statusChangeforTextBox('',3);
         } else {
-            document.getElementById("status3").style.visibility = 'hidden'
-            document.getElementById("status4").style.visibility = 'visible'
+            statusChangeforTextBox('not0',3);
         }
         progressF("progress-bar", getProgressValue(1, target));
     });
@@ -127,10 +120,9 @@ $(window).load(function () {
         if ($("#subjectModal").val() != '') {
             progress[2] = true;
         }
-        if ($("#dateModal").val() != '') {
+        if ($("#date").val() != '') {
             progress[3] = true;
         }
-        
 
         alert(selectedINST + " " + selectedWorker + " " + progressInfo)
 
@@ -145,14 +137,13 @@ $(window).load(function () {
 
 //TextBox에 글씨가 쓰였으면 '완료' 아니면 '진행중'
     function statusChangeforTextBox(isFill, idIndex) {
+        console.log("statusChangeforTextBox 호출됨");
         if (isFill != '') {
             document.getElementById("status" + idIndex).style.visibility = 'hidden'
             document.getElementById("status" + (idIndex + 1)).style.visibility = 'visible'
-            progress[(idIndex / 2 - 0.5)] = true;
         } else {
             document.getElementById("status" + (idIndex + 1)).style.visibility = 'hidden'
             document.getElementById("status" + idIndex).style.visibility = 'visible'
-            progress[(idIndex / 2 - 0.5)] = false;
         }
     }
 
