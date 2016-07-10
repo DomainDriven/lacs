@@ -62,7 +62,7 @@
                             <p>담당자선정</p>
                         </td>
                         <td><a href="..강사정보" target="_blank">
-                            <p id="selectedWorker" th:text="${task.getWorkers().get(0).getName()}">담당자</p>
+                            <p id="selectedWorker" th:include="fragments/modal/workerInfo :: workerInfo"></p>
                         </a>
                         </td>
                         <td>
