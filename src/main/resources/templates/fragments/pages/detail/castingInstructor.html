@@ -99,100 +99,11 @@
                 </table>
             </div>
             <!--.box-body-->
-            <div class="box-footer">
+            <div class="box-footer" >
                 <a th:href="@{/}" href="/" class="btn btn-primary">메인으로</a>
                 <a class="btn btn-primary backBtn">뒤로가기</a>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" id="changeCasting">
-                    수정
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-md-12">
-                                    <section class="content">
-                                        <div class="box box-primary">
-                                            <div class="box-body">
-                                                현재 총 진행률
-                                                <div class="progress">
-                                                    <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                                         aria-valuemax="100"
-                                                         style="width: 0%;">
-                                                        0%
-                                                    </div>
-                                                </div>
-                                                <form id="form" th:action="@{/castingInstructor}" class="form" method="post">
-                                                    <table class="table table-striped">
-                                                        <tr>
-                                                            <th>강사후보자명</th>
-                                                            <td>
-                                                                <select name="selectedInstructor" id="selectedInstructorList" class="form-control">
-                                                                    <!-- <option th:each="i, ${fakeModels.instructors}" th:value="${i}" th:text="${i}"></option>-->
-                                                                    <option selected="selected" value="non">강사를 선택해주세요.</option>
-                                                                    <!-- 모델로 넘어온 instructors 를 다음과 같이 반복문으로 사용한다 th:each="instructor: ${selectedInstrouctor.instructors}"
-                                                                     html 태그 시작 부에 th:each="인자:${클래스} 를 넣어주며 해당 html 태그 끝 까지 Scope가 유지된다.
-                                                                     아래의 예는 <option>부터 </option>까지가 반복의 범위이다.
-                                                                    -->
-                                                                    <option th:each="instructor: ${instructors}"
-                                                                            th:id="${instructor.getMail()}" th:value="${instructor.getName()}"
-                                                                            th:text="${instructor.getName()}"></option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <span class="label label-default" id="status1">진행중</span>
-                                                                <span class="label label-success" id="status2">완  료</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>연락담당자</th>
-                                                            <td><select name="selectedWorker" id="selectedWorkerList" class="form-control">
-                                                                <!-- <option th:each="i, ${fakeModels.instructors}" th:value="${i}" th:text="${i}"></option>-->
-                                                                <option selected="selected" value="non">연락담당자를 선택해주세요.</option>
-                                                                <option th:each="worker: ${workers}" th:id="${worker.getName()}"
-                                                                        th:value="${worker.getName()}" th:text="${worker.getName()}"></option>
-                                                            </select></td>
-                                                            <td><span class="label label-default" id="status3">진행중</span>
-                                                                <span class="label label-success" id="status4">완  료</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>강의주제</th>
-                                                            <td><input type="text" name="title" id="subject" th:value="${seminar.getTitle()}"/></td>
-                                                            <td><span class="label label-default" id="status5">진행중</span>
-                                                                <span class="label label-success" id="status6">완  료</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>선호날짜</th>
-                                                            <td><input type="text" name="date" id="date" th:value="${task.getFavoriteDate()}"/></td>
-                                                            <td><span class="label label-default" id="status7">진행중</span>
-                                                                <span class="label label-success" id="status8">완  료</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <input type="text" name="progress" id="progress"/>
-                                                        </tr>
-                                                    </table>
-                                                    <input type="submit" class="btn btn-primary" id="submit"/>
-                                                    <input type="submit" class="btn btn-primary backBtn" th:value="뒤로가기"/>
-                                                </form>
-                                            </div>
-                                            <!--box-body-->
-                                        </div>
-                                        <!--.box-->
-                                    </section>
-                                    <!--.content-->
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a th:include="fragments/modal/modifyCastingInst :: modifyCastingInst"></a>
             </div>
             <!--.box-footer-->
         </div>
