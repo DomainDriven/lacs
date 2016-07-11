@@ -34,7 +34,7 @@
                         <span id="progressInfo" th:text="${task.progress} + '%'">Task Progress%</span>
                     </div>
                 </div>
-                <table class="table table-striped">
+                <table id="testtest" class="table table-striped">
                     <thead>
                     <tr>
                         <th>Task</th>
@@ -53,8 +53,8 @@
                             </a>
                         </td>
                         <td>
-                            <span class="label label-default" id="Cstatus1">진행중</span>
-                            <span class="label label-success" id="Cstatus2">완  료</span>
+                            <span class="label label-default status" id="Cstatus1">진행중</span>
+                            <span class="label label-success status" id="Cstatus2">완  료</span>
                         </td>
                     </tr>
                     <tr>
@@ -66,8 +66,8 @@
                         </a>
                         </td>
                         <td>
-                            <span class="label label-default" id="Cstatus3">진행중</span>
-                            <span class="label label-success" id="Cstatus4">완  료</span>
+                            <span class="label label-default status" id="Cstatus3">진행중</span>
+                            <span class="label label-success status" id="Cstatus4">완  료</span>
                         </td>
                     </tr>
                     <tr>
@@ -79,8 +79,8 @@
                         </a>
                         </td>
                         <td>
-                            <span class="label label-default" id="Cstatus5">진행중</span>
-                            <span class="label label-success" id="Cstatus6">완  료</span>
+                            <span class="label label-default status" id="Cstatus5">진행중</span>
+                            <span class="label label-success status" id="Cstatus6">완  료</span>
                         </td>
                     </tr>
                     <tr>
@@ -91,8 +91,8 @@
                             <p id="selectedDate" th:text="${task.getFavoriteDate()}">선호날짜</p>
                         </td>
                         <td>
-                            <span class="label label-default" id="Cstatus7">진행중</span>
-                            <span class="label label-success" id="Cstatus8">완  료</span>
+                            <span class="label label-default status" id="Cstatus7">진행중</span>
+                            <span class="label label-success status" id="Cstatus8">완  료</span>
                         </td>
                     </tr>
                     </tbody>
