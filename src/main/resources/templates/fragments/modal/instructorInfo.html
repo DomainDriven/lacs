@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
-<body th:fragment="workerInfo">
-<a data-toggle="modal" href="#workerInfo" th:text="${selectedWorker.getName()}">작업자 정보 모달</a>
+<body th:fragment="instructorInfo">
+<a data-toggle="modal" href="#workerInfo" th:text="${selectedInstructor.getName()}">강사정보 정보 모달</a>
 <div class="modal fade" id="workerInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -21,12 +21,17 @@
                     </tr>
                     <tr>
                         <th>휴대폰번호</th>
-                        <th th:text="${selectedWorker.getPhone()}">010-1234-5676</th>
+                        <th th:text="${selectedInstructor.getPhoneNumber()}">010-1234-5676</th>
                         <th></th>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <th th:text="${selectedWorker.getEmail()}">aaa@naver.com</th>
+                        <th th:text="${selectedInstructor.getMail()}">aaa@naver.com</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>계좌번호</th>
+                        <th th:text="${selectedInstructor.getAccount()}">12345</th>
                         <th></th>
                     </tr>
                 </table>

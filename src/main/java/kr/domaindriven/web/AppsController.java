@@ -67,6 +67,9 @@ public class AppsController {
         }else {
             Worker worker = castingInstructor.getWorkers().get(0);
             model.addAttribute("selectedWorker", worker);
+            Instructor instructor = castingInstructor.getSelectedInstructors().get(0);
+            model.addAttribute("selectedInstructor", instructor);
+
         }
         model.addAttribute("instructors", instructors);
         model.addAttribute("seminar", currentSeminar);
