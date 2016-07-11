@@ -22,8 +22,9 @@
     float: left;
 }
 
-
-#status2,#status4,#status6,#status8,#status10,#status12,#status14{
+/*todo id 말고 class 선택자로 해결해보기 - 재열*/
+#status2,#status4,#status6,#status8,#status10,#status12,#status14,
+#Cstatus2,#Cstatus4,#Cstatus6,#Cstatus8,#Cstatus10,#Cstatus12,#Cstatus14{
     visibility: hidden;
     position: relative;
     left: -4em;
