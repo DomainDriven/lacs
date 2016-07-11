@@ -64,6 +64,9 @@ public class AppsController {
             model.addAttribute("order", 0);
             model.addAttribute("instructors", instructors);
             model.addAttribute("workers", workers);
+        }else {
+            Worker worker = castingInstructor.getWorkers().get(0);
+            model.addAttribute("selectedWorker", worker);
         }
         model.addAttribute("instructors", instructors);
         model.addAttribute("seminar", currentSeminar);
@@ -93,9 +96,8 @@ public class AppsController {
         if (castingInstructorTask.getWorkers().get(0).getId() == null) {
             castingInstructorTask.getWorkers().clear();
             castingInstructorTask.getWorkers().add(0, worker);
-        } else {
-            castingInstructorTask.getWorkers().add(0, worker);
         }
+
         //선택된 주제 등록 및 수정
         seminar.setTitle(castingInstructorForm.getTitle());
         //선택된 선호 날짜 등록
