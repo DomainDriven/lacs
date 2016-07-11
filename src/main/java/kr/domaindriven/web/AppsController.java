@@ -65,9 +65,7 @@ public class AppsController {
             model.addAttribute("instructors", instructors);
             model.addAttribute("workers", workers);
         }
-
         model.addAttribute("instructors", instructors);
-        model.addAttribute("workers", workers);
         model.addAttribute("seminar", currentSeminar);
         model.addAttribute("task", castingInstructor);
         model.addAttribute("page", pageModelsValue);
@@ -110,6 +108,7 @@ public class AppsController {
         model.addAttribute("seminar", seminar);
         model.addAttribute("instructors", instructors);
         model.addAttribute("workers", workers);
+        model.addAttribute("selectedWorker", worker);
         return LAYOUT;
     }
 

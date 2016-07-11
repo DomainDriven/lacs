@@ -3,13 +3,13 @@
 <head>
 </head>
 <body th:fragment="workerInfo">
-<a data-toggle="modal" href="#workerInfo" th:text="${task.getWorkers().get(0).getName()}">작업자 정보 모달</a>
+<a data-toggle="modal" href="#workerInfo" th:text="${selectedWorker.getName()}">작업자 정보 모달</a>
 <div class="modal fade" id="workerInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">강사정보</h4>
             </div>
             <div class="modal-body">
                 <table class="table table-striped">
@@ -20,18 +20,15 @@
                     </tr>
                     <tr>
                         <th>휴대폰번호</th>
-                        <th>010-1234-5676</th>
+                        <th th:text="${selectedWorker.getPhone()}">010-1234-5676</th>
                         <th></th>
                     </tr>
                     <tr>
                         <th>이메일</th>
-                        <th>jb7959@naver.com</th>
+                        <th th:text="${selectedWorker.getEmail()}">aaa@naver.com</th>
                         <th></th>
                     </tr>
                 </table>
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-primary backBtn">뒤로가기</a>
             </div>
         </div>
     </div>
