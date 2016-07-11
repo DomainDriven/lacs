@@ -81,7 +81,8 @@ public class AppsController {
         logger.info(castingInstructorForm.toString());
         Seminar seminar = smService.findByIsCompleted(false);
         Task castingInstructorTask = seminar.getTasks().get(0);
-        Worker worker = wkService.findByName(castingInstructorForm.getSelectedWorker());
+        Worker worker = wkService.findByName(castingInstructorForm.getSelectedWorker()); //castingInstructorForm에서 전달받은 이름으로 작업자 검색
+        Instructor instructor = instructorService.findByName(castingInstructorForm.getSelectedInstructor()); //castingInstructorForm에서 전달받은 이름으로 강사 검색
 
         Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
         Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
@@ -90,8 +91,16 @@ public class AppsController {
 
         //진행률 업데이트
         castingInstructorTask.setProgress(Integer.parseInt(castingInstructorForm.getProgress()));
+        /*
+        * 아직은 병렬로 작업자와 강사를 짝을지어 섭외를 진행하지는 않기에, 하나의 경우만 표현함.
+        */
+
         //선택된 강사 등록
-        castingInstructorTask.setSelectedInstructor(castingInstructorForm.getSelectedInstructor());
+        if (castingInstructorTask.getSelectedInstructors().get(0).getId() == null) {
+            castingInstructorTask.getSelectedInstructors().clear();
+            castingInstructorTask.getSelectedInstructors().add(0, instructor);
+        }
+
         //선택된 작업자 등록
         if (castingInstructorTask.getWorkers().get(0).getId() == null) {
             castingInstructorTask.getWorkers().clear();
@@ -111,6 +120,7 @@ public class AppsController {
         model.addAttribute("instructors", instructors);
         model.addAttribute("workers", workers);
         model.addAttribute("selectedWorker", worker);
+        model.addAttribute("selectedInstructor", instructor);
         return LAYOUT;
     }
 

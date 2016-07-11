@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Created by donghoon on 2016. 5. 19..
+ * Modify by Jaeyeoul on 2016. 07. 12
  * 이 클래스는 각 작업을 나타내기 위해 만들었음.
  * 각 작업은 하나 이상의 Worker를 포함한다.
  */
@@ -38,7 +39,11 @@ public class Task implements ITask {
      */
     private String requestUrl;
 
-    private String SelectedInstructor;
+    /**
+     * 선택된 강사 정보들의 List
+     */
+
+    private List <Instructor> selectedInstructors;
 
     private String favoriteDate;
 
@@ -118,19 +123,23 @@ public class Task implements ITask {
         this.requestUrl = requestUrl;
     }
 
-    public String getSelectedInstructor() {
-        return SelectedInstructor;
-    }
-
-    public void setSelectedInstructor(String selectedInstructor) {
-        SelectedInstructor = selectedInstructor;
-    }
-
     public String getFavoriteDate() {
         return favoriteDate;
     }
 
     public void setFavoriteDate(String favoriteDate) {
         this.favoriteDate = favoriteDate;
+    }
+
+    public List<Instructor> getSelectedInstructors() {
+        if(selectedInstructors==null){
+            this.selectedInstructors = new ArrayList<Instructor>();
+            selectedInstructors.add(new Instructor());
+        }
+        return selectedInstructors;
+    }
+
+    public void setSelectedInstructors(List<Instructor> selectedInstructors) {
+       this.selectedInstructors = selectedInstructors;
     }
 }
