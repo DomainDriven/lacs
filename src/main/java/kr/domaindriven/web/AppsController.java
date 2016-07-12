@@ -101,15 +101,15 @@ public class AppsController {
 
         //선택된 강사 등록
         if (castingInstructorTask.getSelectedInstructors().get(0).getId() == null) {
-            castingInstructorTask.getSelectedInstructors().clear();
+            castingInstructorTask.getSelectedInstructors().clear();}
             castingInstructorTask.getSelectedInstructors().add(0, instructor);
-        }
+
 
         //선택된 작업자 등록
         if (castingInstructorTask.getWorkers().get(0).getId() == null) {
-            castingInstructorTask.getWorkers().clear();
+            castingInstructorTask.getWorkers().clear();}
             castingInstructorTask.getWorkers().add(0, worker);
-        }
+
 
         //선택된 주제 등록 및 수정
         seminar.setTitle(castingInstructorForm.getTitle());
@@ -117,6 +117,7 @@ public class AppsController {
         castingInstructorTask.setFavoriteDate(castingInstructorForm.getDate());
 
         model.addAttribute("task", castingInstructorTask);
+        //logger.info();
         smService.save(seminar);
 
         model.addAttribute("page", "castingInstructor");
