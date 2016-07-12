@@ -43,9 +43,23 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>내용</td>
-                        <td>내용</td>
-                        <td>내용</td>
+                        <td>
+                            <a href=""
+                               target="_blank"><p>포스터 제작</p></a>
+                        </td>
+                        <td>
+                            <a th:href="@{/reservingPlace(title=${title})}" href="/reservingPlace">장소예약</a>
+                        </td>
+                        <td>
+                            <div class="col-sm-offset-1">
+                                <button type="button" class="btn btn-success full-width" id="PosterComplete"
+                                        style="display: block">완료
+                                </button>
+                                <button type="button" class="btn btn-primary full-width" id="PosterRestart"
+                                        style="display: none">재시작
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

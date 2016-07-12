@@ -3,7 +3,7 @@
  */
 $(document).ready(function () {
 
-    $('input[name="daterange"]').daterangepicker();
+   // $('input[name="daterange"]').daterangepicker();
     $(".instructor-multiple").select2();
     $("#workerPhone").inputmask("999-9999-9999");
 
@@ -120,7 +120,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    
     /**
      * 세미나 편집 버튼.
      */

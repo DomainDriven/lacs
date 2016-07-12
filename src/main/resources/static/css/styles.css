@@ -31,6 +31,10 @@
     top:0;
 }
 
+#modify-seminar>*{
+    color:black;
+}
+
 #progress{
     visibility: hidden;
 }

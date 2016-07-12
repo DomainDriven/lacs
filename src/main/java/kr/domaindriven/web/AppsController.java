@@ -63,7 +63,6 @@ public class AppsController {
             model.addAttribute("title", title);
             model.addAttribute("order", 0);
             model.addAttribute("instructors", instructors);
-            model.addAttribute("workers", workers);
         }else {
             Worker worker = castingInstructor.getWorkers().get(0);
             model.addAttribute("selectedWorker", worker);
@@ -71,6 +70,8 @@ public class AppsController {
             model.addAttribute("selectedInstructor", instructor);
 
         }
+        //castingInstructor와 castingInstructorForm 에서 함께 쓰이는 모델들.
+        model.addAttribute("workers", workers);
         model.addAttribute("instructors", instructors);
         model.addAttribute("seminar", currentSeminar);
         model.addAttribute("task", castingInstructor);
