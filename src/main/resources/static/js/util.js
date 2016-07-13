@@ -72,22 +72,3 @@ function ajaxWrapper(url, data, successFunc, errorFunc) {
 $(function() {
     $( "#date,#dateModal" ).datepicker();
 });
-
-/**
- * 포스터 작업의 버튼
- */
-
-$("#PosterComplete").on("click", function () {
-    $("#PosterComplete").css("display", "none");
-    $("#PosterRestart").css("display", "block");
-    $(".progress-bar").css("width", "100%");
-    $(".progress-bar").text("100%");
-});
-
-$("#PosterRestart").on("click", function () {
-    $("#PosterRestart").css("display", "none");
-    $("#PosterComplete").css("display", "block");
-    $(".progress-bar").css("width", "0%");
-    $(".progress-bar").text("0%");
-});
-

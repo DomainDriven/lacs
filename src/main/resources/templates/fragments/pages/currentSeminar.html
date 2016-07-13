@@ -110,7 +110,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="task, itrStat: ${currentSeminar.tasks}">
-                            <td th:text="${itrStat.index} + 1"></td>
+                            <td th:text="${itrStat.index} +"></td>
                             <td class="center-y" style="width: 15%">
                                 <a th:href="@{${task.getRequestUrl()}(title=${currentSeminar.title})}" href="#">
                                     <span class="center-y" th:text="${task.getTaskName()}">Task Name</span>
