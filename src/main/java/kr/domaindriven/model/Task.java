@@ -48,11 +48,7 @@ public class Task implements ITask {
     private String favoriteDate;
 
     public Task() {
-       //elements를 넣어주지 않으면 추후 사용시 문제발생
-        this.workers = new ArrayList<Worker>();
-        workers.add(new Worker());
     }
-
 
     /**
      * 테스크의 이름을 default 인자로 설정함.
@@ -92,6 +88,10 @@ public class Task implements ITask {
     }
 
     public List<Worker> getWorkers() {
+        if(workers==null){
+            this.workers = new ArrayList<Worker>();
+            workers.add(new Worker());
+        }
         return workers;
     }
 

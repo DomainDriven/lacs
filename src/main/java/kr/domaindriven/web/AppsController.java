@@ -123,7 +123,6 @@ public class AppsController {
         castingInstructorTask.setFavoriteDate(castingInstructorForm.getDate());
 
         smService.save(seminar);
-
         model.addAttribute("task", castingInstructorTask);
         model.addAttribute("page", "castingInstructor");
         model.addAttribute("seminar", seminar);

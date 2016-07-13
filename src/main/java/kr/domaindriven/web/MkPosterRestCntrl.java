@@ -18,11 +18,11 @@ public class MkPosterRestCntrl {
     SeminarService seminarService;
 
     @RequestMapping(value = "/updatePosterTask",method = RequestMethod.POST)
-    public Seminar updatePosterTask(@RequestParam("progress") int progress){
+    public void updatePosterTask(@RequestParam("progress") int progress){
         // TODO: 2016-07-13 완료되지 않은 세미나를 동시에 두개 이상 병렬로 진행 할 때 문제가 될 것 같음 - 재열
         Seminar seminar = seminarService.findByIsCompleted(false);
         seminar.getTasks().get(2).setProgress(progress);
-        return seminarService.save(seminar);
+        seminarService.save(seminar);
     }
     
 }
