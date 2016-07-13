@@ -101,15 +101,21 @@ public class AppsController {
 
         //선택된 강사 등록
         if (castingInstructorTask.getSelectedInstructors().get(0).getId() == null) {
-            castingInstructorTask.getSelectedInstructors().clear();}
-            castingInstructorTask.getSelectedInstructors().add(0, instructor);
-
+            castingInstructorTask.getSelectedInstructors().clear();
+            castingInstructorTask.getSelectedInstructors().add(0, instructor);}
+        else {
+            int instructorIndex = castingInstructorTask.getSelectedInstructors().size() - 1;
+            castingInstructorTask.getSelectedInstructors().set(instructorIndex, instructor);
+        }
 
         //선택된 작업자 등록
         if (castingInstructorTask.getWorkers().get(0).getId() == null) {
-            castingInstructorTask.getWorkers().clear();}
-            castingInstructorTask.getWorkers().add(0, worker);
-
+            castingInstructorTask.getWorkers().clear();
+            castingInstructorTask.getWorkers().add(0, worker);}
+        else {
+            int workerIndex = castingInstructorTask.getWorkers().size() - 1;
+            castingInstructorTask.getWorkers().set(workerIndex, worker);
+        }
 
         //선택된 주제 등록 및 수정
         seminar.setTitle(castingInstructorForm.getTitle());
