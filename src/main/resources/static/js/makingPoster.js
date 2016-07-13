@@ -12,10 +12,12 @@ $(window).load(function () {
 
     $("#PosterComplete").on("click", function () {
         complete();
+        progressUpdate(100);
     });
 
     $("#PosterRestart").on("click", function () {
         restart();
+        progressUpdate(0);
     });
 
     /**
@@ -29,6 +31,7 @@ $(window).load(function () {
         $("#PosterRestart").css("display", "block");
         $(".progress-bar").css("width", "100%");
         $(".progress-bar").text("100%");
+
     }
     /**
      * 취소시
@@ -43,6 +46,21 @@ $(window).load(function () {
         $(".progress-bar").text("0%");
     }
 
+    /**
+     * progress update
+     */
+    function progressUpdate(progress) {
+        console.log("progressUpdate 눌림");
+        $.ajax({
+            type: "POST",
+            url: "/updatePosterTask",
+            data: {"progress": progress},
+            dataType: "html",
+            success: function () {
+                alert("Data Saved");
+            }
+        });
+    }
 
 });
 

@@ -122,10 +122,9 @@ public class AppsController {
         //선택된 선호 날짜 등록
         castingInstructorTask.setFavoriteDate(castingInstructorForm.getDate());
 
-        model.addAttribute("task", castingInstructorTask);
-        //logger.info();
         smService.save(seminar);
 
+        model.addAttribute("task", castingInstructorTask);
         model.addAttribute("page", "castingInstructor");
         model.addAttribute("seminar", seminar);
         model.addAttribute("instructors", instructors);
