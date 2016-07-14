@@ -3,6 +3,7 @@
 <head>
 </head>
 <body th:fragment="promoting">
+<script th:src="@{/static/js/promoting.js}" src="/static/js/promoting.js"></script>
 <div class="col-md-12">
     <section class="content-header">
         <ol class="breadcrumb">
@@ -66,7 +67,27 @@
                     </tr>
                     </tbody>
                 </table>
+                <table id="promotingInfo" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>홍보위치</th>
+                        <th>URL</th>
+                        <th>작성자</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>테스트유저사이트</td>
+                        <td>www.test.kr/test</td>
+                        <td>안재열</td>
+                    </tr>
+                    </tbody>
+
+                    <tfoot>
+                    </tfoot>
+                </table>
             </div>
+
             <!--.box-body-->
             <div class="box-footer">
                 <a th:href="@{/}" href="/" class="btn btn-primary">메인으로</a>
