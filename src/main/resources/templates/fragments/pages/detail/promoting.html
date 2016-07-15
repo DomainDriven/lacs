@@ -78,7 +78,7 @@
                     <tbody>
                     <tr th:each="promotingResource :${task.getPromotingResources()}">
                         <td th:text="${promotingResource.locationName}">테스트유저사이트</td>
-                        <td th:text="${promotingResource.locationURL}">www.test.kr/test</td>
+                        <td><a th:href="${promotingResource.locationURL}" th:text="${promotingResource.locationURL}"></a></td>
                         <td th:text="${promotingResource.worker}">안재열</td>
                     </tr>
                     </tbody>
