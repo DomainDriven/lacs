@@ -197,6 +197,21 @@ public class AppsController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "promoting", method = RequestMethod.POST)
+    public String addingPromoting(@ModelAttribute Promoting promotingResource,@RequestParam String title,Model model){
+        Seminar currentSeminar = smService.findByTitle(title);
+        currentSeminar.getTasks().get(4).getPromotingResources().add(promotingResource); //새로운 홍보자원 List에 추가.
+        logger.info(currentSeminar.getTasks().get(4).getPromotingResources().toString());
+        smService.save(currentSeminar); // DB insert
+
+        Task promoting = currentSeminar.getTasks().get(4);
+        model.addAttribute("title", title);
+        model.addAttribute("order", 4);
+        model.addAttribute("task", promoting);
+        model.addAttribute("page", "promoting");
+        return LAYOUT;
+    }
+
     @RequestMapping(value = "retrospecting", method = RequestMethod.GET)
     public String retrospecting(@RequestParam String title, Model model) {
         logger.info("회고 상세 화면..");

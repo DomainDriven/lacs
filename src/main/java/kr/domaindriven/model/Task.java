@@ -45,14 +45,21 @@ public class Task implements ITask {
 
     private List <Instructor> selectedInstructors;
 
+    /**
+     * 강사의 선호날짜
+     */
     private String favoriteDate;
+
+    /**
+     * 홍보자원 List
+     */
+    private List<Promoting> promotingResources;
 
     public Task() {
     }
 
     /**
      * 테스크의 이름을 default 인자로 설정함.
-     *
      * @param taskName
      */
     public Task(String taskName, String requestUrl) {
@@ -138,8 +145,19 @@ public class Task implements ITask {
         }
         return selectedInstructors;
     }
-
     public void setSelectedInstructors(List<Instructor> selectedInstructors) {
        this.selectedInstructors = selectedInstructors;
+    }
+
+    public List<Promoting> getPromotingResources() {
+        if(promotingResources==null){
+            this.promotingResources = new ArrayList<Promoting>();
+            promotingResources.add(new Promoting());
+        }
+        return promotingResources;
+    }
+
+    public void setPromotingResources(List<Promoting> promotingResources) {
+        this.promotingResources = promotingResources;
     }
 }

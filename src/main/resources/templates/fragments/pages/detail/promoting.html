@@ -76,10 +76,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>테스트유저사이트</td>
-                        <td>www.test.kr/test</td>
-                        <td>안재열</td>
+                    <tr th:each="promotingResource :${task.getPromotingResources()}">
+                        <td th:text="${promotingResource.locationName}">테스트유저사이트</td>
+                        <td th:text="${promotingResource.locationURL}">www.test.kr/test</td>
+                        <td th:text="${promotingResource.worker}">안재열</td>
                     </tr>
                     </tbody>
 
@@ -92,6 +92,7 @@
             <div class="box-footer">
                 <a th:href="@{/}" href="/" class="btn btn-primary">메인으로</a>
                 <a class="btn btn-primary backBtn">뒤로가기</a>
+                <a th:include="fragments/modal/addingPromotion :: addingPromotion"></a>
             </div>
             <!--.box-footer-->
         </div>
