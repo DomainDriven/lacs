@@ -73,17 +73,23 @@
                         <th>홍보위치</th>
                         <th>URL</th>
                         <th>작성자</th>
+                        <th>수정  |  삭제</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="promotingResource :${task.getPromotingResources()}">
+                    <tr th:each="promotingResource,itrStat :${task.getPromotingResources()}">
                         <td th:text="${promotingResource.locationName}">테스트유저사이트</td>
                         <td><a th:href="${promotingResource.locationURL}" th:text="${promotingResource.locationURL}"></a></td>
                         <td th:text="${promotingResource.worker}">안재열</td>
+                        <td>
+                            <button type="button" class="btn btn-success btn-sm  modifyingPromotion" th:value="${itrStat.index}">수정</button>
+                            <button type="button" class="btn btn-danger btn-sm  deletingPromotion" th:value="${itrStat.index}">삭제</button>
+                        </td>
                     </tr>
                     </tbody>
 
                     <tfoot>
+                        <p th:text="${title}" id="titleInfo"></p>
                     </tfoot>
                 </table>
             </div>
