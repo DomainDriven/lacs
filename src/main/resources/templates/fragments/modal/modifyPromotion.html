@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
-<body  th:fragment="addingPromotion">
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" id="addingPromotion">
+<body  th:fragment="modifyPromotion">
+<button type="button" class="btn btn-success btn-sm  modifyingPromotion" data-toggle="modal" data-target="#modifyPromotionModal" id="modifyPromotion" th:value="${itrStat.index}">
     수정
 </button>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+<div class="modal fade" id="modifyPromotionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -24,21 +24,21 @@
                                         <tr>
                                             <th>홍보장소명</th>
                                             <td>
-                                                <input type="text" name="locationName" id="locationName"/>
+                                                <input type="text" name="locationName" id="locationNameInputForm" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>URL</th>
                                             <td>
-                                                <input type="text" name="locationURL" id="locationURL"/>
+                                                <input type="text" name="locationURL" id="locationURLInputForm"/>
                                             </td>
                                           </tr>
                                         <tr>
                                             <th>작성자</th>
-                                            <td><input type="text" name="worker" id="worker"/></td>
+                                            <td><input type="text" name="worker" id="workerInputForm"/></td>
                                           </tr>
                                     </table>
-                                    <input type="submit" class="btn btn-primary" id="submit"/>
+                                    <input type="submit" class="btn btn-primary" id="modifyPromotionsSubmit"/>
                                     <input type="submit" class="btn btn-primary backBtn" th:value="뒤로가기"/>
                                 </form>
                             </div>
