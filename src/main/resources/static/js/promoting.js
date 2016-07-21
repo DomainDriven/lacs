@@ -41,6 +41,7 @@ $(window).load(function () {
         promotingDelete(title,indexNumber);
         location.reload(); //페이지 다시실행
     });
+
     //홍보자료 삭제를 위한 함수
     function promotingDelete(title,indexNumber) {
         $.ajax({

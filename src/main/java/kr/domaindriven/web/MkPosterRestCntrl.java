@@ -24,5 +24,5 @@ public class MkPosterRestCntrl {
         seminar.getTasks().get(2).setProgress(progress);
         seminarService.save(seminar);
     }
-    
+
 }

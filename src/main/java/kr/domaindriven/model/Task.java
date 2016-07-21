@@ -55,6 +55,12 @@ public class Task implements ITask {
      */
     private List<Promoting> promotingResources;
 
+    /**
+     * 포스터자원 List
+     */
+    private List<String> posterResources;
+
+
     public Task() {
     }
 
@@ -159,5 +165,17 @@ public class Task implements ITask {
 
     public void setPromotingResources(List<Promoting> promotingResources) {
         this.promotingResources = promotingResources;
+    }
+
+    public List<String> getPosterResources() {
+        if(posterResources==null){
+            this.posterResources = new ArrayList<String>();
+            this.posterResources.add("");
+        }
+        return posterResources;
+    }
+
+    public void setPosterResources(List<String> posterResources) {
+        this.posterResources = posterResources;
     }
 }

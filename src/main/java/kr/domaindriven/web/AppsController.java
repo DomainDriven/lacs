@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by jerry on 2016-05-15.
@@ -63,7 +64,7 @@ public class AppsController {
             model.addAttribute("title", title);
             model.addAttribute("order", 0);
             model.addAttribute("instructors", instructors);
-        }else {
+        } else {
             Worker worker = castingInstructor.getWorkers().get(0);
             model.addAttribute("selectedWorker", worker);
             Instructor instructor = castingInstructor.getSelectedInstructors().get(0);
@@ -102,8 +103,8 @@ public class AppsController {
         //선택된 강사 등록
         if (castingInstructorTask.getSelectedInstructors().get(0).getId() == null) {
             castingInstructorTask.getSelectedInstructors().clear();
-            castingInstructorTask.getSelectedInstructors().add(0, instructor);}
-        else {
+            castingInstructorTask.getSelectedInstructors().add(0, instructor);
+        } else {
             int instructorIndex = castingInstructorTask.getSelectedInstructors().size() - 1;
             castingInstructorTask.getSelectedInstructors().set(instructorIndex, instructor);
         }
@@ -111,8 +112,8 @@ public class AppsController {
         //선택된 작업자 등록
         if (castingInstructorTask.getWorkers().get(0).getId() == null) {
             castingInstructorTask.getWorkers().clear();
-            castingInstructorTask.getWorkers().add(0, worker);}
-        else {
+            castingInstructorTask.getWorkers().add(0, worker);
+        } else {
             int workerIndex = castingInstructorTask.getWorkers().size() - 1;
             castingInstructorTask.getWorkers().set(workerIndex, worker);
         }
@@ -165,6 +166,25 @@ public class AppsController {
         return LAYOUT;
     }
 
+    @RequestMapping(value = "/uploadPosterResource", method = RequestMethod.POST)
+    public String uploadPosterResource(@RequestParam("inputFile") MultipartFile multipartFile, @RequestParam("hiddenText") String title, Model model) {
+        Seminar seminar = smService.findByTitle(title);
+        Task makingPoster = seminar.getTasks().get(2);
+        String fileName = multipartFile.getOriginalFilename();
+        if (makingPoster.getPosterResources().size() == 1) {
+            makingPoster.getPosterResources().set(0, fileName);
+        } else {
+            makingPoster.getPosterResources().add(fileName);
+        }
+        smService.save(seminar);
+
+        model.addAttribute("title", title);
+        model.addAttribute("order", 2);
+        model.addAttribute("task", makingPoster);
+        model.addAttribute("page", "makingPoster");
+        return LAYOUT;
+    }
+
     @RequestMapping(value = "registeringOnOffMix", method = RequestMethod.GET)
     public String registeringOnOffMix(@RequestParam String title, Model model) {
         logger.info("온오프 믹스 등록 상세 화면..");
@@ -198,7 +218,7 @@ public class AppsController {
     }
 
     @RequestMapping(value = "promoting", method = RequestMethod.POST)
-    public String addingPromoting(@ModelAttribute Promoting promotingResource,@RequestParam String title,Model model){
+    public String addingPromoting(@ModelAttribute Promoting promotingResource, @RequestParam String title, Model model) {
         Seminar currentSeminar = smService.findByTitle(title);
         currentSeminar.getTasks().get(4).getPromotingResources().add(promotingResource); //새로운 홍보자원 List에 추가.
         logger.info(currentSeminar.getTasks().get(4).getPromotingResources().toString());

@@ -4,6 +4,7 @@
 </head>
 <body th:fragment="makingPoster">
 <script th:src="@{/static/js/makingPoster.js}" src="/static/js/makingPoster.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
 <div class="col-md-12">
     <section class="content-header">
         <ol class="breadcrumb">
@@ -63,6 +64,21 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="box-body">
+                <p id="uploadedFile"></p></div>
+                <div class="box-body">
+                <form action="uploadPosterResource" enctype="multipart/form-data" method="post">
+                    <div class="form-group">
+                        <label for="inputFile">파일 업로드</label>
+                        <input type="file" name="inputFile" id="inputFile"/>
+                        <p class="help-block">업로드 할 포스터 자료를 선택해주세요.</p>
+                    </div>
+                    <input type="text" name="hiddenText" id="hiddenText" th:value="${title}" />
+                    <!--todo 버튼에서 submit으로 바꾸기.-->
+                    <!--<button id="inputFileSave" type="submit" class="btn btn-sm btn-warning">save</button>-->
+                    <button id="inputFileSave" type="button" class="btn btn-sm btn-warning">save</button>
+                </form>
             </div>
             <!--.box-body-->
             <div class="box-footer">
