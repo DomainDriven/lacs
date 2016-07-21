@@ -1,6 +1,7 @@
 package kr.domaindriven.web;
 
 import kr.domaindriven.model.Seminar;
+import kr.domaindriven.model.Task;
 import kr.domaindriven.service.SeminarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +25,19 @@ public class MkPosterRestCntrl {
         seminar.getTasks().get(2).setProgress(progress);
         seminarService.save(seminar);
     }
+
+    @RequestMapping(value = "/uploadPosterResourceByRest", method = RequestMethod.POST)
+    public void uploadPosterResource(@RequestParam("inputFile") String inputFile, @RequestParam("title") String title) {
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+inputFile+title);
+   /*     Seminar seminar = seminarService.findByTitle(title);
+    Task makingPoster = seminar.getTasks().get(2);
+    String fileName = inputFile;
+    if (makingPoster.getPosterResources().size() == 1) {
+        makingPoster.getPosterResources().set(0, fileName);
+    } else {
+        makingPoster.getPosterResources().add(fileName);
+    }
+    seminarService.save(seminar);*/
+}
 
 }

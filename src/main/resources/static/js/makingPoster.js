@@ -23,7 +23,7 @@ $(window).load(function () {
         // File or Blob, assume the file is called rivers.jpg
         var inputfile = $("#inputFile");
         var file = inputfile[0].files[0];
-
+        var title = $("#hiddenText");
         // Upload file and metadata to the object 'images/mountains.jpg'
         var uploadTask = storageRef.child(file.name).put(file);
 
@@ -59,6 +59,7 @@ $(window).load(function () {
                 // Upload completed successfully, now we can get the download URL
                 var downloadURL = uploadTask.snapshot.downloadURL;
                 alert(file.name+"업로드완료!");
+                uploadPosterResourceByRest("test1","test2");
                 location.reload(); //페이지 다시실행
             });
     });
@@ -128,5 +129,17 @@ $(window).load(function () {
         });
     }
 
-});
+    function uploadPosterResourceByRest(inputFile, title) {
+        alert("업데이트반영중!");
+        $.ajax({
+            type: "POST",
+            url: "./uploadPosterResourceByRest",
+            data: {"inputFile":inputFile,"title":title},
+            dataType: "html",
+            success: function () {
+                alert("업데이트성공!");
+            }
+        });
+    }
 
+});
