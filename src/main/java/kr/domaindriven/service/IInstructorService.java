@@ -17,7 +17,7 @@ public interface IInstructorService {
 
     Page<Instructor> findAll(Pageable pageable);
 
-    void deleteinstructor(String id);
+    void deleteInstructor(String id);
 
     Long count();
 }

@@ -96,7 +96,7 @@ public class InstructorController {
         logger.info("강사후보 삭제.");
         logger.info("강사후보 id: {}", id);
 
-        instructorService.deleteinstructor(id);
+        instructorService.deleteInstructor(id);
 
         return allInstructor(pageable, model);
     }

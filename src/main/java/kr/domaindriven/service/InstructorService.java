@@ -48,7 +48,7 @@ public class InstructorService implements IInstructorService {
     }
 
     @Override
-    public void deleteinstructor(String id) {
+    public void deleteInstructor(String id) {
         repository.delete(id);
     }
 
