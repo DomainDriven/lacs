@@ -35,7 +35,7 @@ $(document).ready(function () {
      */
 
     var dataTableList = [
-        '#seminars', '#workers'
+        '#seminars', '#workers', "#instructors"
     ];
 
     dataTableList.forEach(function (dt) {

@@ -25,6 +25,8 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
+                    <li th:class="${allInstructorClass}"><a th:href="@{/allInstructor}" href="/allInstructor">
+                        <i class="fa fa-circle-o"></i>강사후보 리스트</a></li>
                     <li th:class="${allSeminarClass}"><a th:href="@{/allSeminar}" href="/allSeminar">
                         <i class="fa fa-circle-o"></i>세미나 리스트</a></li>
                     <li th:class="${allWorkerClass}"><a th:href="@{/allWorker}" href="/allWorker">
