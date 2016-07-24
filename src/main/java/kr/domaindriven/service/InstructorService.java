@@ -22,9 +22,8 @@ public class InstructorService implements IInstructorService {
     /**
      * mongodb save 함수는 upsert 로 동작한다.
      *
-     * @param Instructor
+     * @param instructor
      */
-
     @Override
     public Instructor save(Instructor instructor) {
 
@@ -39,8 +38,18 @@ public class InstructorService implements IInstructorService {
     }
 
     @Override
+    public Instructor findOne(String id) {
+        return repository.findOne(id);
+    }
+
+    @Override
     public Page<Instructor> findAll(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public void deleteinstructor(String id) {
+        repository.delete(id);
     }
 
     @Override

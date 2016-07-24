@@ -13,7 +13,11 @@ public interface IInstructorService {
 
     Instructor findByName(String name);
 
+    Instructor findOne(String id);
+
     Page<Instructor> findAll(Pageable pageable);
+
+    void deleteinstructor(String id);
 
     Long count();
 }

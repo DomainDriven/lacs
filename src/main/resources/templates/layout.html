@@ -4,16 +4,17 @@
 <head th:replace="fragments/dependencies/lacs_head :: lacs_head"></head> <!-- head -->
 
 <body class="skin-black-light sidebar-mini">
+
 <header th:replace="fragments/commons/header :: header"></header> <!-- main header -->
 <aside th:replace="fragments/commons/left_sidebar :: left_sidebar">&nbsp;</aside>  <!-- main sidebar -->
 
 <div class="content-wrapper" th:switch="${page}">
+
+    <!-- main 화면 -->
     <div class="container-fluid" th:case="currentSeminar"
          th:include="fragments/pages/currentSeminar :: currentSeminar"></div>
-    <div class="container-fluid" th:case="addSeminar" th:include="fragments/pages/form/addSeminar :: addSeminar"></div>
-    <div class="container-fluid" th:case="editSeminar"
-         th:include="fragments/pages/edit/editSeminar :: editSeminar"></div>
-    <div class="container-fluid" th:case="allSeminar" th:include="fragments/pages/list/allSeminar :: allSeminar"></div>
+
+    <!-- sub task 화면 -->
     <div class="container-fluid" th:case="castingInstructor"
          th:include="fragments/pages/detail/castingInstructor :: castingInstructor"></div>
     <div class="container-fluid" th:case="castingInstructorForm"
@@ -28,14 +29,32 @@
          th:include="fragments/pages/detail/promoting :: promoting"></div>
     <div class="container-fluid" th:case="retrospecting"
          th:include="fragments/pages/detail/retrospecting :: retrospecting"></div>
+
+    <!-- instructor side menu 화면 -->
+    <!--<div class="container-fluid" th:case="addInstructor"-->
+    <!--th:include="fragments/pages/form/addInstructor :: addInstructor"></div>-->
+    <!--<div class="container-fluid" th:case="editInstructor"-->
+    <!--th:include="fragments/pages/edit/editInstructor :: editInstructor"></div>-->
+    <!--<div class="container-fluid" th:case="allInstructor"-->
+    <!--th:include="fragments/pages/list/allInstructor :: allInstructor"></div>-->
+
+    <!-- seminar side menu 화면 -->
+    <div class="container-fluid" th:case="addSeminar" th:include="fragments/pages/form/addSeminar :: addSeminar"></div>
+    <div class="container-fluid" th:case="editSeminar"
+         th:include="fragments/pages/edit/editSeminar :: editSeminar"></div>
+    <div class="container-fluid" th:case="allSeminar" th:include="fragments/pages/list/allSeminar :: allSeminar"></div>
+
+    <!-- worker side menu 화면 -->
     <div class="container-fluid" th:case="addWorker" th:include="fragments/pages/form/addWorker :: addWorker"></div>
     <div class="container-fluid" th:case="editWorker" th:include="fragments/pages/edit/editWorker :: editWorker"></div>
     <div class="container-fluid" th:case="allWorker" th:include="fragments/pages/list/allWorker :: allWorker"></div>
+
+
 </div>
 
-<footer th:replace="fragments/commons/footer :: footer">&copy;</footer>
+<footer th:replace="fragments/commons/footer :: footer">&copy;</footer> <!-- footer -->
 
-<div th:replace="fragments/dependencies/lacs_script :: lacs_script"></div> <!--java script-->
+<div th:replace="fragments/dependencies/lacs_script :: lacs_script"></div> <!--java script -->
 
 </body>
 </html>
