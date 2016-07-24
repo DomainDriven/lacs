@@ -100,33 +100,33 @@ $(document).ready(function () {
     });
 
     /**
-     * 운영진 편집 버튼.
+     * 강사후보 편집 버튼.
      */
 
-    $("#editWorkerBtn").on("click", function () {
+    $("#editInstructorBtn").on("click", function () {
 
-        var editWorkerId = $("#editWorkerId").val();
-        var editWorkerName = $("#editWorkerName").val();
-        var editWorkerPhone = $("#editWorkerPhone").val();
-        var editWorkerEmail = $("#editWorkerEmail").val();
+        var editInstructorId = $("#editInstructorId").val();
+        var editInstructorName = $("#editInstructorName").val();
+        var editInstructorPhone = $("#editInstructorPhone").val();
+        var editInstructorEmail = $("#editInstructorEmail").val();
 
         $.ajax({
             type: "post",
             async: true,
             dataType: "json",
-            url: "/worker/edit",
+            url: "/instructor/edit",
             data: {
-                id: editWorkerId,
-                name: editWorkerName,
-                phone: editWorkerPhone,
-                email: editWorkerEmail
+                id: editInstructorId,
+                name: editInstructorName,
+                phone: editInstructorPhone,
+                email: editInstructorEmail
             },
             success: function (response) {
                 console.log(response);
-                location.replace("/allWorker");
+                location.replace("/allInstructor");
             },
             error: function (error) {
-                console.log("운영진 편집 실패.");
+                console.log("강사후보 편집 실패.");
                 console.log(error);
             }
         });
@@ -162,6 +162,39 @@ $(document).ready(function () {
             }
         });
 
+    });
+
+    /**
+     * 운영진 편집 버튼.
+     */
+
+    $("#editWorkerBtn").on("click", function () {
+
+        var editWorkerId = $("#editWorkerId").val();
+        var editWorkerName = $("#editWorkerName").val();
+        var editWorkerPhone = $("#editWorkerPhone").val();
+        var editWorkerEmail = $("#editWorkerEmail").val();
+
+        $.ajax({
+            type: "post",
+            async: true,
+            dataType: "json",
+            url: "/worker/edit",
+            data: {
+                id: editWorkerId,
+                name: editWorkerName,
+                phone: editWorkerPhone,
+                email: editWorkerEmail
+            },
+            success: function (response) {
+                console.log(response);
+                location.replace("/allWorker");
+            },
+            error: function (error) {
+                console.log("운영진 편집 실패.");
+                console.log(error);
+            }
+        });
     });
 
     /**
