@@ -3,9 +3,20 @@
  */
 $(document).ready(function () {
 
-   // $('input[name="daterange"]').daterangepicker();
+    // $('input[name="daterange"]').daterangepicker();
     $(".instructor-multiple").select2();
-    $("#workerPhone").inputmask("999-9999-9999");
+
+    /**
+     * Input Mask 함수.
+     */
+
+    var inputMaskList = [
+        "#workerPhone", "#instructorPhone"
+    ];
+
+    inputMaskList.forEach(function (elem) {
+        $(elem).inputmask("999-9999-9999");
+    });
 
     /**
      * DatePicker 함수.
@@ -120,7 +131,7 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     /**
      * 세미나 편집 버튼.
      */
@@ -333,6 +344,49 @@ $(document).ready(function () {
     });
 
     /**
+     * 강사후보 추가 폼 전송 버튼
+     */
+
+    $("#addInstructor").on("click", function () {
+        var instructorName = $("#instructorName").val();
+        var instructorPhone = $("#instructorPhone").val();
+        var instructorEmail = $("#instructorEmail").val();
+        var checkSubmit = confirm("이름: " + instructorName + ", 전화번호: " + instructorPhone + ", 이메일 " + instructorEmail + "등록 하시겠습니까?");
+
+        if (checkSubmit) {
+            $.ajax({
+                type: "post",
+                async: true,
+                dataType: "json",
+                url: "/instructor",
+                data: {
+                    name: instructorName,
+                    phoneNumber: instructorPhone,
+                    mail: instructorEmail
+                },
+                success: function (response) {
+                    alert(response.name + "님, 저장에 성공하였습니다.");
+                    $("#instructorName").val("");
+                    $("#instructorPhone").val("");
+                    $("#instructorEmail").val("");
+                    $("#instructorName").attr("placeholder", "이름을 입력해 주세요.");
+                    $("#instructorPhone").attr("placeholder", "전화번호를 입력해 주세요.");
+                    $("#instructorEmail").attr("placeholder", "이메일을 입력해 주세요.");
+                },
+                error: function (error) {
+                    console.log("강사 저장 실패.");
+                    console.log(error);
+                    if (error.responseText === "") {
+                        $("#instructorName").attr("placeholder", "이름은 비어 있으면 안됩니다.");
+                        $("#instructorPhone").attr("placeholder", "전화번호는 비어 있으면 안됩니다.");
+                        $("#instructorEmail").attr("placeholder", "이메일은 비어 있으면 안됩니다.");
+                    }
+                }
+            })
+        }
+    });
+
+    /**
      * 세미나 추가 폼 전송 버튼
      */
 
@@ -401,7 +455,7 @@ $(document).ready(function () {
                     $("#workerEmail").attr("placeholder", "이메일을 입력해 주세요.");
                 },
                 error: function (error) {
-                    console.log("강사 저장 실패.");
+                    console.log("운영진 저장 실패.");
                     console.log(error);
                     if (error.responseText === "") {
                         $("#workerName").attr("placeholder", "이름은 비어 있으면 안됩니다.");
