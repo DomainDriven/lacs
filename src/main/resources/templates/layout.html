@@ -1,39 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="DomainDriven LA-project."/>
-    <meta name="author" content="Donghoon Lee, Jaeyeoul Ahn"/>
-    <title>DomainDriven Community App</title>
 
-    <!-- Bootstrap core ` -->
-    <link th:href="@{/static/node_modules/admin-lte/bootstrap/css/bootstrap.min.css}"
-          href="/static/node_modules/admin-lte/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" th:href="@{/static/node_modules/admin-lte/dist/css/AdminLTE.min.css}"
-          href="/static/node_modules/admin-lte/dist/css/AdminLTE.min.css"/>
-    <link th:href="@{/static/node_modules/admin-lte/dist/css/skins/skin-black-light.min.css}"
-          href="../static/node_modules/admin-lte/dist/css/skins/skin-black-light.min.css" rel="stylesheet"/>
-    <link th:href="@{/static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css}"
-          href="../static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.css" rel="stylesheet"/>
-    <link th:href="@{/static/node_modules/admin-lte/plugins/datepicker/datepicker3.css}"
-          href="../static/node_modules/admin-lte/plugins/datepicker/datepicker3.css" rel="stylesheet"/>
-    <link th:href="@{/static/node_modules/admin-lte/plugins/datatables/dataTables.bootstrap.css}"
-          href="../static/node_modules/admin-lte/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet"/>
-    <link th:href="@{/static/node_modules/admin-lte/plugins/select2/select2.min.css}"
-          href="../static/node_modules/admin-lte/plugins/select2/select2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" th:href="@{/static/node_modules/font-awesome/css/font-awesome.min.css}"
-          href="/static/node_modules/font-awesome/css/font-awesome.min.css"/>
-    <link rel="stylesheet" th:href="@{/static/css/index.css}"
-          href="/static/css/index.css"/>
-    <link rel="stylesheet" th:href="@{/static/css/styles.css}"
-          href="/static/css/styles.css"/>
-    <!--todo jquery-1.10.2.js : CDR Local로 변경하기 - 재열-->
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-
-</head>
+<head th:replace="fragments/dependencies/lacs_head :: lacs_head"></head> <!-- head -->
 
 <body class="skin-black-light sidebar-mini">
 <header th:replace="fragments/commons/header :: header"></header> <!-- main header -->
@@ -66,43 +34,8 @@
 </div>
 
 <footer th:replace="fragments/commons/footer :: footer">&copy;</footer>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<script th:src="@{/static/node_modules/admin-lte/plugins/jQuery/jQuery-2.2.3.min.js}"
-        src="/static/node_modules/admin-lte/plugins/jQuery/jQuery-2.2.3.min.js"></script>
-<script th:src="@{/static/node_modules/admin-lte/bootstrap/js/bootstrap.min.js}"
-        src="/static/node_modules/admin-lte/bootstrap/js/bootstrap.min.js"></script>
-<!--todo 디버깅 과정 중 오류나는 부분. 무엇에 사용되는지 파악이 안되어 일단 주석처리 - 2-16.07.05 재열-->
-<!--<script th:src="@{/static/node_modules/moment/min/moment.min.js}"
-        src="/static/node_modules/moment/min/moment.min.js"></script>-->
-<script th:src="@{/static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js}"
-        src="/static/node_modules/admin-lte/plugins/daterangepicker/daterangepicker.js"></script>
-<script th:src="@{/static/node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js}"
-        src="/static/node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js"></script>
-<script th:src="@{/static/node_modules/admin-lte/plugins/datatables/jquery.dataTables.min.js}"
-        src="../static/node_modules/admin-lte/plugins/datatables/jquery.dataTables.min.js"></script>
-<script th:src="@{/static/node_modules/admin-lte/plugins/datatables/dataTables.bootstrap.min.js}"
-        src="../static/node_modules/admin-lte/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<script th:src="@{/static/node_modules/admin-lte/plugins/select2/select2.full.min.js}"
-        src="../static/node_modules/admin-lte/plugins/select2/select2.full.min.js"></script>
-<script th:src="@{/static/node_modules/admin-lte/plugins/input-mask/jquery.inputmask.js}"
-        src="/static/node_modules/admin-lte/plugins/input-mask/jquery.inputmask.js"></script>
-<script th:src="@{/static/node_modules/admin-lte/dist/js/app.min.js}"
-        src="/static/node_modules/admin-lte/dist/js/app.min.js"></script>
-<!--todo 디버깅 과정 중 오류나는 부분. 무엇에 사용되는지 파악이 안되어 일단 주석처리 - 2-16.07.05 재열-->
-<!--<script th:src="@{/static/node_modules/lodash/lodash.min.js}"
-        src="../static/node_modules/lodash/lodash.min.js"></script>-->
-<script th:src="@{/static/js/util.js}" src="/static/js/util.js"></script>
-<script th:src="@{/static/js/index.js}" src="/static/js/index.js"></script>
-<script th:src="@{/static/js/castingInstCommon.js}" src="/static/js/castingInstCommon.js"></script>
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<div th:replace="fragments/dependencies/lacs_script :: lacs_script"></div> <!--java script-->
 
 </body>
 </html>
