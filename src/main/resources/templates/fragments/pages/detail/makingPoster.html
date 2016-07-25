@@ -3,8 +3,7 @@
 <head>
 </head>
 <body th:fragment="makingPoster">
-<script th:src="@{/static/js/makingPoster.js}" src="/static/js/makingPoster.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+
 <div class="col-md-12">
     <section class="content-header">
         <ol class="breadcrumb">
@@ -89,5 +88,8 @@
         </div>
     </section>
 </div>
+<div th:replace="fragments/dependencies/lacs_script :: lacs_script"></div> <!--java script -->
+<script src="https://www.gstatic.com/firebasejs/3.2.0/firebase.js"></script>
+<script th:src="@{/static/js/makingPoster.js}" src="/static/js/makingPoster.js"></script>
 </body>
 </html>

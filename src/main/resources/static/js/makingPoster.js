@@ -1,4 +1,6 @@
-$(window).load(function () {
+$(document).ready(function () {
+
+    alert("makingPoster 실행중!");
 
     // Initialize Firebase
     var config = {
@@ -23,7 +25,7 @@ $(window).load(function () {
         // File or Blob, assume the file is called rivers.jpg
         var inputfile = $("#inputFile");
         var file = inputfile[0].files[0];
-        var title = $("#hiddenText");
+        var title = $("#hiddenText").val();
         // Upload file and metadata to the object 'images/mountains.jpg'
         var uploadTask = storageRef.child(file.name).put(file);
 
@@ -58,8 +60,7 @@ $(window).load(function () {
             }, function() {
                 // Upload completed successfully, now we can get the download URL
                 var downloadURL = uploadTask.snapshot.downloadURL;
-                alert(file.name+"업로드완료!");
-                uploadPosterResourceByRest("test1","test2");
+                uploadPosterResourceByRest(file.name,title);
                 location.reload(); //페이지 다시실행
             });
     });
@@ -141,5 +142,5 @@ $(window).load(function () {
             }
         });
     }
-
+    alert("makingPoster 실행완료!");
 });

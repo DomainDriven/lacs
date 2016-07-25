@@ -1,7 +1,7 @@
 /**
  * Created by jerry on 2016-07-14.
  */
-$(window).load(function () {
+$(document).ready(function () {
     var lastIndex;
 
     $(function () {
