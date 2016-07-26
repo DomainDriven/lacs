@@ -166,25 +166,6 @@ public class AppsController {
         return LAYOUT;
     }
 
-    @RequestMapping(value = "/uploadPosterResource", method = RequestMethod.POST)
-    public String uploadPosterResource(@RequestParam("inputFile") MultipartFile multipartFile, @RequestParam("hiddenText") String title, Model model) {
-        Seminar seminar = smService.findByTitle(title);
-        Task makingPoster = seminar.getTasks().get(2);
-        String fileName = multipartFile.getOriginalFilename();
-        if (makingPoster.getPosterResources().size() == 1) {
-            makingPoster.getPosterResources().set(0, fileName);
-        } else {
-            makingPoster.getPosterResources().add(fileName);
-        }
-        smService.save(seminar);
-
-        model.addAttribute("title", title);
-        model.addAttribute("order", 2);
-        model.addAttribute("task", makingPoster);
-        model.addAttribute("page", "makingPoster");
-        return LAYOUT;
-    }
-
     @RequestMapping(value = "registeringOnOffMix", method = RequestMethod.GET)
     public String registeringOnOffMix(@RequestParam String title, Model model) {
         logger.info("온오프 믹스 등록 상세 화면..");

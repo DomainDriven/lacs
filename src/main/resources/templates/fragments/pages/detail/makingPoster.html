@@ -64,8 +64,23 @@
                     </tbody>
                 </table>
             </div>
+
             <div class="box-body">
-                <p id="uploadedFile"></p></div>
+                <table>
+                    <tr>
+                        <th>Data File name</th>
+                    </tr>
+                    <tr th:each="posterResources,itrStat :${task.getPosterResources()}">
+                        <td>
+                            <a th:id="posterResources+${itrStat.index}" th:text="${posterResources}"></a>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm download" th:value="${itrStat.index}">다운로드</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
                 <div class="box-body">
                 <form action="uploadPosterResource" enctype="multipart/form-data" method="post">
                     <div class="form-group">
@@ -77,7 +92,6 @@
                     <!--todo 버튼에서 submit으로 바꾸기.-->
                     <!--<button id="inputFileSave" type="submit" class="btn btn-sm btn-warning">save</button>-->
                     <button id="inputFileSave" type="button" class="btn btn-sm btn-warning">save</button>
-                    <button id="inputFileSave2" type="button" class="btn btn-sm btn-warning">파일명save</button>
                 </form>
             </div>
             <!--.box-body-->

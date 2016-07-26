@@ -170,7 +170,7 @@ public class Task implements ITask {
     public List<String> getPosterResources() {
         if(posterResources==null){
             this.posterResources = new ArrayList<String>();
-            this.posterResources.add("");
+            this.posterResources.add("포스터 자료 없음");
         }
         return posterResources;
     }
