@@ -64,13 +64,13 @@ public class Application extends WebMvcConfigurerAdapter implements CommandLineR
         int port = Integer.parseInt(mongoInfo.get("port"));
         String database = mongoInfo.get("database");
 
-        logger.info("Mongo Host: {}", host);
-        logger.info("Mongo Port: {}", port);
-        logger.info("Mongo Database: {}", database);
+        logger.debug("Mongo Host: {}", host);
+        logger.debug("Mongo Port: {}", port);
+        logger.debug("Mongo Database: {}", database);
 
 
         if (props.getEnv().equals("dev")) {
-            logger.info("개발 환경.");
+            logger.debug("개발 환경.");
             /**
              * 어플리케이션 구동시에 resources/data 폴더의 json file data 를 삽입한다.
              */
@@ -81,7 +81,7 @@ public class Application extends WebMvcConfigurerAdapter implements CommandLineR
                 fileService.insertJsonFile("classpath:data/" + collectionName + ".json", collectionName);
             }
         } else if (props.getEnv().equals("prod")) {
-            logger.info("운영 환경.");
+            logger.debug("운영 환경.");
         }
     }
 }

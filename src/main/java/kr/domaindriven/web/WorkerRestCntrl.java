@@ -40,7 +40,7 @@ public class WorkerRestCntrl {
      */
     @RequestMapping(method = RequestMethod.POST)
     public Worker save(@Validated WorkerForm form, BindingResult result) {
-        logger.info("운영진 생성.");
+        logger.debug("운영진 생성.");
         if (result.hasErrors()) {
             logger.error("운영진 생성 오류.");
             List<ObjectError> errorList = result.getAllErrors();
@@ -57,8 +57,8 @@ public class WorkerRestCntrl {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public Worker editWorker(@RequestParam String id, @RequestParam String name, @RequestParam String phone, @RequestParam String email) {
-        logger.info("운영진 편집.");
-        logger.info("id: {}, name: {}, phone: {}, email: {}", id, name, phone, email);
+        logger.debug("운영진 편집.");
+        logger.debug("id: {}, name: {}, phone: {}, email: {}", id, name, phone, email);
 
         Worker editWorker = service.findOne(id);
         editWorker.setName(name);

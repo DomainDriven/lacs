@@ -48,7 +48,7 @@ public class SeminarRestCntrl {
      */
     @RequestMapping(method = RequestMethod.POST)
     public Seminar save(@Validated SeminarForm form, BindingResult result) {
-        logger.info("세미나 생성.");
+        logger.debug("세미나 생성.");
         if (result.hasErrors()) {
             util.LoggingError(result, logger);
             return null;
@@ -63,8 +63,8 @@ public class SeminarRestCntrl {
     public Seminar updateTaskProgress(@RequestParam String title,
                                       @RequestParam String order,
                                       @RequestParam String progress) {
-        logger.info("태스크 진행률 업데이트.");
-        logger.info("title: {}, order: {}, progress: {}", title, order, progress);
+        logger.debug("태스크 진행률 업데이트.");
+        logger.debug("title: {}, order: {}, progress: {}", title, order, progress);
 
         Seminar currentSeminar = smService.findByTitle(title);
         currentSeminar.getTasks().get(Integer.parseInt(order)).setProgress(Integer.parseInt(progress));
@@ -75,8 +75,8 @@ public class SeminarRestCntrl {
     public Seminar assignWorker(@RequestParam String id,
                                 @RequestParam String workerName,
                                 @RequestParam int index) {
-        logger.info("운영진 작업 할당.");
-        logger.info("CurrentSeminarId: {}, WorkerName: {}, Index: {}", id, workerName, index);
+        logger.debug("운영진 작업 할당.");
+        logger.debug("CurrentSeminarId: {}, WorkerName: {}, Index: {}", id, workerName, index);
 
         Seminar currentSeminar = smService.findOne(id);
         Worker selectedWorker = wService.findByName(workerName);
@@ -87,8 +87,8 @@ public class SeminarRestCntrl {
 
     @RequestMapping(value = "/editSeminar", method = RequestMethod.POST)
     public Seminar editSeminar(@RequestParam String id, @RequestParam String title, @RequestParam Date date) {
-        logger.info("seminar 편집.");
-        logger.info("id: {}, title: {}, date: {}", id, title, date);
+        logger.debug("seminar 편집.");
+        logger.debug("id: {}, title: {}, date: {}", id, title, date);
 
         Seminar editSeminar = smService.findOne(id);
         editSeminar.setTitle(title);
@@ -100,8 +100,8 @@ public class SeminarRestCntrl {
 
     @RequestMapping(value = "/editTitle", method = RequestMethod.POST)
     public Seminar updateSerminarTitle(@RequestParam String id, @RequestParam String title) {
-        logger.info("세미나 주제 업데이트.");
-        logger.info("id: {}, title: {}", id, title);
+        logger.debug("세미나 주제 업데이트.");
+        logger.debug("id: {}, title: {}", id, title);
 
         Seminar currentSeminar = smService.findOne(id);
         currentSeminar.setTitle(title);
@@ -111,8 +111,8 @@ public class SeminarRestCntrl {
 
     @RequestMapping(value = "/editDate", method = RequestMethod.POST)
     public Seminar updateSerminarDate(@RequestParam String id, @RequestParam Date date) {
-        logger.info("세미나 날짜 업데이트.");
-        logger.info("id: {}, date: {}", id, date);
+        logger.debug("세미나 날짜 업데이트.");
+        logger.debug("id: {}, date: {}", id, date);
 
         Seminar currentSeminar = smService.findOne(id);
         currentSeminar.setDate(date);
@@ -122,8 +122,8 @@ public class SeminarRestCntrl {
 
     @RequestMapping(value = "/editAudience", method = RequestMethod.POST)
     public Seminar editAudience(@RequestParam String id, @RequestParam int audienceCount) {
-        logger.info("청중수 편집.");
-        logger.info("id: {}, audience: {}", id, audienceCount);
+        logger.debug("청중수 편집.");
+        logger.debug("id: {}, audience: {}", id, audienceCount);
 
         Seminar currentSeminar = smService.findOne(id);
         currentSeminar.setAudience(audienceCount);
@@ -133,8 +133,8 @@ public class SeminarRestCntrl {
 
     @RequestMapping(value = "/isCompleted", method = RequestMethod.POST)
     public Seminar editAudience(@RequestParam String id, @RequestParam boolean isCompleted) {
-        logger.info("세미나 상태 변경.");
-        logger.info("id: {}, isCompleted: {}", id, isCompleted);
+        logger.debug("세미나 상태 변경.");
+        logger.debug("id: {}, isCompleted: {}", id, isCompleted);
 
         Seminar currentSeminar = smService.findOne(id);
         currentSeminar.setIsCompleted(isCompleted);

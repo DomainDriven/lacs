@@ -50,10 +50,10 @@ public class AppsController {
      */
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.GET)
     public String castingInstructor(@PageableDefault Pageable pageable, Model model) {
-        logger.info("강사 섭외 상세 화면..");
+        logger.debug("강사 섭외 상세 화면..");
         Seminar currentSeminar = smService.findByIsCompleted(false);
         String title = currentSeminar.getTitle(); // 현재 진행중인 세미나 이름
-        logger.info("title: " + title);
+        logger.debug("title: " + title);
         Page<Instructor> instructors = instructorService.findAll(pageable); //등록된 강사정보 호출
         Page<Worker> workers = wkService.findAll(pageable); // 등록된 운영진 정보 호출
         Task castingInstructor = currentSeminar.getTasks().get(0);
@@ -83,7 +83,7 @@ public class AppsController {
 
     @RequestMapping(value = "/castingInstructor", method = RequestMethod.POST)
     public String castingInstructor(@ModelAttribute CastingInstructorForm castingInstructorForm, Model model, @PageableDefault Pageable pageable) {
-        logger.info(castingInstructorForm.toString());
+        logger.debug(castingInstructorForm.toString());
         Seminar seminar = smService.findByIsCompleted(false);
         Task castingInstructorTask = seminar.getTasks().get(0);
         Worker worker = wkService.findByName(castingInstructorForm.getSelectedWorker()); //castingInstructorForm에서 전달받은 이름으로 작업자 검색
@@ -136,8 +136,8 @@ public class AppsController {
 
     @RequestMapping(value = "reservingPlace", method = RequestMethod.GET)
     public String reservingPlace(@RequestParam String title, Model model) {
-        logger.info("장소 섭외 상세 화면..");
-        logger.info("title: " + title);
+        logger.debug("장소 섭외 상세 화면..");
+        logger.debug("title: " + title);
 
         Seminar currentSeminar = smService.findByTitle(title);
         Task reservingPlace = currentSeminar.getTasks().get(1);
@@ -152,8 +152,8 @@ public class AppsController {
 
     @RequestMapping(value = "makingPoster", method = RequestMethod.GET)
     public String makingPoster(@RequestParam String title, Model model) {
-        logger.info("포스터 제작 상세 화면..");
-        logger.info("title: " + title);
+        logger.debug("포스터 제작 상세 화면..");
+        logger.debug("title: " + title);
 
         Seminar currentSeminar = smService.findByTitle(title);
         Task makingPoster = currentSeminar.getTasks().get(2);
@@ -168,8 +168,8 @@ public class AppsController {
 
     @RequestMapping(value = "registeringOnOffMix", method = RequestMethod.GET)
     public String registeringOnOffMix(@RequestParam String title, Model model) {
-        logger.info("온오프 믹스 등록 상세 화면..");
-        logger.info("title: " + title);
+        logger.debug("온오프 믹스 등록 상세 화면..");
+        logger.debug("title: " + title);
 
         Seminar currentSeminar = smService.findByTitle(title);
         Task registeringOnOffMix = currentSeminar.getTasks().get(3);
@@ -184,8 +184,8 @@ public class AppsController {
 
     @RequestMapping(value = "promoting", method = RequestMethod.GET)
     public String promoting(@RequestParam String title, Model model) {
-        logger.info("홍보 상세 화면..");
-        logger.info("title: " + title);
+        logger.debug("홍보 상세 화면..");
+        logger.debug("title: " + title);
 
         Seminar currentSeminar = smService.findByTitle(title);
         Task promoting = currentSeminar.getTasks().get(4);
@@ -202,7 +202,7 @@ public class AppsController {
     public String addingPromoting(@ModelAttribute Promoting promotingResource, @RequestParam String title, Model model) {
         Seminar currentSeminar = smService.findByTitle(title);
         currentSeminar.getTasks().get(4).getPromotingResources().add(promotingResource); //새로운 홍보자원 List에 추가.
-        logger.info(currentSeminar.getTasks().get(4).getPromotingResources().toString());
+        logger.debug(currentSeminar.getTasks().get(4).getPromotingResources().toString());
         smService.save(currentSeminar); // DB insert
 
         Task promoting = currentSeminar.getTasks().get(4);
@@ -215,8 +215,8 @@ public class AppsController {
 
     @RequestMapping(value = "retrospecting", method = RequestMethod.GET)
     public String retrospecting(@RequestParam String title, Model model) {
-        logger.info("회고 상세 화면..");
-        logger.info("title: " + title);
+        logger.debug("회고 상세 화면..");
+        logger.debug("title: " + title);
 
         Seminar currentSeminar = smService.findByTitle(title);
         Task retrospecting = currentSeminar.getTasks().get(5);
