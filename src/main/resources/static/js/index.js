@@ -24,7 +24,7 @@ $(document).ready(function () {
     ];
 
     datePickerList.forEach(function (selector) {
-        lacs.makeDateRangePicker(selector);
+        lacs.makeDatePicker(selector);
     });
 
     /**
@@ -65,24 +65,20 @@ $(document).ready(function () {
 
         var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/seminar/isCompleted",
-            data: {
+        lacs.ajaxWrapper(
+            "/seminar/isCompleted",
+            {
                 id: currentSeminarId,
                 isCompleted: true
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 location.replace("/allSeminar");
             },
-            error: function (error) {
+            function (error) {
                 console.log("세미나 완료상태 편집 실패.");
                 console.log(error);
-            }
-        });
+            });
 
     });
 
@@ -93,24 +89,20 @@ $(document).ready(function () {
 
         var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/seminar/isCompleted",
-            data: {
+        lacs.ajaxWrapper(
+            "/seminar/isCompleted",
+            {
                 id: currentSeminarId,
                 isCompleted: false
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 location.replace("/allSeminar");
             },
-            error: function (error) {
+            function (error) {
                 console.log("세미나 완료상태 편집 실패.");
                 console.log(error);
-            }
-        });
+            });
 
     });
 
@@ -125,26 +117,23 @@ $(document).ready(function () {
         var editInstructorPhone = $("#editInstructorPhone").val();
         var editInstructorEmail = $("#editInstructorEmail").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/instructor/edit",
-            data: {
+        lacs.ajaxWrapper(
+            "/instructor/edit",
+            {
                 id: editInstructorId,
                 name: editInstructorName,
                 phone: editInstructorPhone,
                 email: editInstructorEmail
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 location.replace("/allInstructor");
             },
-            error: function (error) {
+            function (error) {
                 console.log("강사후보 편집 실패.");
                 console.log(error);
-            }
-        });
+            });
+
     });
 
     /**
@@ -157,25 +146,21 @@ $(document).ready(function () {
         var editSeminarTitle = $("#editSeminarTitle").val();
         var editSeminarDate = $("#editSeminarDate").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/seminar/editSeminar",
-            data: {
+        lacs.ajaxWrapper(
+            "/seminar/editSeminar",
+            {
                 id: editSeminarId,
                 title: editSeminarTitle,
                 date: editSeminarDate
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 location.replace("/allSeminar");
             },
-            error: function (error) {
+            function (error) {
                 console.log("세미나 편집 실패.");
                 console.log(error);
-            }
-        });
+            });
 
     });
 
@@ -190,26 +175,22 @@ $(document).ready(function () {
         var editWorkerPhone = $("#editWorkerPhone").val();
         var editWorkerEmail = $("#editWorkerEmail").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/worker/edit",
-            data: {
+        lacs.ajaxWrapper(
+            "/worker/edit",
+            {
                 id: editWorkerId,
                 name: editWorkerName,
                 phone: editWorkerPhone,
                 email: editWorkerEmail
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 location.replace("/allWorker");
             },
-            error: function (error) {
+            function (error) {
                 console.log("운영진 편집 실패.");
                 console.log(error);
-            }
-        });
+            });
     });
 
     /**
@@ -225,26 +206,22 @@ $(document).ready(function () {
         var currentSeminarId = $("#currentSeminarId").val();
         console.log("Index: " + index + ", WorkerName: " + workerName + ", CurrentSeminarId: " + currentSeminarId);
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/seminar/assignWorker",
-            data: {
+        lacs.ajaxWrapper(
+            "/seminar/assignWorker",
+            {
                 id: currentSeminarId,
                 workerName: workerName,
                 index: index
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 alert(response.tasks[index].taskName + "에 운영진 "
                     + response.tasks[index].workers[0].name + "이 할당 되었습니다.");
             },
-            error: function (error) {
+            function (error) {
                 console.log("운영진 작업 할당 실패.");
                 console.log(error);
-            }
-        });
+            });
     });
 
     /**
@@ -292,26 +269,22 @@ $(document).ready(function () {
         var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
         var editTitle = $("#seminarEditTitle").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/seminar/editTitle",
-            data: {
+        lacs.ajaxWrapper(
+            "/seminar/editTitle",
+            {
                 id: currentSeminarId,
                 title: editTitle
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 location.replace("/");
             },
-            error: function (error) {
+            function (error) {
                 console.log("타이틀 편집 실패.");
                 console.log(error);
                 $("#seminarTitleInfoBox").css("display", "block");
                 $("#seminarEditTitleForm").css("display", "none");
-            }
-        });
+            });
 
     });
 
@@ -331,26 +304,22 @@ $(document).ready(function () {
         var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
         var editDate = $("#seminarEditDate").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/seminar/editDate",
-            data: {
+        lacs.ajaxWrapper(
+            "/seminar/editDate",
+            {
                 id: currentSeminarId,
                 date: editDate
             },
-            success: function (response) {
+            function (response) {
                 console.log(response);
                 location.replace("/");
             },
-            error: function (error) {
+            function (error) {
                 console.log("예정일 편집 실패.");
                 console.log(error);
                 $("#seminarDateInfoBox").css("display", "block");
                 $("#seminarEditDateForm").css("display", "none");
-            }
-        });
+            });
 
     });
 
@@ -369,26 +338,22 @@ $(document).ready(function () {
         var currentSeminarId = $("input[type=hidden]#currentSeminarId").val();
         var audienceCount = $("#seminarEditAudience").val();
 
-        $.ajax({
-            type: "post",
-            async: true,
-            dataType: "json",
-            url: "/seminar/editAudience",
-            data: {
+        lacs.ajaxWrapper(
+            "/seminar/editAudience",
+            {
                 id: currentSeminarId,
                 audienceCount: audienceCount
             },
-            success: function (response) {
+            function (response) {
                 console.log(response.audience);
                 location.replace("/");
             },
-            error: function (error) {
+            function (error) {
                 console.log("청중수 편집 실패.");
                 console.log(error);
                 $("#seminarAudienceInfoBox").css("display", "block");
                 $("#seminarEditAudienceForm").css("display", "none");
-            }
-        });
+            });
     });
 
     /**
@@ -402,17 +367,14 @@ $(document).ready(function () {
         var checkSubmit = confirm("이름: " + instructorName + ", 전화번호: " + instructorPhone + ", 이메일 " + instructorEmail + "등록 하시겠습니까?");
 
         if (checkSubmit) {
-            $.ajax({
-                type: "post",
-                async: true,
-                dataType: "json",
-                url: "/instructor",
-                data: {
+            lacs.ajaxWrapper(
+                "/instructor",
+                {
                     name: instructorName,
                     phoneNumber: instructorPhone,
                     mail: instructorEmail
                 },
-                success: function (response) {
+                function (response) {
                     alert(response.name + "님, 저장에 성공하였습니다.");
                     $("#instructorName").val("");
                     $("#instructorPhone").val("");
@@ -421,7 +383,7 @@ $(document).ready(function () {
                     $("#instructorPhone").attr("placeholder", "전화번호를 입력해 주세요.");
                     $("#instructorEmail").attr("placeholder", "이메일을 입력해 주세요.");
                 },
-                error: function (error) {
+                function (error) {
                     console.log("강사 저장 실패.");
                     console.log(error);
                     if (error.responseText === "") {
@@ -429,8 +391,7 @@ $(document).ready(function () {
                         $("#instructorPhone").attr("placeholder", "전화번호는 비어 있으면 안됩니다.");
                         $("#instructorEmail").attr("placeholder", "이메일은 비어 있으면 안됩니다.");
                     }
-                }
-            })
+                });
         }
     });
 
@@ -444,31 +405,27 @@ $(document).ready(function () {
         var checkSubmit = confirm("세미나 타이틀: " + seminarTitle + ", 세미나 날짜: " + seminarDate + "등록 하시겠습니까?");
 
         if (checkSubmit) {
-            $.ajax({
-                type: "post",
-                async: true,
-                dataType: "json",
-                url: "/seminar",
-                data: {
+            lacs.ajaxWrapper(
+                "/seminar",
+                {
                     title: seminarTitle,
                     date: seminarDate
                 },
-                success: function (response) {
+                function (response) {
                     alert(response.title + ", " + response.date + " 저장에 성공하였습니다.");
                     $("#seminarTitle").val("");
                     $("#seminarDate").val("");
                     $("#seminarTitle").attr("placeholder", "ex) 개발자 경력 개발 세미나.");
                     $("#seminarDate").attr("placeholder", "ex) 05/29/2016");
                 },
-                error: function (error) {
+                function (error) {
                     console.log("세미나 저장 실패.");
                     console.log(error);
                     if (error.responseText === "") {
                         $("#seminarTitle").attr("placeholder", "세미나 타이틀은 비어 있으면 안됩니다.");
                         $("#seminarDate").attr("placeholder", "세미나 예정일은 비어 있으면 안됩니다.");
                     }
-                }
-            })
+                });
         }
     });
 
@@ -483,17 +440,14 @@ $(document).ready(function () {
         var checkSubmit = confirm("이름: " + workerName + ", 전화번호: " + workerPhone + ", 이메일 " + workerEmail + "등록 하시겠습니까?");
 
         if (checkSubmit) {
-            $.ajax({
-                type: "post",
-                async: true,
-                dataType: "json",
-                url: "/worker",
-                data: {
+            lacs.ajaxWrapper(
+                "/worker",
+                {
                     name: workerName,
                     phone: workerPhone,
                     email: workerEmail
                 },
-                success: function (response) {
+                function (response) {
                     alert(response.name + "님, 저장에 성공하였습니다.");
                     $("#workerName").val("");
                     $("#workerPhone").val("");
@@ -502,7 +456,7 @@ $(document).ready(function () {
                     $("#workerPhone").attr("placeholder", "전화번호를 입력해 주세요.");
                     $("#workerEmail").attr("placeholder", "이메일을 입력해 주세요.");
                 },
-                error: function (error) {
+                function (error) {
                     console.log("운영진 저장 실패.");
                     console.log(error);
                     if (error.responseText === "") {
@@ -510,8 +464,7 @@ $(document).ready(function () {
                         $("#workerPhone").attr("placeholder", "전화번호는 비어 있으면 안됩니다.");
                         $("#workerEmail").attr("placeholder", "이메일은 비어 있으면 안됩니다.");
                     }
-                }
-            })
+                });
         }
     });
 
@@ -525,8 +478,8 @@ $(document).ready(function () {
     var tozRestart = $("#tozRestart");
     var rpTaskProgress = $("#rpTaskProgress").val();
 
-    toggleBtn(couponComplete, couponRestart, tozComplete, 50, 0, false);
-    toggleBtn(tozComplete, tozRestart, couponRestart, 100, 50, true);
+    lacs.progressToggleBtn(couponComplete, couponRestart, tozComplete, 50, 0, false);
+    lacs.progressToggleBtn(tozComplete, tozRestart, couponRestart, 100, 50, true);
 
     /**
      * 장소 예약 progress 값에 따라 button 상태 변경.
@@ -557,7 +510,7 @@ $(document).ready(function () {
     var dummy = $("#dummy");
     var roTaskProgress = $("#roTaskProgress").val();
 
-    toggleBtn(onOffMixComplete, onOffMixRestart, dummy, 100, 0, true);
+    lacs.progressToggleBtn(onOffMixComplete, onOffMixRestart, dummy, 100, 0, true);
 
     /**
      * 온오프 믹스 등록 progress 값에 따라 button 상태 변경.
@@ -578,7 +531,7 @@ $(document).ready(function () {
     var promotingRestart = $("#promotingRestart");
     var prTaskProgress = $("#prTaskProgress").val();
 
-    toggleBtn(promotingComplete, promotingRestart, dummy, 100, 0, true);
+    lacs.progressToggleBtn(promotingComplete, promotingRestart, dummy, 100, 0, true);
 
     /**
      * 홍보 progress 값에 따라 button 상태 변경.
@@ -599,7 +552,7 @@ $(document).ready(function () {
     var retrospectingRestart = $("#retrospectingRestart");
     var rtTaskProgress = $("#rtTaskProgress").val();
 
-    toggleBtn(retrospectingComplete, retrospectingRestart, dummy, 100, 0, true);
+    lacs.progressToggleBtn(retrospectingComplete, retrospectingRestart, dummy, 100, 0, true);
 
     /**
      * 회고 progress 값에 따라 button 상태 변경.
