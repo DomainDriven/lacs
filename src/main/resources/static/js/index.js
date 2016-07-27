@@ -20,7 +20,7 @@ $(document).ready(function () {
      */
 
     var datePickerList = [
-        "#seminarDate", "#seminarEditDate", "#editSeminarDate"
+        "#seminarDate", "#seminarEditDate", "#editSeminarDate", "#date"
     ];
 
     datePickerList.forEach(function (selector) {
