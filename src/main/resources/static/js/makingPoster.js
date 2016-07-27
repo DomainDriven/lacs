@@ -1,4 +1,12 @@
 $(document).ready(function () {
+
+    // 진행바 초기화.
+    if ($("#posterProgress").text() == 0) {
+        restart();
+    } else if ($("#posterProgress").text() == 100) {
+        complete();
+    }
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyBj5cWfdcKeUJULThR9ppZhKkn5f9Sog-8",
@@ -25,12 +33,14 @@ $(document).ready(function () {
         // Upload file and metadata to the object 'images/mountains.jpg'
         var uploadTask = storageRef.child(file.name).put(file);
 
-// Listen for state changes, errors, and completion of the upload.
+        // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
             function (snapshot) {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + '% done');
+                $("#uploadProgress").css("width", progress+"%");
+                $("#uploadProgress").text(progress+"%");
                 switch (snapshot.state) {
                     case firebase.storage.TaskState.PAUSED: // or 'paused'
                         console.log('Upload is paused');
@@ -97,13 +107,7 @@ $(document).ready(function () {
          });
 
 
-// 진행바 관리.
 
-        if ($(".progress-bar").text() == 0) {
-            restart();
-        } else if ($(".progress-bar").text() == 100) {
-            complete();
-        }
 
         /**
          * 포스터 작업의 버튼
@@ -157,20 +161,18 @@ $(document).ready(function () {
                 data: {"progress": progress},
                 dataType: "html",
                 success: function () {
-                    alert("Data Saved");
                 }
             });
         }
 
         function uploadPosterResourceByRest(inputFile, title) {
-            alert("업데이트반영중!");
             $.ajax({
                 type: "POST",
                 url: "./uploadPosterResourceByRest",
                 data: {"inputFile": inputFile, "title": title},
                 dataType: "html",
                 success: function () {
-                    alert("업데이트성공!");
+                    alert("전송이완료되었습니다.");
                 }
             });
         }
