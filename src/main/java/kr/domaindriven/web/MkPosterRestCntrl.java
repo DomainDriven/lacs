@@ -31,7 +31,7 @@ public class MkPosterRestCntrl {
         Seminar seminar = seminarService.findByTitle(title);
         Task makingPoster = seminar.getTasks().get(2);
         String fileName = inputFile;
-        if (makingPoster.getPosterResources().size() == 1) {
+        if (makingPoster.getPosterResources().get(0).equals("포스터 자료 없음")) {
             makingPoster.getPosterResources().set(0, fileName);
         } else {
             makingPoster.getPosterResources().add(fileName);
