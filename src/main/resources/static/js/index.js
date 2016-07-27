@@ -1,6 +1,3 @@
-/**
- * Created by donghoon on 2016. 5. 27..
- */
 $(document).ready(function () {
 
     // $('input[name="daterange"]').daterangepicker();
@@ -14,8 +11,8 @@ $(document).ready(function () {
         "#workerPhone", "#instructorPhone"
     ];
 
-    inputMaskList.forEach(function (elem) {
-        $(elem).inputmask("999-9999-9999");
+    inputMaskList.forEach(function (selector) {
+        lacs.makeInputMask(selector);
     });
 
     /**
@@ -26,20 +23,38 @@ $(document).ready(function () {
         "#seminarDate", "#seminarEditDate", "#editSeminarDate"
     ];
 
-    datePickerList.forEach(function (dp) {
-        $(dp).datepicker();
+    datePickerList.forEach(function (selector) {
+        lacs.makeDateRangePicker(selector);
     });
 
     /**
      * DataTable 함수.
      */
+    var dt_option1 = {
+        "scrollCollapse": false,
+        "paging": true
+    };
+
 
     var dataTableList = [
-        '#seminars', '#workers', "#instructors"
+
+        {
+            "selector": "#seminars",
+            "option": dt_option1
+        },
+        {
+            "selector": "#workers",
+            "option": dt_option1
+        },
+        {
+            "selector": "#instructors",
+            "option": dt_option1
+        }
+
     ];
 
-    dataTableList.forEach(function (dt) {
-        $(dt).DataTable();
+    dataTableList.forEach(function (t) {
+        lacs.makeDataTable(t);
     });
 
     /**
