@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration scan="true">
+
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <!-- 출력설정 -->
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %contextName %highlight(%-5level) [%thread]-[위치: %logger{10}.%method:%line] - %msg%n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>lacs_log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Rollover diario -->
+            <fileNamePattern>lacs_log.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <!-- Mantener 30 dias de historia -->
+            <maxHistory>30</maxHistory>
+
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- o cuando el archivo alcance un tamaño de 100MB -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %highlight(%-5level) [%thread]-[location:%logger{10}-%method-%line] - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 하이버네이트 -->
+    <logger name="org.hibernate.SQL" level="DEBUG">
+        <appender-ref ref="console"/>
+    </logger>
+    <!-- 하이버네이트 -->
+    <logger name="org.hibernate.type" level="TRACE">
+        <appender-ref ref="console"/>
+    </logger>
+    <!-- 하이버네이트 -->
+    <logger name="org.hibernate.type.BasicTypeRegistry" level="DEBUG">
+        <appender-ref ref="console"/>
+    </logger>
+    <!-- 히카리CP -->
+    <logger name="com.zaxxer.hikari" level="INFO">
+        <appender-ref ref="console"/>
+    </logger>
+    <!-- 스프링 -->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+    <!--lacs-->
+    <logger name="kr.domaindriven" level="DEBUG">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="kr.domaindriven" level="DEBUG">
+        <appender-ref ref="file"/>
+    </logger>
+
+</configuration>

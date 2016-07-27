@@ -40,7 +40,7 @@ public class InstructorRestCntrl {
      */
     @RequestMapping(method = RequestMethod.POST)
     public Instructor save(@Validated InstructorForm form, BindingResult result) {
-        logger.info("강사후보 생성.");
+        logger.debug("강사후보 생성.");
         if (result.hasErrors()) {
             logger.error("강사후보 생성 오류.");
             List<ObjectError> errorList = result.getAllErrors();
@@ -57,8 +57,8 @@ public class InstructorRestCntrl {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public Instructor editWorker(@RequestParam String id, @RequestParam String name, @RequestParam String phone, @RequestParam String email) {
-        logger.info("강사후보 편집.");
-        logger.info("id: {}, name: {}, phone: {}, email: {}", id, name, phone, email);
+        logger.debug("강사후보 편집.");
+        logger.debug("id: {}, name: {}, phone: {}, email: {}", id, name, phone, email);
 
         Instructor editInstructor = service.findOne(id);
         editInstructor.setName(name);
