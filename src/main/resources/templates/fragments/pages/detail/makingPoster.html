@@ -28,7 +28,7 @@
             <div class="box-body">
                 <h6>현재 총 진행률</h6>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                    <div id="posterProgress" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0"
                          aria-valuemax="100" style="width: 100%;" th:text="${task.getProgress()}">
                         100%
                     </div>
@@ -53,10 +53,10 @@
                         <td>
                             <div class="col-sm-offset-1">
                                 <button type="button" class="btn btn-success full-width" id="PosterComplete"
-                                        style="display: block">완료
+                                        style="display: block">작업 완료시에 여기를 눌러주세요.
                                 </button>
                                 <button type="button" class="btn btn-primary full-width" id="PosterRestart"
-                                        style="display: none">재시작
+                                        style="display: none">작업 취소시에 여기를 눌러주세요.
                                 </button>
                             </div>
                         </td>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="box-body">
-                <table>
+                <table class="table table-striped">
                     <tr>
                         <th>Data File name</th>
                     </tr>
@@ -75,7 +75,7 @@
                             <a th:id="posterResources+${itrStat.index}" th:text="${posterResources}"></a>
                         </td>
                         <td>
-                            <button class="btn btn-sm download" th:value="${itrStat.index}">다운로드</button>
+                            <button class="btn btn-sm download" th:value="${itrStat.index}">살펴보기</button>
                         </td>
                     </tr>
                 </table>
@@ -86,12 +86,12 @@
                     <div class="form-group">
                         <label for="inputFile">파일 업로드</label>
                         <input type="file" name="inputFile" id="inputFile"/>
-                        <p class="help-block">업로드 할 포스터 자료를 선택해주세요.</p>
-                    </div>
+                        <p class="help-block">업로드 할 포스터 자료를 선택해주세요.</p><br/>
+
                     <input type="text" name="hiddenText" id="hiddenText" th:value="${title}" />
-                    <!--todo 버튼에서 submit으로 바꾸기.-->
-                    <!--<button id="inputFileSave" type="submit" class="btn btn-sm btn-warning">save</button>-->
-                    <button id="inputFileSave" type="button" class="btn btn-sm btn-warning">save</button>
+                    <!--<button id="inputFileSave" type="button" class="btn btn-sm btn-warning">save</button>-->
+                    <a th:include="fragments/modal/uploadingProgress :: uploadingProgress"></a>
+                    </div>
                 </form>
             </div>
             <!--.box-body-->
