@@ -1,0 +1,12 @@
+servers:
+  mongo:
+    host: 127.0.0.1
+    port: 27017
+    database: lacs
+server:
+  port: 8080
+spring:
+  profiles: test
+  thymeleaf:
+    cache: false #개발환경에서 서버 재가동 없이 static file 변경 적용. 운영에선 성능을 위해 true 로 설정.
+env: dev #dev, prod
