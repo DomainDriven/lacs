@@ -1,8 +1,7 @@
-package kr.domaindriven;
+package kr.domaindriven.persistance;
 
 import helper.MongoRepositoryIntegrationTestHelper;
 import kr.domaindriven.model.Instructor;
-import kr.domaindriven.persistance.InstructorRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
