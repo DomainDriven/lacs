@@ -58,7 +58,7 @@ public class Task implements ITask {
     /**
      * 포스터자원 List
      */
-    private List<String> posterResources;
+    private List<PosterResource> posterResources;
 
 
     public Task() {
@@ -167,15 +167,15 @@ public class Task implements ITask {
         this.promotingResources = promotingResources;
     }
 
-    public List<String> getPosterResources() {
+    public List<PosterResource> getPosterResources() {
         if(posterResources==null){
-            this.posterResources = new ArrayList<String>();
-            this.posterResources.add("포스터 자료 없음");
+            this.posterResources = new ArrayList<PosterResource>();
+            this.posterResources.add(new PosterResource("포스터 자료 없음",false));
         }
         return posterResources;
     }
 
-    public void setPosterResources(List<String> posterResources) {
+    public void setPosterResources(List<PosterResource> posterResources) {
         this.posterResources = posterResources;
     }
 }

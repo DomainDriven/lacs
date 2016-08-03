@@ -72,7 +72,7 @@
                     </tr>
                     <tr th:each="posterResources,itrStat :${task.getPosterResources()}">
                         <td>
-                            <a th:id="posterResources+${itrStat.index}" th:text="${posterResources}"></a>
+                            <a th:id="posterResources+${itrStat.index}" th:text="${posterResources.getResourcesName()}"></a>
                         </td>
                         <td>
                             <button class="btn btn-sm download" th:value="${itrStat.index}">살펴보기</button>

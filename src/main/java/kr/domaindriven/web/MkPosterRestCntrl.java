@@ -1,5 +1,6 @@
 package kr.domaindriven.web;
 
+import kr.domaindriven.model.PosterResource;
 import kr.domaindriven.model.Seminar;
 import kr.domaindriven.model.Task;
 import kr.domaindriven.service.SeminarService;
@@ -31,10 +32,10 @@ public class MkPosterRestCntrl {
         Seminar seminar = seminarService.findByTitle(title);
         Task makingPoster = seminar.getTasks().get(2);
         String fileName = inputFile;
-        if (makingPoster.getPosterResources().get(0).equals("포스터 자료 없음")) {
-            makingPoster.getPosterResources().set(0, fileName);
+        if (makingPoster.getPosterResources().get(0).getResourcesName().equals("포스터 자료 없음")) {
+            makingPoster.getPosterResources().set(0, new PosterResource(fileName,false));
         } else {
-            makingPoster.getPosterResources().add(fileName);
+            makingPoster.getPosterResources().add(new PosterResource(fileName,false));
         }
         seminarService.save(seminar);
     }
