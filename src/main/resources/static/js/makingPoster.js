@@ -39,8 +39,8 @@ $(document).ready(function () {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + '% done');
-                $("#uploadProgress").css("width", progress+"%");
-                $("#uploadProgress").text(progress+"%");
+                $("#uploadProgress").css("width", progress + "%");
+                $("#uploadProgress").text(progress + "%");
                 switch (snapshot.state) {
                     case firebase.storage.TaskState.PAUSED: // or 'paused'
                         console.log('Upload is paused');
@@ -78,8 +78,8 @@ $(document).ready(function () {
 // API 다운로드 관리
     $(".download").on("click", function () {
         var fileName = $("#posterResources" + $(this).attr("value")).text();
-        var fileURL = "https://firebasestorage.googleapis.com/v0/b/lacs-b35d9.appspot.com/o/"+fileName+"?alt=media";
-        $(location).attr('href',fileURL);
+        var fileURL = "https://firebasestorage.googleapis.com/v0/b/lacs-b35d9.appspot.com/o/" + fileName + "?alt=media";
+        $(location).attr('href', fileURL);
 
         /*        var gsReference = storageRef.child(fileName).getDownloadURL();
          alert(gsReference.toString());// Get the download URL
@@ -104,76 +104,93 @@ $(document).ready(function () {
          break;
          }
          });*/
-         });
-
-
-
-
-        /**
-         * 포스터 작업의 버튼
-         */
-
-        $("#PosterComplete").on("click", function () {
-            complete();
-            progressUpdate(100);
-        });
-
-        $("#PosterRestart").on("click", function () {
-            restart();
-            progressUpdate(0);
-        });
-
-        /**
-         * 완료시
-         * 버튼 Restart -> Complete
-         * 진행바 100%로
-         */
-
-        function complete() {
-            $("#PosterComplete").css("display", "none");
-            $("#PosterRestart").css("display", "block");
-            $(".progress-bar").css("width", "100%");
-            $(".progress-bar").text("100%");
-
-        }
-
-        /**
-         * 취소시
-         * 버튼 Complete -> Restart
-         * 진행바 0%로
-         */
-
-        function restart() {
-            $("#PosterRestart").css("display", "none");
-            $("#PosterComplete").css("display", "block");
-            $(".progress-bar").css("width", "0%");
-            $(".progress-bar").text("0%");
-        }
-
-        /**
-         * progress update
-         */
-        function progressUpdate(progress) {
-            console.log("progressUpdate 눌림");
-            $.ajax({
-                type: "POST",
-                url: "/updatePosterTask",
-                data: {"progress": progress},
-                dataType: "html",
-                success: function () {
-                }
-            });
-        }
-
-        function uploadPosterResourceByRest(inputFile, title) {
-            $.ajax({
-                type: "POST",
-                url: "./uploadPosterResourceByRest",
-                data: {"inputFile": inputFile, "title": title},
-                dataType: "html",
-                success: function () {
-                    alert("전송이완료되었습니다.");
-                }
-            });
-        }
     });
+
+    $(".remove").on("click", function () {
+        var title = $("#hiddenText").val();
+        var index = $(this).val();
+        deletePosterResourceByRest(index,title);
+        location.reload(); //페이지 다시실행
+    });
+
+
+    /**
+     * 포스터 작업의 버튼
+     */
+
+    $("#PosterComplete").on("click", function () {
+        complete();
+        progressUpdate(100);
+    });
+
+    $("#PosterRestart").on("click", function () {
+        restart();
+        progressUpdate(0);
+    });
+
+    /**
+     * 완료시
+     * 버튼 Restart -> Complete
+     * 진행바 100%로
+     */
+
+    function complete() {
+        $("#PosterComplete").css("display", "none");
+        $("#PosterRestart").css("display", "block");
+        $(".progress-bar").css("width", "100%");
+        $(".progress-bar").text("100%");
+
+    }
+
+    /**
+     * 취소시
+     * 버튼 Complete -> Restart
+     * 진행바 0%로
+     */
+
+    function restart() {
+        $("#PosterRestart").css("display", "none");
+        $("#PosterComplete").css("display", "block");
+        $(".progress-bar").css("width", "0%");
+        $(".progress-bar").text("0%");
+    }
+
+    /**
+     * progress update
+     */
+    function progressUpdate(progress) {
+        console.log("progressUpdate 눌림");
+        $.ajax({
+            type: "POST",
+            url: "/updatePosterTask",
+            data: {"progress": progress},
+            dataType: "html",
+            success: function () {
+            }
+        });
+    }
+
+    function uploadPosterResourceByRest(inputFile, title) {
+        $.ajax({
+            type: "POST",
+            url: "./uploadPosterResourceByRest",
+            data: {"inputFile": inputFile, "title": title},
+            dataType: "html",
+            success: function () {
+                alert("전송이완료되었습니다.");
+            }
+        });
+    }
+
+    function deletePosterResourceByRest(fileIndex, title) {
+        $.ajax({
+            type: "POST",
+            url: "./deletePosterResourceByRest",
+            data: {"fileIndex": fileIndex, "title": title},
+            dataType: "html",
+            success: function () {
+                alert("삭제가 완료되었습니다.");
+            }
+        });
+    }
+});

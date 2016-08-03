@@ -40,4 +40,12 @@ public class MkPosterRestCntrl {
         seminarService.save(seminar);
     }
 
+    @RequestMapping(value = "/deletePosterResourceByRest", method = RequestMethod.POST)
+    public void deletePosterResource(@RequestParam("fileIndex") int fileIndex, @RequestParam("title") String title) {
+        Seminar seminar = seminarService.findByTitle(title);
+        Task makingPoster = seminar.getTasks().get(2);
+        makingPoster.getPosterResources().get(fileIndex).setDeleted(true);
+        seminarService.save(seminar);
+    }
+
 }
