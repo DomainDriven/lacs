@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by jerry on 2016-07-13.
  */
@@ -30,12 +32,23 @@ public class MkPosterRestCntrl {
     @RequestMapping(value = "/uploadPosterResourceByRest", method = RequestMethod.POST)
     public void uploadPosterResource(@RequestParam("inputFile") String inputFile, @RequestParam("title") String title) {
         Seminar seminar = seminarService.findByTitle(title);
-        Task makingPoster = seminar.getTasks().get(2);
+        List<PosterResource> posterResources = seminar.getTasks().get(2).getPosterResources();
         String fileName = inputFile;
-        if (makingPoster.getPosterResources().get(0).getResourcesName().equals("포스터 자료 없음")) {
-            makingPoster.getPosterResources().set(0, new PosterResource(fileName,false));
+
+        if (posterResources.get(0).getResourcesName().equals("포스터 자료 없음")) {
+            posterResources.set(0, new PosterResource(fileName,false));
         } else {
-            makingPoster.getPosterResources().add(new PosterResource(fileName,false));
+            int indexNum = 0;
+            for(PosterResource pr:posterResources){
+                if(pr.getResourcesName().equals(inputFile)){
+                    break;
+                }
+                indexNum++;
+            }
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@"+indexNum);
+            if(posterResources.size()!=indexNum){
+                posterResources.remove(indexNum);}
+            posterResources.add(new PosterResource(fileName,false));
         }
         seminarService.save(seminar);
     }
