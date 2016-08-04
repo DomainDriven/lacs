@@ -72,15 +72,15 @@
                         <th>Data File name</th>
                     </tr>
                     <tr th:each="posterResources,itrStat :${task.getPosterResources()}">
-                        <td>
-                            <a th:id="posterResources+${itrStat.index}"
+                        <td th:switch="${posterResources.getIsDeleted()}">
+                            <a th:case="${false}" th:id="posterResources+${itrStat.index}"
                                th:text="${posterResources.getResourcesName()}"></a>
                         </td>
-                        <td>
-                            <button class="btn btn-sm download" th:value="${itrStat.index}">살펴보기</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm remove" th:value="${itrStat.index}">삭제하기</button>
+                        <td th:switch="${posterResources.getIsDeleted()}">
+                            <div th:case="${false}">
+                                <button class="btn btn-sm download" th:value="${itrStat.index}">살펴보기</button>
+                                <button class="btn btn-sm remove" th:value="${itrStat.index}">삭제하기</button>
+                            </div>
                         </td>
                     </tr>
                 </table>
