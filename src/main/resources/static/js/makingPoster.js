@@ -67,7 +67,6 @@ $(document).ready(function () {
                 // Upload completed successfully, now we can get the download URL
                 var downloadURL = uploadTask.snapshot.downloadURL;
                 uploadPosterResourceByRest(file.name, title);
-                location.reload(); //페이지 다시실행
             });
     });
 
@@ -178,6 +177,7 @@ $(document).ready(function () {
             dataType: "html",
             success: function () {
                 alert("전송이완료되었습니다.");
+                location.reload(); //페이지 다시실행
             }
         });
     }
