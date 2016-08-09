@@ -24,50 +24,60 @@ $(document).ready(function () {
 
 
     //파일 업로드(save) 버튼 클릭시 하기 위한 기능
-    $("#inputFileSave").on("click", function () {
-        alert("저장시작");
-        // File or Blob, assume the file is called rivers.jpg
+    $("#inputFileSave").on("click", function (e) {
         var inputfile = $("#inputFile");
         var file = inputfile[0].files[0];
-        var title = $("#hiddenText").val();
-        // Upload file and metadata to the object 'images/mountains.jpg'
-        var uploadTask = storageRef.child(file.name).put(file);
 
-        // Listen for state changes, errors, and completion of the upload.
-        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-            function (snapshot) {
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                $("#uploadProgress").css("width", progress + "%");
-                $("#uploadProgress").text(progress + "%");
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, function (error) {
-                switch (error.code) {
-                    case 'storage/unauthorized':
-                        // User doesn't have permission to access the object
-                        break;
+        if (inputfile[0].files.length === 0) {
+            alert("업로드할 파일을 먼저 선택해 주세요.");
 
-                    case 'storage/canceled':
-                        // User canceled the upload
-                        break;
+            e.preventDefault();
+            $('#uploadingProgressModal').modal();
 
-                    case 'storage/unknown':
-                        // Unknown error occurred, inspect error.serverResponse
-                        break;
-                }
-            }, function () {
-                // Upload completed successfully, now we can get the download URL
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                uploadPosterResourceByRest(file.name, title);
-            });
+        } else {
+            alert("저장시작");
+            // File or Blob, assume the file is called rivers.jpg
+
+            var title = $("#hiddenText").val();
+            // Upload file and metadata to the object 'images/mountains.jpg'
+            var uploadTask = storageRef.child(file.name).put(file);
+
+            // Listen for state changes, errors, and completion of the upload.
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                function (snapshot) {
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    $("#uploadProgress").css("width", progress + "%");
+                    $("#uploadProgress").text(progress + "%");
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                }, function (error) {
+                    switch (error.code) {
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect error.serverResponse
+                            break;
+                    }
+                }, function () {
+                    // Upload completed successfully, now we can get the download URL
+                    var downloadURL = uploadTask.snapshot.downloadURL;
+                    uploadPosterResourceByRest(file.name, title);
+                });
+        }
     });
 
 
