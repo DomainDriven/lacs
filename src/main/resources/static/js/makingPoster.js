@@ -108,8 +108,14 @@ $(document).ready(function () {
     $(".remove").on("click", function () {
         var title = $("#hiddenText").val();
         var index = $(this).val();
-        deletePosterResourceByRest(index,title);
-        location.reload(); //페이지 다시실행
+
+        var deleteChceck = confirm("정말 삭제 하시겠습니까?");
+
+        if (deleteChceck) {
+            deletePosterResourceByRest(index, title);
+            location.reload(); //페이지 다시실행
+        }
+
     });
 
 
