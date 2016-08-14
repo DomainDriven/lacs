@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LandingPageController {
 
-    private static final String PAGE = "landingpage/index";
+    private static final String PAGE = "index";
 
     @RequestMapping(value = "/")
     public String landingPage() {
