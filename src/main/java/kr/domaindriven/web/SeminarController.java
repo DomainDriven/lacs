@@ -40,7 +40,7 @@ public class SeminarController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/currentSeminar", method = RequestMethod.GET)
     public String index(Model model) {
         logger.debug("현재 진행중인 세미나 화면..");
 
