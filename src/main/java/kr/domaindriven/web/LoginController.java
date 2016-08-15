@@ -31,5 +31,10 @@ public class LoginController {
         }
 
     }
+    @RequestMapping(value = "/facebookSSO")
+    public String facebookSSO(){
+        System.out.println("11");
+        return "facebookSSO";
+    }
 
 }
