@@ -1,6 +1,7 @@
 package kr.domaindriven.web;
 
 import kr.domaindriven.model.form.IdAndPassWordForm;
+import kr.domaindriven.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,9 @@ public class LoginController {
     @Autowired
     private SeminarController seminarController;
 
+    @Autowired
+    private LoginService loginService;
+
     private static final String PAGE = "login";
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -24,7 +28,7 @@ public class LoginController {
 
     @RequestMapping(value = "/authentication", method = RequestMethod.POST)
     public String authenticate(@ModelAttribute IdAndPassWordForm idAndPassWord, Model model) {
-        if ((idAndPassWord.getId().equals("test@test.com")) && (idAndPassWord.getPassword().equals("1234"))) {
+        if (loginService.isOurUser(idAndPassWord)) {
             return seminarController.index(model);
         } else {
             return PAGE;
