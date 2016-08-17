@@ -199,14 +199,14 @@ $(document).ready(function () {
     }
 
     function deletePosterResourceByRest(fileIndex, title) {
-        $.ajax({
-            type: "POST",
-            url: "./deletePosterResourceByRest",
-            data: {"fileIndex": fileIndex, "title": title},
-            dataType: "html",
-            success: function () {
-                alert("삭제가 완료되었습니다.");
-            }
-        });
+            $.ajax({
+                type: "POST",
+                url: "./deletePosterResourceByRest",
+                data: {"fileIndex": fileIndex, "title": title},
+                dataType: "html",
+                success: function () {
+                    alert("삭제가 완료되었습니다.");
+                }
+            });
     }
 });

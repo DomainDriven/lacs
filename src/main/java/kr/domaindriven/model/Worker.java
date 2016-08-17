@@ -18,6 +18,7 @@ public class Worker {
     private String name;
     private String phone;
     private String email;
+    private String accessCode;
 
     public Worker(){}
 
@@ -29,6 +30,13 @@ public class Worker {
         this.name = name;
         this.phone = phone;
         this.email = email;
+    }
+
+    public Worker(String name, String phone, String email, String accessCode) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.accessCode = accessCode;
     }
 
     public String getId() {
@@ -57,5 +65,13 @@ public class Worker {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAccessCode() {
+        return accessCode;
+    }
+
+    public void setAccessCode(String accessCode) {
+        this.accessCode = accessCode;
     }
 }

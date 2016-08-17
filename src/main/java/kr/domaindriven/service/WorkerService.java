@@ -63,4 +63,6 @@ public class WorkerService implements IWorkerService {
     public Long count() {
         return repository.count();
     }
+
+    public Worker findByAccessCode(String accessCode){return repository.findByAccessCode(accessCode);}
 }

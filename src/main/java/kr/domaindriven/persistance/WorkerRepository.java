@@ -11,4 +11,8 @@ public interface WorkerRepository extends MongoRepository<Worker, String> {
 
     @Query(value = "{ 'name' : ?0 }")
     Worker findByName(String name);
+
+    @Query(value = "{ 'accessCode' : ?0 }")
+    Worker findByAccessCode(String accessCode);
+
 }

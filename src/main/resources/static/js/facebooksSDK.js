@@ -78,9 +78,29 @@ $(document).ready(function () {
     //로그인후 필드 접근 방법은 http://stackoverflow.com/questions/32436662/email-scope-is-not-working-which-is-used-in-fb-login 참조
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me',{fields: 'id,name,email'},function (response) {
+        FB.api('/me', {fields: 'id,name,email'}, function (response) {
             console.log('Successful login for: ' + response.email);
+            console.log(access_token);
             console.log(JSON.stringify(response));
+            accessToLacsLogin(response.id, response.email);
+        });
+    }
+
+    function accessToLacsLogin(id, email) {
+        $.ajax({
+            type: "POST",
+            url: "./authenticationFacebook",
+            data: {"id": id, "email": email},
+            dataType: "html",
+            success: function (data) {
+                console.log(data);
+                if (data === "true") {
+                    window.location.replace("currentSeminar");
+                }
+                else {
+                    console.info("로그인실패");
+                }
+            }
         });
     }
 
