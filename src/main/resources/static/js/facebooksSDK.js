@@ -19,7 +19,6 @@ $(document).ready(function () {
     $("#facebooksso").on('click', function () {
             console.info("facebook SSO를 시도합니다.");
             fb_login();
-            checkLoginState();
         }
     );
 
@@ -31,27 +30,18 @@ $(document).ready(function () {
                 //console.log(response); // dump complete info
                 access_token = response.authResponse.accessToken; //get access token
                 user_id = response.authResponse.userID; //get FB UID
-
-                FB.api('/me', function (response) {
-                    user_email = response.email; //get user email
-                    // you can store this data into your database
+                FB.api('/me', function(response) {
+                    console.log('Good to see you, ' + response.name + '.');
                 });
-
             } else {
                 //user hit cancel button
                 console.log('User cancelled login or did not fully authorize.');
             }
+            checkLoginState();
         }, {
             scope: 'public_profile, email' // 이 경우 사용자의 이메일 주소와 앱을 사용하는 친구 리스트를 요청합니다.
         });
     }
-
-    (function () {
-        var e = document.createElement('script');
-        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
-        e.async = true;
-        document.getElementById('fb-root').appendChild(e);
-    }());
 
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -65,13 +55,11 @@ $(document).ready(function () {
             testAPI();
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
-            document.getElementById('status').innerHTML = 'Please log ' +
-                'into this app.';
+            console.log("Please log into this app.");
         } else {
             // The person is not logged into Facebook, so we're not sure if
             // they are logged into this app or not.
-            document.getElementById('status').innerHTML = 'Please log ' +
-                'into Facebook.';
+            console.log("Please log into this app.");
         }
     }
 
@@ -102,6 +90,7 @@ $(document).ready(function () {
                 }
             }
         });
-    }
+    };
+
 
 });
