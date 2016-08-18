@@ -1,4 +1,17 @@
 $(document).ready(function () {
+    $("#userMenuOnTheBar").css("display","block");
+
+    
+    function userMenuChange() {
+        if("로그인안됬으면"){
+            $('#userMenuOnTheBar').css("display","block");
+            $('#loginButton').css("display","none");
+        }else {
+            $('#userMenuOnTheBar').css("display","none");
+            $('#loginButton').css("display","block");
+        }
+    }
+
     $.ajaxSetup({cache: true});
     $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
         FB.init({
