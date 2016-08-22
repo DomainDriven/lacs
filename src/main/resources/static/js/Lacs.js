@@ -45,15 +45,18 @@ Lacs.prototype = {
      * @param successFunc
      * @param errorFunc
      */
-    ajaxWrapper: function (url, data, successFunc, errorFunc) {
+    ajaxWrapper: function (url, data, successFunc, errorFunc, dataType) {
+        if (dataType === null)
+            dataType = "json";
+
         $.ajax({
             type: "post",
             async: true,
-            dataType: "json",
             url: url,
             data: data,
             success: successFunc,
-            error: errorFunc
+            error: errorFunc,
+            dataType: dataType
         })
     },
 
