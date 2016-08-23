@@ -43,7 +43,7 @@ public class ControllerProfilingAspect {
         } finally {
             stopWatch.stop();
             logger.debug(signatureStr + ": 종료");
-            logger.info(signatureStr + ": 실행시간=" + stopWatch.getTotalTimeMillis());
+            logger.info(signatureStr + ": 실행시간=" + stopWatch.getTotalTimeMillis() + "ms");
         }
 
     }
