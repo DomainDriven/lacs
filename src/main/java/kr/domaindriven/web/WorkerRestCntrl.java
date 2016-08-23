@@ -39,13 +39,12 @@ public class WorkerRestCntrl {
      * @return
      */
     @RequestMapping(method = RequestMethod.POST)
-    public Worker save(@Validated WorkerForm form, BindingResult result) {
-        logger.debug("운영진 생성.");
+    public Worker saveWorker(@Validated WorkerForm form, BindingResult result) {
+
         if (result.hasErrors()) {
-            logger.error("운영진 생성 오류.");
             List<ObjectError> errorList = result.getAllErrors();
             for (ObjectError error : errorList) {
-                logger.error(error.toString());
+                logger.error("운영진 추가 오류: " + error.toString());
             }
             return null;
         }
@@ -57,8 +56,6 @@ public class WorkerRestCntrl {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public Worker editWorker(@RequestParam String id, @RequestParam String name, @RequestParam String phone, @RequestParam String email) {
-        logger.debug("운영진 편집.");
-        logger.debug("id: {}, name: {}, phone: {}, email: {}", id, name, phone, email);
 
         Worker editWorker = service.findOne(id);
         editWorker.setName(name);

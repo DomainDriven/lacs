@@ -27,8 +27,7 @@ public class WorkerController {
     private WorkerService service;
 
     @RequestMapping(value = "/addWorker", method = RequestMethod.GET)
-    public String addInstructorForm(Model model) {
-        logger.debug("운영진 추가 폼 화면..");
+    public String addWorkerForm(Model model) {
 
         model.addAttribute("formMenu", ACTIVE_CLASS);
         model.addAttribute("addWorkerClass", ACTIVE_CLASS);
@@ -39,7 +38,6 @@ public class WorkerController {
 
     @RequestMapping(value = "/allWorker", method = RequestMethod.GET)
     public String allWorker(@PageableDefault Pageable pageable, Model model) {
-        logger.debug("모든 운영진 리스트 화면..");
 
         Page<Worker> workers = service.findAll(pageable);
         model.addAttribute("workers", workers);
@@ -52,9 +50,7 @@ public class WorkerController {
     }
 
     @RequestMapping(value = "/editWorker", method = RequestMethod.GET)
-    public String editInstructorForm(Model model, @RequestParam String id) {
-        logger.debug("운영진 편집 폼 화면..");
-        logger.debug("운영진 id: {}", id);
+    public String editWorkerForm(Model model, @RequestParam String id) {
 
         Worker editWorker = service.findOne(id);
 
@@ -65,9 +61,7 @@ public class WorkerController {
     }
 
     @RequestMapping(value = "/deleteWorker", method = RequestMethod.POST)
-    public String deleteSeminar(@PageableDefault Pageable pageable, Model model, @RequestParam String id) {
-        logger.debug("운영진 삭제.");
-        logger.debug("운영진 id: {}", id);
+    public String deleteWorker(@PageableDefault Pageable pageable, Model model, @RequestParam String id) {
 
         service.deleteWorker(id);
 
