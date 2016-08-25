@@ -41,8 +41,7 @@ public class SeminarController {
      * @return
      */
     @RequestMapping(value = "/currentSeminar", method = RequestMethod.GET)
-    public String index(Model model) {
-        logger.debug("현재 진행중인 세미나 화면..");
+    public String currentSeminar(Model model) {
 
         Seminar currentSeminar = smService.findByIsCompleted(false);
         List<Worker> workers = wService.findAll();
@@ -73,7 +72,6 @@ public class SeminarController {
      */
     @RequestMapping(value = "/addSeminar", method = RequestMethod.GET)
     public String addSeminarForm(Model model) {
-        logger.debug("세미나 추가 폼 화면..");
 
         model.addAttribute("formMenu", ACTIVE_CLASS);
         model.addAttribute("addSeminarClass", ACTIVE_CLASS);
@@ -91,7 +89,6 @@ public class SeminarController {
      */
     @RequestMapping(value = "/allSeminar", method = RequestMethod.GET)
     public String allSeminar(@PageableDefault Pageable pageable, Model model) {
-        logger.debug("모든 세미나 리스트 화면..");
 
         Page<Seminar> seminars = smService.findAll(pageable);
         model.addAttribute("seminars", seminars);
@@ -111,8 +108,6 @@ public class SeminarController {
      */
     @RequestMapping(value = "/editSeminar", method = RequestMethod.GET)
     public String editSeminarForm(Model model, @RequestParam String id) {
-        logger.debug("세미나 편집 폼 화면..");
-        logger.debug("세미나 id: {}", id);
 
         Seminar editSeminar = smService.findOne(id);
 
@@ -124,8 +119,6 @@ public class SeminarController {
 
     @RequestMapping(value = "/deleteSeminar", method = RequestMethod.POST)
     public String deleteSeminar(@PageableDefault Pageable pageable, Model model, @RequestParam String id) {
-        logger.debug("세미나 삭제.");
-        logger.debug("세미나 id: {}", id);
 
         smService.deleteSeminar(id);
 

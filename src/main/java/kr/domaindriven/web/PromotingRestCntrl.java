@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class PromotingRestCntrl {
 
     @Autowired
-    SeminarService seminarService;
+    private SeminarService seminarService;
 
     @RequestMapping(value = "/deletePromotion",method = RequestMethod.POST)
-    public void updatePosterTask(@RequestParam("indexNumber") int indexNumber, @RequestParam("title") String title){
+    public void deletePromotion(@RequestParam("indexNumber") int indexNumber, @RequestParam("title") String title){
         // TODO: 2016-07-13 완료되지 않은 세미나를 동시에 두개 이상 병렬로 진행 할 때 문제가 될 것 같음 - 재열
         Seminar seminar = seminarService.findByTitle(title);
         seminar.getTasks().get(4).getPromotingResources().remove(indexNumber);

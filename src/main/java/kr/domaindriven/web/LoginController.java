@@ -22,23 +22,22 @@ public class LoginController {
     private static final String PAGE = "login";
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String landingPage() {
+    public String login() {
         return PAGE;
     }
 
     @RequestMapping(value = "/authentication", method = RequestMethod.POST)
-    public String authenticate(@ModelAttribute IdAndPassWordForm idAndPassWord, Model model) {
+    public String authentication(@ModelAttribute IdAndPassWordForm idAndPassWord, Model model) {
         if (loginService.isOurUser(idAndPassWord)) {
-            return seminarController.index(model);
+            return seminarController.currentSeminar(model);
         } else {
             return PAGE;
         }
     }
 
 
-
     @RequestMapping(value = "/facebookSSO")
-    public String facebookSSO(){
+    public String facebookSSO() {
         System.out.println("11");
         return "facebookSSO";
     }

@@ -15,13 +15,12 @@ public class LoginRestCntrl {
     private LoginService loginService;
 
     @RequestMapping(value = "/authenticationFacebook", method = RequestMethod.POST)
-    public Boolean authenticate(@RequestParam("id") String id, @RequestParam("email") String email) {
+    public Boolean authenticationFacebook(@RequestParam("id") String id, @RequestParam("email") String email) {
         return loginService.isOurUser(new FacebookAuth(id,email));
     }
 
     @RequestMapping(value = "/authenticationFacebook/{id}", method = RequestMethod.GET)
-    public String authenticate(@PathVariable String id) {
-        System.out.println(id);
+    public String authenticationFacebook(@PathVariable String id) {
         return id;
     }
 }

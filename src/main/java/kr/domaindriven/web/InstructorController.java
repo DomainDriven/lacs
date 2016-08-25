@@ -42,7 +42,6 @@ public class InstructorController {
      */
     @RequestMapping(value = "/addInstructor", method = RequestMethod.GET)
     public String addInstructorForm(Model model) {
-        logger.debug("강사후보 추가 폼 화면..");
 
         model.addAttribute("formMenu", ACTIVE_CLASS);
         model.addAttribute("addInstructorClass", ACTIVE_CLASS);
@@ -60,7 +59,6 @@ public class InstructorController {
      */
     @RequestMapping(value = "/allInstructor", method = RequestMethod.GET)
     public String allInstructor(@PageableDefault Pageable pageable, Model model) {
-        logger.debug("모든 강사후보 리스트 화면..");
 
         Page<Instructor> instructors = instructorService.findAll(pageable);
         model.addAttribute("instructors", instructors);
@@ -79,9 +77,7 @@ public class InstructorController {
      * @return
      */
     @RequestMapping(value = "/editInstructor", method = RequestMethod.GET)
-    public String editInstructorForm(Model model, @RequestParam String id) {
-        logger.debug("강사후보 편집 폼 화면..");
-        logger.debug("강사후보 id: {}", id);
+    public String editInstructor(Model model, @RequestParam String id) {
 
         Instructor editInstructor = instructorService.findOne(id);
 
@@ -93,8 +89,6 @@ public class InstructorController {
 
     @RequestMapping(value = "/deleteInstructor", method = RequestMethod.POST)
     public String deleteInstructor(@PageableDefault Pageable pageable, Model model, @RequestParam String id) {
-        logger.debug("강사후보 삭제.");
-        logger.debug("강사후보 id: {}", id);
 
         instructorService.deleteInstructor(id);
 

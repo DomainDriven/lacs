@@ -19,7 +19,7 @@ import java.util.List;
 public class MkPosterRestCntrl {
 
     @Autowired
-    SeminarService seminarService;
+    private SeminarService seminarService;
 
     @RequestMapping(value = "/updatePosterTask", method = RequestMethod.POST)
     public void updatePosterTask(@RequestParam("progress") int progress) {
@@ -30,7 +30,7 @@ public class MkPosterRestCntrl {
     }
 
     @RequestMapping(value = "/uploadPosterResourceByRest", method = RequestMethod.POST)
-    public void uploadPosterResource(@RequestParam("inputFile") String inputFile, @RequestParam("title") String title) {
+    public void uploadPosterResourceByRest(@RequestParam("inputFile") String inputFile, @RequestParam("title") String title) {
         Seminar seminar = seminarService.findByTitle(title);
         List<PosterResource> posterResources = seminar.getTasks().get(2).getPosterResources();
         String fileName = inputFile;
@@ -54,7 +54,7 @@ public class MkPosterRestCntrl {
     }
 
     @RequestMapping(value = "/deletePosterResourceByRest", method = RequestMethod.POST)
-    public void deletePosterResource(@RequestParam("fileIndex") int fileIndex, @RequestParam("title") String title) {
+    public void deletePosterResourceByRest(@RequestParam("fileIndex") int fileIndex, @RequestParam("title") String title) {
         Seminar seminar = seminarService.findByTitle(title);
         Task makingPoster = seminar.getTasks().get(2);
         makingPoster.getPosterResources().get(fileIndex).setIsDeleted(true);
