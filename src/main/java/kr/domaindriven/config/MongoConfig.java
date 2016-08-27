@@ -1,9 +1,8 @@
-package kr.domaindriven.persistance;
+package kr.domaindriven.config;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.WriteConcern;
-import kr.domaindriven.config.LacsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +17,7 @@ import java.util.Map;
  * MongoDB 설정 클래스.
  */
 @Configuration
-@EnableMongoRepositories
+@EnableMongoRepositories("kr.domaindriven.persistance")
 public class MongoConfig {
 
     @Autowired
