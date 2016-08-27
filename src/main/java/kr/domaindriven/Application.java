@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +19,8 @@ import java.util.Map;
  * Created by jerry on 2016-05-15.
  */
 @SpringBootApplication
-@EnableWebMvc
-public class Application extends WebMvcConfigurerAdapter implements CommandLineRunner {
+@Import(value = kr.domaindriven.config.WebConfig.class)
+public class Application implements CommandLineRunner {
 
     private Logger logger = LoggerFactory.getLogger(Application.class);
 
@@ -35,18 +33,6 @@ public class Application extends WebMvcConfigurerAdapter implements CommandLineR
 
     public static void main(String... args) {
         SpringApplication.run(Application.class, args);
-    }
-
-    /**
-     * static folder 이하에 있는 정적자원들 인식.
-     *
-     * @param registry
-     */
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        if (!registry.hasMappingForPattern("/static/**")) {
-            registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        }
     }
 
     /**
