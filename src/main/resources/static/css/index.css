@@ -44,3 +44,6 @@
 .error-messages {
     color: #b94a48;
 }
+#userMenuOnTheBar{
+    visibility: hidden;
+}

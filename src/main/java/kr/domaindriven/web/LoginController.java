@@ -2,6 +2,7 @@ package kr.domaindriven.web;
 
 import kr.domaindriven.model.form.IdAndPassWordForm;
 import kr.domaindriven.service.LoginService;
+import kr.domaindriven.util.FacebookAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,11 +36,5 @@ public class LoginController {
         }
     }
 
-
-    @RequestMapping(value = "/facebookSSO")
-    public String facebookSSO() {
-        System.out.println("11");
-        return "facebookSSO";
-    }
 
 }

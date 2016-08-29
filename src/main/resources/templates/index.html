@@ -70,15 +70,15 @@
                     <a class="page-scroll" th:href="@{login}">Login</a>
                 </li>
                 <li class="dropdown user user-menu" id="userMenuOnTheBar">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img th:src="@{/static/img/user2-160x160.jpg}" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs">Alexander Pierce</span>
+                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="false">
+                        <img id="userImg1" class="user-image" alt="User Image"/>
+                        <span class="hidden-xs" id="userName">Jay</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-                        <li class="user-header">
-                            <img th:src="@{/static/img/user2-160x160.jpg}" class="img-circle" alt="User Image"/>
-                            <p style="color: #0c0c0c">
+                        <li class="user-header userInfo">
+                            <img  id="userImg2"  class="img-circle" alt="User Image"/>
+                            <p style="color: #0c0c0c" id="userInfo2">
                                 Alexander Pierce - Web Developer
                                 <small>Member since Nov. 2012</small>
                             </p>

@@ -1,16 +1,7 @@
 $(document).ready(function () {
-    $("#userMenuOnTheBar").css("display","block");
-
-    
-    function userMenuChange() {
-        if("로그인안됬으면"){
-            $('#userMenuOnTheBar').css("display","block");
-            $('#loginButton').css("display","none");
-        }else {
-            $('#userMenuOnTheBar').css("display","none");
-            $('#loginButton').css("display","block");
-        }
-    }
+   // $("#userMenuOnTheBar").css("display","block");
+    //유저창 설정
+    usersInfoMenuSetting();
 
     $.ajaxSetup({cache: true});
     $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
@@ -45,6 +36,7 @@ $(document).ready(function () {
                 user_id = response.authResponse.userID; //get FB UID
                 FB.api('/me', function(response) {
                     console.log('Good to see you, ' + response.name + '.');
+                    localStorageF("userName",response.name);
                 });
             } else {
                 //user hit cancel button
@@ -96,7 +88,10 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 if (data === "true") {
-                    window.location.replace("currentSeminar");
+                    alert(id);
+                    localStorageF("id",id);
+                    localStorageF("email",email);
+                    window.location.replace("/");
                 }
                 else {
                     console.info("로그인실패");
@@ -105,5 +100,31 @@ $(document).ready(function () {
         });
     };
 
+    //사용자 정보 설정
+    function usersInfoMenuSetting() {
+        var id = "none";
+        id = localStorage.getItem("id");
+        var email = localStorage.getItem("email");
+        var userName = localStorage.getItem("userName");
+        if(id!=null){
+        imgSrc = "http://graph.facebook.com/v2.7/"+id+"/picture?width=160";
+        $("#userImg1").attr("src",imgSrc);
+        $("#userImg2").attr("src",imgSrc);
+            $("#userName").html(userName);
+            $("#userInfo2").html(userName+"<br>"+email);
+            $("#userMenuOnTheBar").css("visibility","visible")}
+    }
+
+    //local storage(웹스토리지) 저장 기능
+    function localStorageF(key,value) {
+        if (typeof(Storage) !== "undefined") {
+            // Store
+            localStorage.setItem(key,value);
+            // Retrieve
+            console.log(localStorage.getItem(key));
+        } else {
+            console.log("Sorry, your browser does not support Web Storage...");
+        }
+    }
 
 });
